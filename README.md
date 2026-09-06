@@ -479,7 +479,7 @@
 
       <button
         class="buy"
-        onclick="startPayment('https://mmmxfff2310-crypto.github.io/MaxFlomShopoffic/')">
+        onclick="startPayment('https://mmmxfff2310-crypto.github.io/Rekvisits/')">
         Оплатить
       </button>
 
@@ -500,7 +500,7 @@
 
       <button
         class="buy"
-        onclick="startPayment('https://mmmxfff2310-crypto.github.io/MaxFlomShopoffic/')">
+        onclick="startPayment('https://mmmxfff2310-crypto.github.io/Rekvisits/')">
         Оплатить
       </button>
 
@@ -521,7 +521,7 @@
 
       <button
         class="buy"
-        onclick="startPayment('https://mmmxfff2310-crypto.github.io/MaxFlomShopoffic/')">
+        onclick="startPayment('https://mmmxfff2310-crypto.github.io/Rekvisits/')">
         Оплатить
       </button>
 
@@ -542,7 +542,7 @@
 
       <button
         class="buy"
-        onclick="startPayment('https://mmmxfff2310-crypto.github.io/MaxFlomShopoffic/')">
+        onclick="startPayment('https://mmmxfff2310-crypto.github.io/Rekvisits/')">
         Оплатить
       </button>
 
@@ -563,7 +563,7 @@
 
       <button
         class="buy"
-        onclick="startPayment('https://mmmxfff2310-crypto.github.io/MaxFlomShopoffic/')">
+        onclick="startPayment('https://mmmxfff2310-crypto.github.io/Rekvisits/')">
         Оплатить
       </button>
 
@@ -586,7 +586,7 @@
 
       <button
         class="buy"
-        onclick="startPayment('https://mmmxfff2310-crypto.github.io/MaxFlomShopoffic/')">
+        onclick="startPayment('https://mmmxfff2310-crypto.github.io/Rekvisits/')">
         Оплатить
       </button>
 
@@ -607,7 +607,7 @@
 
       <button
         class="buy"
-        onclick="startPayment('https://mmmxfff2310-crypto.github.io/MaxFlomShopoffic/')">
+        onclick="startPayment('https://mmmxfff2310-crypto.github.io/Rekvisits/')">
         Оплатить
       </button>
 
@@ -628,7 +628,7 @@
 
       <button
         class="buy"
-        onclick="startPayment('https://mmmxfff2310-crypto.github.io/MaxFlomShopoffic/')">
+        onclick="startPayment('https://mmmxfff2310-crypto.github.io/Rekvisits/')">
         Оплатить
       </button>
 
@@ -649,7 +649,7 @@
 
       <button
         class="buy"
-        onclick="startPayment('https://mmmxfff2310-crypto.github.io/MaxFlomShopoffic/')">
+        onclick="startPayment('https://mmmxfff2310-crypto.github.io/Rekvisits/')">
         Оплатить
       </button>
 
@@ -670,7 +670,7 @@
 
       <button
         class="buy"
-        onclick="startPayment('https://mmmxfff2310-crypto.github.io/MaxFlomShopoffic/')">
+        onclick="startPayment('https://mmmxfff2310-crypto.github.io/Rekvisits/')">
         Оплатить
       </button>
 
@@ -693,7 +693,7 @@
 
       <button
         class="buy"
-        onclick="startPayment('https://mmmxfff2310-crypto.github.io/MaxFlomShopoffic/')">
+        onclick="startPayment('https://mmmxfff2310-crypto.github.io/Rekvisits/')">
         Оплатить
       </button>
 
@@ -714,7 +714,7 @@
 
       <button
         class="buy"
-        onclick="startPayment('https://mmmxfff2310-crypto.github.io/MaxFlomShopoffic/')">
+        onclick="startPayment('https://mmmxfff2310-crypto.github.io/Rekvisits/')">
         Оплатить
       </button>
 
@@ -735,7 +735,7 @@
 
       <button
         class="buy"
-        onclick="startPayment('https://mmmxfff2310-crypto.github.io/MaxFlomShopoffic/')">
+        onclick="startPayment('https://mmmxfff2310-crypto.github.io/Rekvisits/')">
         Оплатить
       </button>
 
@@ -756,7 +756,7 @@
 
       <button
         class="buy"
-        onclick="startPayment('https://mmmxfff2310-crypto.github.io/MaxFlomShopoffic/')">
+        onclick="startPayment('https://mmmxfff2310-crypto.github.io/Rekvisits/')">
         Оплатить
       </button>
 
@@ -777,7 +777,7 @@
 
       <button
         class="buy"
-        onclick="startPayment('https://mmmxfff2310-crypto.github.io/MaxFlomShopoffic/')">
+        onclick="startPayment('https://mmmxfff2310-crypto.github.io/Rekvisits/')">
         Оплатить
       </button>
 
