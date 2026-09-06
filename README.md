@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <!-- Товар 1 -->
 <div class="product">
   <h2>Товар №1</h2>
@@ -53,3 +54,4 @@
   </div>
 
 </div>
+</html>
