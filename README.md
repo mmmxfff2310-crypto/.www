@@ -17,29 +17,30 @@
       min-height: 100vh;
       font-family: Arial, sans-serif;
       color: white;
+
       background:
         radial-gradient(circle at 50% 0%, #006eff 0%, transparent 35%),
         linear-gradient(135deg, #020617, #001b52, #000b25);
+
       overflow-x: hidden;
     }
 
-    /* Фоновое свечение */
     body::before {
       content: "";
       position: fixed;
       inset: 0;
       pointer-events: none;
+
       background-image:
         radial-gradient(#00bfff 1px, transparent 1px);
+
       background-size: 35px 35px;
       opacity: 0.12;
     }
 
-    /* Шапка */
-
     header {
       text-align: center;
-      padding: 60px 20px 40px;
+      padding: 50px 20px 30px;
       position: relative;
       z-index: 1;
     }
@@ -83,11 +84,69 @@
       font-size: 18px;
     }
 
-    /* Товары */
+    /* КАТЕГОРИИ */
+
+    .categories {
+      width: 92%;
+      max-width: 1100px;
+      margin: 20px auto 35px;
+
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+
+      position: relative;
+      z-index: 1;
+    }
+
+    .category {
+      padding: 15px 30px;
+
+      border: 1px solid #00bfff;
+      border-radius: 15px;
+
+      background: rgba(0, 30, 90, 0.8);
+      color: white;
+
+      font-size: 18px;
+      font-weight: bold;
+
+      cursor: pointer;
+
+      box-shadow:
+        0 0 12px rgba(0, 150, 255, 0.4);
+
+      transition: 0.25s;
+    }
+
+    .category:hover {
+      transform: translateY(-3px);
+
+      box-shadow:
+        0 0 20px #008cff,
+        0 0 35px rgba(0, 150, 255, 0.5);
+    }
+
+    .category.active {
+      background:
+        linear-gradient(
+          90deg,
+          #006eff,
+          #00c8ff
+        );
+
+      box-shadow:
+        0 0 20px #00bfff,
+        0 0 40px rgba(0, 120, 255, 0.6);
+    }
+
+    /* ТОВАРЫ */
 
     .products {
       width: 92%;
       max-width: 1100px;
+
       margin: 0 auto;
 
       display: grid;
@@ -139,6 +198,7 @@
 
     .price {
       color: #00d9ff;
+
       font-size: 30px;
       font-weight: bold;
 
@@ -148,10 +208,9 @@
         0 0 10px #008cff;
     }
 
-    /* Кнопка */
-
     .buy {
       width: 100%;
+
       padding: 15px;
 
       border: none;
@@ -189,7 +248,7 @@
       transform: scale(0.97);
     }
 
-    /* Окно загрузки */
+    /* ОКНО ЗАГРУЗКИ */
 
     .payment {
       position: fixed;
@@ -261,7 +320,7 @@
       color: #b9ddff;
     }
 
-    /* Крутилка */
+    /* КРУТИЛКА */
 
     .spinner {
       width: 65px;
@@ -288,7 +347,7 @@
       }
     }
 
-    /* Прогресс */
+    /* ПРОГРЕСС */
 
     .progress {
       width: 100%;
@@ -331,8 +390,6 @@
       color: #8edcff;
     }
 
-    /* Подвал */
-
     footer {
       text-align: center;
 
@@ -342,9 +399,10 @@
       color: #7fb3df;
     }
 
-    /* Телефон */
+    /* ТЕЛЕФОН */
 
     @media (max-width: 800px) {
+
       .products {
         grid-template-columns: 1fr;
       }
@@ -352,13 +410,15 @@
       .logo {
         font-size: 42px;
       }
+
+      .category {
+        width: 100%;
+      }
     }
   </style>
 </head>
 
 <body>
-
-  <!-- ШАПКА -->
 
   <header>
 
@@ -367,24 +427,50 @@
     </div>
 
     <div class="subtitle">
-      Добро пожаловать в наш неоновый магазин ⚡
+      Добро пожаловать в наш магазин ⚡
     </div>
 
   </header>
 
 
+  <!-- КАТЕГОРИИ -->
+
+  <div class="categories">
+
+    <button
+      class="category active"
+      onclick="showCategory('robux', this)">
+      💎 Робуксы
+    </button>
+
+    <button
+      class="category"
+      onclick="showCategory('services', this)">
+      🛠 Услуги
+    </button>
+
+    <button
+      class="category"
+      onclick="showCategory('accounts', this)">
+      👤 Аккаунты
+    </button>
+
+  </div>
+
+
   <!-- ТОВАРЫ -->
 
-  <main class="products">
+  <main class="products" id="products">
 
-    <!-- Товар 1 -->
 
-    <div class="product">
+    <!-- РОБУКСЫ -->
 
-      <h2>Товар №1</h2>
+    <div class="product robux">
+
+      <h2>100 Робуксов</h2>
 
       <div class="description">
-        Описание первого товара
+        Пополнение на 100 Robux
       </div>
 
       <div class="price">
@@ -394,22 +480,18 @@
       <button
         class="buy"
         onclick="startPayment('https://mmmxfff2310-crypto.github.io/MaxFlomShopoffic/')">
-
         Оплатить
-
       </button>
 
     </div>
 
 
-    <!-- Товар 2 -->
+    <div class="product robux">
 
-    <div class="product">
-
-      <h2>Товар №2</h2>
+      <h2>200 Робуксов</h2>
 
       <div class="description">
-        Описание второго товара
+        Пополнение на 200 Robux
       </div>
 
       <div class="price">
@@ -419,22 +501,18 @@
       <button
         class="buy"
         onclick="startPayment('https://mmmxfff2310-crypto.github.io/MaxFlomShopoffic/')">
-
         Оплатить
-
       </button>
 
     </div>
 
 
-    <!-- Товар 3 -->
+    <div class="product robux">
 
-    <div class="product">
-
-      <h2>Товар №3</h2>
+      <h2>500 Робуксов</h2>
 
       <div class="description">
-        Описание третьего товара
+        Пополнение на 500 Robux
       </div>
 
       <div class="price">
@@ -444,22 +522,18 @@
       <button
         class="buy"
         onclick="startPayment('https://mmmxfff2310-crypto.github.io/MaxFlomShopoffic/')">
-
         Оплатить
-
       </button>
 
     </div>
 
 
-    <!-- Товар 4 -->
+    <div class="product robux">
 
-    <div class="product">
-
-      <h2>Товар №4</h2>
+      <h2>1000 Робуксов</h2>
 
       <div class="description">
-        Описание четвёртого товара
+        Пополнение на 1000 Robux
       </div>
 
       <div class="price">
@@ -469,22 +543,18 @@
       <button
         class="buy"
         onclick="startPayment('https://mmmxfff2310-crypto.github.io/MaxFlomShopoffic/')">
-
         Оплатить
-
       </button>
 
     </div>
 
 
-    <!-- Товар 5 -->
+    <div class="product robux">
 
-    <div class="product">
-
-      <h2>Товар №5</h2>
+      <h2>2000 Робуксов</h2>
 
       <div class="description">
-        Описание пятого товара
+        Пополнение на 2000 Robux
       </div>
 
       <div class="price">
@@ -494,22 +564,20 @@
       <button
         class="buy"
         onclick="startPayment('https://mmmxfff2310-crypto.github.io/MaxFlomShopoffic/')">
-
         Оплатить
-
       </button>
 
     </div>
 
 
-    <!-- Товар 6 -->
+    <!-- УСЛУГИ -->
 
-    <div class="product">
+    <div class="product services" style="display:none">
 
-      <h2>Товар №6</h2>
+      <h2>Услуга №1</h2>
 
       <div class="description">
-        Описание шестого товара
+        Персональная услуга
       </div>
 
       <div class="price">
@@ -519,9 +587,198 @@
       <button
         class="buy"
         onclick="startPayment('https://mmmxfff2310-crypto.github.io/MaxFlomShopoffic/')">
-
         Оплатить
+      </button>
 
+    </div>
+
+
+    <div class="product services" style="display:none">
+
+      <h2>Услуга №2</h2>
+
+      <div class="description">
+        Игровая услуга
+      </div>
+
+      <div class="price">
+        20 ₽
+      </div>
+
+      <button
+        class="buy"
+        onclick="startPayment('https://mmmxfff2310-crypto.github.io/MaxFlomShopoffic/')">
+        Оплатить
+      </button>
+
+    </div>
+
+
+    <div class="product services" style="display:none">
+
+      <h2>Услуга №3</h2>
+
+      <div class="description">
+        Помощь с аккаунтом
+      </div>
+
+      <div class="price">
+        20 ₽
+      </div>
+
+      <button
+        class="buy"
+        onclick="startPayment('https://mmmxfff2310-crypto.github.io/MaxFlomShopoffic/')">
+        Оплатить
+      </button>
+
+    </div>
+
+
+    <div class="product services" style="display:none">
+
+      <h2>Услуга №4</h2>
+
+      <div class="description">
+        Игровая помощь
+      </div>
+
+      <div class="price">
+        20 ₽
+      </div>
+
+      <button
+        class="buy"
+        onclick="startPayment('https://mmmxfff2310-crypto.github.io/MaxFlomShopoffic/')">
+        Оплатить
+      </button>
+
+    </div>
+
+
+    <div class="product services" style="display:none">
+
+      <h2>Услуга №5</h2>
+
+      <div class="description">
+        Другая услуга
+      </div>
+
+      <div class="price">
+        20 ₽
+      </div>
+
+      <button
+        class="buy"
+        onclick="startPayment('https://mmmxfff2310-crypto.github.io/MaxFlomShopoffic/')">
+        Оплатить
+      </button>
+
+    </div>
+
+
+    <!-- АККАУНТЫ -->
+
+    <div class="product accounts" style="display:none">
+
+      <h2>Аккаунт №1</h2>
+
+      <div class="description">
+        Игровой аккаунт
+      </div>
+
+      <div class="price">
+        20 ₽
+      </div>
+
+      <button
+        class="buy"
+        onclick="startPayment('https://mmmxfff2310-crypto.github.io/MaxFlomShopoffic/')">
+        Оплатить
+      </button>
+
+    </div>
+
+
+    <div class="product accounts" style="display:none">
+
+      <h2>Аккаунт №2</h2>
+
+      <div class="description">
+        Игровой аккаунт
+      </div>
+
+      <div class="price">
+        20 ₽
+      </div>
+
+      <button
+        class="buy"
+        onclick="startPayment('https://mmmxfff2310-crypto.github.io/MaxFlomShopoffic/')">
+        Оплатить
+      </button>
+
+    </div>
+
+
+    <div class="product accounts" style="display:none">
+
+      <h2>Аккаунт №3</h2>
+
+      <div class="description">
+        Игровой аккаунт
+      </div>
+
+      <div class="price">
+        20 ₽
+      </div>
+
+      <button
+        class="buy"
+        onclick="startPayment('https://mmmxfff2310-crypto.github.io/MaxFlomShopoffic/')">
+        Оплатить
+      </button>
+
+    </div>
+
+
+    <div class="product accounts" style="display:none">
+
+      <h2>Аккаунт №4</h2>
+
+      <div class="description">
+        Игровой аккаунт
+      </div>
+
+      <div class="price">
+        20 ₽
+      </div>
+
+      <button
+        class="buy"
+        onclick="startPayment('https://mmmxfff2310-crypto.github.io/MaxFlomShopoffic/')">
+        Оплатить
+      </button>
+
+    </div>
+
+
+    <div class="product accounts" style="display:none">
+
+      <h2>Аккаунт №5</h2>
+
+      <div class="description">
+        Игровой аккаунт
+      </div>
+
+      <div class="price">
+        20 ₽
+      </div>
+
+      <button
+        class="buy"
+        onclick="startPayment('https://mmmxfff2310-crypto.github.io/MaxFlomShopoffic/')">
+        Оплатить
       </button>
 
     </div>
@@ -529,7 +786,7 @@
   </main>
 
 
-  <!-- ОКНО ЗАГРУЗКИ -->
+  <!-- ЗАГРУЗКА -->
 
   <div
     class="payment"
@@ -566,16 +823,43 @@
   </div>
 
 
-  <!-- ПОДВАЛ -->
-
   <footer>
     © 2026 MaxFlomShop
   </footer>
 
 
-  <!-- JAVASCRIPT -->
-
   <script>
+
+    /* ПЕРЕКЛЮЧЕНИЕ КАТЕГОРИЙ */
+
+    function showCategory(category, button) {
+
+      const products =
+        document.querySelectorAll(".product");
+
+      products.forEach(function(product) {
+
+        if (product.classList.contains(category)) {
+          product.style.display = "block";
+        } else {
+          product.style.display = "none";
+        }
+
+      });
+
+
+      const buttons =
+        document.querySelectorAll(".category");
+
+      buttons.forEach(function(btn) {
+        btn.classList.remove("active");
+      });
+
+      button.classList.add("active");
+    }
+
+
+    /* ОПЛАТА */
 
     function startPayment(paymentLink) {
 
@@ -592,8 +876,9 @@
       counter.textContent =
         "Осталось " + seconds + " секунд";
 
+
       const timer =
-        setInterval(function () {
+        setInterval(function() {
 
           seconds--;
 
@@ -609,7 +894,7 @@
             counter.textContent =
               "Переходим к оплате...";
 
-            setTimeout(function () {
+            setTimeout(function() {
 
               window.location.href =
                 paymentLink;
@@ -619,7 +904,6 @@
           }
 
         }, 1000);
-
     }
 
   </script>
