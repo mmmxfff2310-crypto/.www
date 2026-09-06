@@ -1,118 +1,177 @@
-@keyframes appear {
-        from {
-            opacity: 0;
-            transform: translateY(20px);
+header {
+            padding-top: 45px;
         }
 
-        to {
-            opacity: 1;
-            transform: translateY(0);
+        .logo {
+            letter-spacing: -2px;
+        }
+
+        .shop {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+        }
+
+        .product {
+            min-height: 275px;
+            padding: 18px 13px;
+        }
+
+        .product-icon {
+            width: 68px;
+            height: 68px;
+            font-size: 37px;
+        }
+
+        .product h2 {
+            font-size: 15px;
+        }
+
+        .price {
+            font-size: 24px;
         }
     }
 
-    /* Адаптация телефона */
-
-    @media (max-width: 600px) {
-
-        body {
-            padding: 25px 15px;
-        }
-
-        header {
-            margin-bottom: 30px;
-        }
+    @media (max-width: 430px) {
 
         .shop {
             grid-template-columns: 1fr;
         }
 
-        .product:hover {
-            transform: translateY(-5px);
+        .product {
+            min-height: 260px;
         }
     }
 </style>
+<!-- Заголовок -->
+
 <header>
-    <h1>MaxFlomShop</h1>
-    <p>Добро пожаловать в наш магазин</p>
+    <h1 class="logo">Maximum Shop</h1>
+    <p class="subtitle">Добро пожаловать в наш магазин</p>
 </header>
+
+
+<!-- Товары -->
 
 <main class="shop">
 
     <div class="product">
+        <div class="product-icon">🛍️</div>
         <h2>Товар №1</h2>
         <div class="price">20 ₽</div>
-        <button class="buy-button" onclick="buy(1)">Купить</button>
+        <button class="buy-button" onclick="buy(1)">
+            🛒 Купить
+        </button>
     </div>
 
     <div class="product">
+        <div class="product-icon">🛍️</div>
         <h2>Товар №2</h2>
         <div class="price">20 ₽</div>
-        <button class="buy-button" onclick="buy(2)">Купить</button>
+        <button class="buy-button" onclick="buy(2)">
+            🛒 Купить
+        </button>
     </div>
 
     <div class="product">
+        <div class="product-icon">🛍️</div>
         <h2>Товар №3</h2>
         <div class="price">20 ₽</div>
-        <button class="buy-button" onclick="buy(3)">Купить</button>
+        <button class="buy-button" onclick="buy(3)">
+            🛒 Купить
+        </button>
     </div>
 
     <div class="product">
+        <div class="product-icon">🛍️</div>
         <h2>Товар №4</h2>
         <div class="price">20 ₽</div>
-        <button class="buy-button" onclick="buy(4)">Купить</button>
+        <button class="buy-button" onclick="buy(4)">
+            🛒 Купить
+        </button>
     </div>
 
     <div class="product">
+        <div class="product-icon">🛍️</div>
         <h2>Товар №5</h2>
         <div class="price">20 ₽</div>
-        <button class="buy-button" onclick="buy(5)">Купить</button>
+        <button class="buy-button" onclick="buy(5)">
+            🛒 Купить
+        </button>
     </div>
 
     <div class="product">
+        <div class="product-icon">🛍️</div>
         <h2>Товар №6</h2>
         <div class="price">20 ₽</div>
-        <button class="buy-button" onclick="buy(6)">Купить</button>
+        <button class="buy-button" onclick="buy(6)">
+            🛒 Купить
+        </button>
     </div>
 
     <div class="product">
+        <div class="product-icon">🛍️</div>
         <h2>Товар №7</h2>
         <div class="price">20 ₽</div>
-        <button class="buy-button" onclick="buy(7)">Купить</button>
+        <button class="buy-button" onclick="buy(7)">
+            🛒 Купить
+        </button>
     </div>
 
     <div class="product">
+        <div class="product-icon">🛍️</div>
         <h2>Товар №8</h2>
         <div class="price">20 ₽</div>
-        <button class="buy-button" onclick="buy(8)">Купить</button>
+        <button class="buy-button" onclick="buy(8)">
+            🛒 Купить
+        </button>
     </div>
 
     <div class="product">
+        <div class="product-icon">🛍️</div>
         <h2>Товар №9</h2>
         <div class="price">20 ₽</div>
-        <button class="buy-button" onclick="buy(9)">Купить</button>
+        <button class="buy-button" onclick="buy(9)">
+            🛒 Купить
+        </button>
     </div>
 
     <div class="product">
+        <div class="product-icon">🛍️</div>
         <h2>Товар №10</h2>
         <div class="price">20 ₽</div>
-        <button class="buy-button" onclick="buy(10)">Купить</button>
+        <button class="buy-button" onclick="buy(10)">
+            🛒 Купить
+        </button>
     </div>
 
 </main>
 
-<div class="message" id="message"></div>
+
+<!-- Уведомление -->
+
+<div class="toast" id="toast">
+    <div class="toast-icon">🛒</div>
+    <div class="toast-text" id="toastText">
+        Вы выбрали товар
+    </div>
+</div>
+
 
 <script>
+
     function buy(number) {
-        const message = document.getElementById("message");
 
-        message.textContent =
-            "🛒 Вы выбрали товар №" + number + " — 20 ₽";
+        const toast = document.getElementById("toast");
+        const text = document.getElementById("toastText");
 
-        message.classList.add("show");
+        text.textContent =
+            "Вы выбрали товар №" + number + " — 20 ₽";
 
-        setTimeout(() => {
-            message.classList.remove("show");
+        toast.classList.add("show");
+
+        setTimeout(function() {
+            toast.classList.remove("show");
         }, 2500);
     }
+
 </script>
