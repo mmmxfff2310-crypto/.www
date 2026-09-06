@@ -1,1 +1,17 @@
-!DOCTYPE html html lang=“ru” head meta charset=“UTF-8” meta name=“viewport” content=“width=device-width, initial-scale=1.0” title MaxFlom Shop /title style body, звёздочка margin 0, padding 0, box-sizing border-box, закрыли звёздочку. Далее body font-family Arial, sans-serif, background linear-gradient 135 градусов, #0066ff до #00bfff, color white, header text-align center, padding 50px 20px, header h1 font-size 42px, header p margin-top 10px, font-size 18px. Секция products display flex, justify-content center, flex-wrap wrap, gap 20px, padding 30px. Карточка card width 280px, background white, color black, border-radius 15px, overflow hidden, box-shadow08px20px rgba(0,0,0,0.3). Внутри card: img с via.placeholder280x180, alt=“Товар”, h2 Товар №1, p Цена15 ₽, button «Купить». Аналогично второй card с Товар №2 и ценой 30 ₽. footer text align center, padding 30px, color white, текст «©2026 MaxFlom Shop»
+<div class="card">
+  <img src="https://via.placeholder.com/280x180" alt="Товар 1">
+  <h2>Товар №1</h2>
+  <p>Цена: 15 ₽</p>
+  <button onclick="window.location.href='https://example.com'">
+    Купить
+  </button>
+</div>
+
+<div class="card">
+  <img src="https://via.placeholder.com/280x180" alt="Товар 2">
+  <h2>Товар №2</h2>
+  <p>Цена: 30 ₽</p>
+  <button onclick="window.location.href='https://example.com'">
+    Купить
+  </button>
+</div>
