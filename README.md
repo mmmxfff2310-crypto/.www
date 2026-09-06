@@ -474,7 +474,7 @@
       </div>
 
       <div class="price">
-        20 ₽
+         150₽
       </div>
 
       <button
@@ -495,7 +495,7 @@
       </div>
 
       <div class="price">
-        20 ₽
+        250 ₽
       </div>
 
       <button
@@ -516,7 +516,7 @@
       </div>
 
       <div class="price">
-        20 ₽
+        569 ₽
       </div>
 
       <button
@@ -537,7 +537,7 @@
       </div>
 
       <div class="price">
-        20 ₽
+        1210 ₽
       </div>
 
       <button
@@ -558,7 +558,7 @@
       </div>
 
       <div class="price">
-        20 ₽
+        2199 ₽
       </div>
 
       <button
@@ -574,10 +574,73 @@
 
     <div class="product services" style="display:none">
 
-      <h2>Услуга №1</h2>
+      <h2>Лучшие читы!</h2>
 
       <div class="description">
-        Персональная услуга
+        Помогу настроить лучшие читы и скажу где скачать!
+      </div>
+
+      <div class="price">
+        110 ₽
+      </div>
+
+      <button
+        class="buy"
+        onclick="startPayment('https://mmmxfff2310-crypto.github.io/MaxFlomShopoffic/')">
+        Оплатить
+      </button>
+
+    </div>
+
+
+    <div class="product services" style="display:none">
+
+      <h2>Пиар</h2>
+
+      <div class="description">
+        Пиар вашего аккаунта в Likee
+      </div>
+
+      <div class="price">
+        100 ₽
+      </div>
+
+      <button
+        class="buy"
+        onclick="startPayment('https://mmmxfff2310-crypto.github.io/MaxFlomShopoffic/')">
+        Оплатить
+      </button>
+
+    </div>
+
+
+    <div class="product services" style="display:none">
+
+      <h2>Сделаю с Uncheked на обычный роблокс</h2>
+
+      <div class="description">
+        Помощь с аккаунтом со входом
+      </div>
+
+      <div class="price">
+        50 ₽
+      </div>
+
+      <button
+        class="buy"
+        onclick="startPayment('https://mmmxfff2310-crypto.github.io/MaxFlomShopoffic/')">
+        Оплатить
+      </button>
+
+    </div>
+
+
+    <div class="product services" style="display:none">
+
+      <h2>Помогу развиться в Steal a agg</h2>
+
+      <div class="description">
+        Буду носить дорогие яйца к концу что бы вы забрали
       </div>
 
       <div class="price">
@@ -595,77 +658,14 @@
 
     <div class="product services" style="display:none">
 
-      <h2>Услуга №2</h2>
+      <h2>Помогу создать сайт</h2>
 
       <div class="description">
-        Игровая услуга
+        Создание сайта
       </div>
 
       <div class="price">
-        20 ₽
-      </div>
-
-      <button
-        class="buy"
-        onclick="startPayment('https://mmmxfff2310-crypto.github.io/MaxFlomShopoffic/')">
-        Оплатить
-      </button>
-
-    </div>
-
-
-    <div class="product services" style="display:none">
-
-      <h2>Услуга №3</h2>
-
-      <div class="description">
-        Помощь с аккаунтом
-      </div>
-
-      <div class="price">
-        20 ₽
-      </div>
-
-      <button
-        class="buy"
-        onclick="startPayment('https://mmmxfff2310-crypto.github.io/MaxFlomShopoffic/')">
-        Оплатить
-      </button>
-
-    </div>
-
-
-    <div class="product services" style="display:none">
-
-      <h2>Услуга №4</h2>
-
-      <div class="description">
-        Игровая помощь
-      </div>
-
-      <div class="price">
-        20 ₽
-      </div>
-
-      <button
-        class="buy"
-        onclick="startPayment('https://mmmxfff2310-crypto.github.io/MaxFlomShopoffic/')">
-        Оплатить
-      </button>
-
-    </div>
-
-
-    <div class="product services" style="display:none">
-
-      <h2>Услуга №5</h2>
-
-      <div class="description">
-        Другая услуга
-      </div>
-
-      <div class="price">
-        20 ₽
+        1400 ₽
       </div>
 
       <button
@@ -681,14 +681,14 @@
 
     <div class="product accounts" style="display:none">
 
-      <h2>Аккаунт №1</h2>
+      <h2>Донат 200 Robux</h2>
 
       <div class="description">
         Игровой аккаунт
       </div>
 
       <div class="price">
-        20 ₽
+        100 ₽
       </div>
 
       <button
@@ -702,14 +702,14 @@
 
     <div class="product accounts" style="display:none">
 
-      <h2>Аккаунт №2</h2>
+      <h2>Донат 1000 Robux</h2>
 
       <div class="description">
         Игровой аккаунт
       </div>
 
       <div class="price">
-        20 ₽
+        699 ₽
       </div>
 
       <button
@@ -723,14 +723,14 @@
 
     <div class="product accounts" style="display:none">
 
-      <h2>Аккаунт №3</h2>
+      <h2>Донат 2000 Robux</h2>
 
       <div class="description">
         Игровой аккаунт
       </div>
 
       <div class="price">
-        20 ₽
+        1200 ₽
       </div>
 
       <button
@@ -744,14 +744,14 @@
 
     <div class="product accounts" style="display:none">
 
-      <h2>Аккаунт №4</h2>
+      <h2>Рандом акк с донат вещами</h2>
 
       <div class="description">
-        Игровой аккаунт
+        Попытай удачу
       </div>
 
       <div class="price">
-        20 ₽
+        99 ₽
       </div>
 
       <button
@@ -765,14 +765,14 @@
 
     <div class="product accounts" style="display:none">
 
-      <h2>Аккаунт №5</h2>
+      <h2>донат 12к+ Robux</h2>
 
       <div class="description">
-        Игровой аккаунт
+        Прокаченный аккаунт
       </div>
 
       <div class="price">
-        20 ₽
+        9898 ₽
       </div>
 
       <button
