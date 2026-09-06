@@ -393,7 +393,7 @@
 
       <button
         class="buy"
-        onclick="startPayment('https://example.com/payment1')">
+        onclick="startPayment('https://mmmxfff2310-crypto.github.io/MaxFlomShopoffic/')">
 
         Оплатить
 
@@ -418,7 +418,7 @@
 
       <button
         class="buy"
-        onclick="startPayment('https://example.com/payment2')">
+        onclick="startPayment('https://mmmxfff2310-crypto.github.io/MaxFlomShopoffic/')">
 
         Оплатить
 
@@ -443,7 +443,7 @@
 
       <button
         class="buy"
-        onclick="startPayment('https://example.com/payment3')">
+        onclick="startPayment('https://mmmxfff2310-crypto.github.io/MaxFlomShopoffic/')">
 
         Оплатить
 
@@ -468,7 +468,7 @@
 
       <button
         class="buy"
-        onclick="startPayment('https://example.com/payment4')">
+        onclick="startPayment('https://mmmxfff2310-crypto.github.io/MaxFlomShopoffic/')">
 
         Оплатить
 
@@ -493,7 +493,7 @@
 
       <button
         class="buy"
-        onclick="startPayment('https://example.com/payment5')">
+        onclick="startPayment('https://mmmxfff2310-crypto.github.io/MaxFlomShopoffic/')">
 
         Оплатить
 
@@ -518,7 +518,7 @@
 
       <button
         class="buy"
-        onclick="startPayment('https://example.com/payment6')">
+        onclick="startPayment('https://mmmxfff2310-crypto.github.io/MaxFlomShopoffic/')">
 
         Оплатить
 
