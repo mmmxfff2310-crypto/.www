@@ -32,7 +32,7 @@
     }
 </style>
 <header>
-    <h1>Maximum Shop</h1>
+    <h1>MaxFlomShop</h1>
     <p>Добро пожаловать в наш магазин</p>
 </header>
 
