@@ -1,2890 +1,2843 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>MaxFlomShop</title>
 
-<!-- TAWK.TO -->
-<script type="text/javascript">
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-(function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/6a9e514d563b0f3444fcdd58/1k1t6r66f';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);
-})();
-</script>
-
 <style>
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
 
-html {
-  scroll-behavior: smooth;
+body{
+    min-height:100vh;
+    font-family:Arial,sans-serif;
+    color:#fff;
+    background:
+        radial-gradient(circle at top,#063d91 0%,#03142f 45%,#020812 100%);
 }
 
-body {
-  min-height: 100vh;
-  font-family: Arial, sans-serif;
-  color: white;
-
-  background:
-    radial-gradient(circle at 50% 0%, #006eff 0%, transparent 35%),
-    linear-gradient(135deg, #020617, #001b52, #000b25);
-
-  overflow-x: hidden;
-  padding-bottom: 120px;
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    background:
+        radial-gradient(circle at 20% 20%,rgba(0,180,255,.15),transparent 30%),
+        radial-gradient(circle at 80% 70%,rgba(0,100,255,.12),transparent 30%);
 }
 
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-
-  background-image:
-    radial-gradient(#00bfff 1px, transparent 1px);
-
-  background-size: 35px 35px;
-  opacity: 0.12;
-  z-index: 0;
+header{
+    text-align:center;
+    padding:35px 15px 20px;
 }
 
-
-/* =========================
-   HEADER
-========================= */
-
-header {
-  text-align: center;
-  padding: 50px 20px 30px;
-  position: relative;
-  z-index: 1;
-}
-
-.logo {
-  font-size: clamp(40px, 8vw, 75px);
-  font-weight: 900;
-  letter-spacing: 3px;
-
-  text-shadow:
-    0 0 5px #00d9ff,
-    0 0 15px #00aaff,
-    0 0 30px #0077ff,
-    0 0 60px #0055ff;
-
-  animation: neon 2s ease-in-out infinite alternate;
-}
-
-@keyframes neon {
-  from {
+.logo{
+    font-size:48px;
+    font-weight:900;
+    color:#00d9ff;
     text-shadow:
-      0 0 5px #00d9ff,
-      0 0 15px #00aaff,
-      0 0 30px #0077ff;
-  }
-
-  to {
-    text-shadow:
-      0 0 10px white,
-      0 0 25px #00d9ff,
-      0 0 50px #0077ff,
-      0 0 80px #0055ff;
-  }
+        0 0 5px #00d9ff,
+        0 0 15px #00d9ff,
+        0 0 35px #008cff;
+    animation:neon 2s infinite alternate;
 }
 
-.subtitle {
-  margin-top: 15px;
-  color: #aeeaff;
-  font-size: 18px;
+@keyframes neon{
+    from{
+        text-shadow:
+        0 0 5px #00d9ff,
+        0 0 15px #00d9ff;
+    }
+    to{
+        text-shadow:
+        0 0 10px #00d9ff,
+        0 0 30px #00d9ff,
+        0 0 60px #008cff;
+    }
 }
 
-
-/* =========================
-   КАТЕГОРИИ
-========================= */
-
-.categories {
-  width: 92%;
-  max-width: 1100px;
-  margin: 20px auto 30px;
-
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  flex-wrap: wrap;
-
-  position: relative;
-  z-index: 1;
+.subtitle{
+    margin-top:10px;
+    color:#bdefff;
 }
 
-.category,
-.game-button {
-  padding: 15px 25px;
+.topbar{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+    padding:10px 15px 20px;
+}
 
-  border: 1px solid #00bfff;
-  border-radius: 15px;
+button{
+    border:0;
+    cursor:pointer;
+    color:white;
+    font-weight:bold;
+}
 
-  background: rgba(0, 30, 90, 0.85);
+.top-btn{
+    padding:12px 18px;
+    border-radius:12px;
+    background:linear-gradient(135deg,#007bff,#00c6ff);
+    box-shadow:0 0 15px rgba(0,180,255,.35);
+    transition:.2s;
+}
 
-  color: white;
+.top-btn:hover{
+    transform:translateY(-2px) scale(1.03);
+    box-shadow:0 0 25px rgba(0,200,255,.7);
+}
 
-  font-size: 17px;
-  font-weight: bold;
+.user-info{
+    display:none;
+    text-align:center;
+    margin:10px auto 20px;
+    max-width:600px;
+    padding:15px;
+    border:1px solid #00c6ff;
+    border-radius:15px;
+    background:rgba(0,30,80,.75);
+    box-shadow:0 0 20px rgba(0,160,255,.25);
+}
 
-  cursor: pointer;
+.balance{
+    font-size:23px;
+    color:#00eaff;
+    font-weight:bold;
+    margin:8px;
+}
 
-  box-shadow:
-    0 0 12px rgba(0, 150, 255, 0.4);
+.categories{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:12px;
+    padding:10px 15px 25px;
+}
 
-  transition: 0.25s;
+.category{
+    padding:13px 22px;
+    border-radius:14px;
+    background:#062b63;
+    border:1px solid #008cff;
+    transition:.2s;
 }
 
 .category:hover,
-.game-button:hover {
-  transform: translateY(-3px);
-
-  box-shadow:
-    0 0 20px #008cff,
-    0 0 35px rgba(0, 150, 255, 0.6);
-}
-
-.category.active,
-.game-button.active {
-  background:
-    linear-gradient(90deg, #006eff, #00c8ff);
-
-  box-shadow:
-    0 0 20px #00bfff,
-    0 0 40px rgba(0, 120, 255, 0.6);
-}
-
-
-/* =========================
-   ИГРЫ
-========================= */
-
-.game-selector {
-  width: 92%;
-  max-width: 1100px;
-
-  margin: 0 auto 30px;
-
-  display: none;
-  justify-content: center;
-  gap: 15px;
-  flex-wrap: wrap;
-
-  position: relative;
-  z-index: 1;
-}
-
-.game-selector.active {
-  display: flex;
-}
-
-
-/* =========================
-   ТОВАРЫ
-========================= */
-
-.products {
-  width: 92%;
-  max-width: 1100px;
-
-  margin: 0 auto;
-
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 25px;
-
-  position: relative;
-  z-index: 1;
-}
-
-.product {
-  padding: 28px;
-
-  border-radius: 20px;
-
-  background: rgba(0, 25, 80, 0.75);
-
-  border: 1px solid rgba(0, 190, 255, 0.7);
-
-  box-shadow:
-    0 0 15px rgba(0, 150, 255, 0.35),
-    inset 0 0 20px rgba(0, 150, 255, 0.08);
-
-  backdrop-filter: blur(10px);
-
-  transition: 0.3s;
-}
-
-.product:hover {
-  transform: translateY(-8px);
-
-  box-shadow:
-    0 0 20px #008cff,
-    0 0 45px rgba(0, 120, 255, 0.5);
-}
-
-.product h2 {
-  font-size: 26px;
-  margin-bottom: 15px;
-  word-break: break-word;
-}
-
-.description {
-  color: #b8dcff;
-  line-height: 1.5;
-  margin-bottom: 20px;
-}
-
-.price {
-  color: #00d9ff;
-
-  font-size: 30px;
-  font-weight: bold;
-
-  margin-bottom: 20px;
-
-  text-shadow: 0 0 10px #008cff;
-}
-
-
-/* =========================
-   КНОПКА ДОБАВЛЕНИЯ
-========================= */
-
-.buy {
-  width: 100%;
-  padding: 15px;
-
-  border: none;
-  border-radius: 12px;
-
-  color: white;
-
-  font-size: 18px;
-  font-weight: bold;
-
-  cursor: pointer;
-
-  background:
-    linear-gradient(90deg, #006eff, #00c8ff);
-
-  box-shadow:
-    0 0 15px rgba(0, 170, 255, 0.7);
-
-  transition: 0.25s;
-}
-
-.buy:hover {
-  transform: scale(1.04);
-
-  box-shadow:
-    0 0 20px #00c8ff,
-    0 0 40px #006eff;
-}
-
-.buy.in-cart {
-  background:
-    linear-gradient(90deg, #008f5a, #00d98b);
-}
-
-
-/* =========================
-   НИЖНЯЯ КОРЗИНА
-========================= */
-
-.cart-bar {
-  position: fixed;
-
-  left: 50%;
-  bottom: 15px;
-
-  transform: translateX(-50%);
-
-  width: 92%;
-  max-width: 700px;
-
-  padding: 15px 20px;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  background:
-    linear-gradient(
-      135deg,
-      rgba(0, 45, 130, 0.98),
-      rgba(0, 15, 55, 0.98)
-    );
-
-  border: 1px solid #00c8ff;
-  border-radius: 20px;
-
-  box-shadow:
-    0 0 20px #006eff,
-    0 0 50px rgba(0, 130, 255, 0.45);
-
-  backdrop-filter: blur(15px);
-
-  z-index: 9998;
-
-  cursor: pointer;
-}
-
-.cart-info {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.cart-icon {
-  font-size: 35px;
-}
-
-.cart-title {
-  color: #00d9ff;
-  font-size: 19px;
-  font-weight: bold;
-}
-
-.cart-count {
-  color: #a9dfff;
-  font-size: 14px;
-  margin-top: 3px;
-}
-
-.cart-total {
-  text-align: right;
-}
-
-.cart-total span {
-  display: block;
-  color: #a9dfff;
-  font-size: 13px;
-}
-
-.cart-total strong {
-  color: #00d9ff;
-  font-size: 23px;
-
-  text-shadow:
-    0 0 12px #008cff;
-}
-
-
-/* =========================
-   КОРЗИНА
-========================= */
-
-.cart-modal {
-  position: fixed;
-  inset: 0;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  background: rgba(0, 5, 30, 0.94);
-
-  backdrop-filter: blur(12px);
-
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-
-  transition: 0.3s;
-
-  z-index: 10000;
-}
-
-.cart-modal.active {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-}
-
-.cart-box {
-  width: 92%;
-  max-width: 520px;
-
-  max-height: 85vh;
-  overflow-y: auto;
-
-  padding: 30px 25px;
-
-  border-radius: 25px;
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(0, 35, 100, 0.99),
-      rgba(0, 10, 40, 0.99)
-    );
-
-  border: 1px solid #00bfff;
-
-  box-shadow:
-    0 0 30px #008cff,
-    0 0 70px rgba(0, 100, 255, 0.5);
-
-  position: relative;
-}
-
-.cart-close {
-  position: absolute;
-
-  top: 15px;
-  right: 15px;
-
-  width: 35px;
-  height: 35px;
-
-  border: 1px solid #00bfff;
-  border-radius: 50%;
-
-  background: rgba(0, 60, 140, 0.8);
-
-  color: white;
-  font-size: 18px;
-
-  cursor: pointer;
-}
-
-.cart-header {
-  text-align: center;
-
-  color: #00d9ff;
-
-  font-size: 28px;
-  font-weight: bold;
-
-  margin-bottom: 25px;
-}
-
-.cart-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  gap: 12px;
-
-  padding: 15px;
-  margin-bottom: 12px;
-
-  border-radius: 15px;
-
-  background: rgba(0, 80, 170, 0.25);
-
-  border: 1px solid rgba(0, 190, 255, 0.4);
-}
-
-.cart-item-info {
-  flex: 1;
-}
-
-.cart-item-name {
-  font-weight: bold;
-}
-
-.cart-item-price {
-  color: #00d9ff;
-  margin-top: 5px;
-}
-
-.cart-remove {
-  padding: 8px 10px;
-
-  border: 1px solid #00bfff;
-  border-radius: 8px;
-
-  background: rgba(0, 50, 120, 0.8);
-
-  color: white;
-
-  cursor: pointer;
-}
-
-.empty-cart {
-  text-align: center;
-  padding: 35px 10px;
-  color: #9ac8eb;
-}
-
-.cart-summary {
-  display: flex;
-  justify-content: space-between;
-
-  margin-top: 20px;
-  padding-top: 18px;
-
-  border-top:
-    1px solid rgba(0, 190, 255, 0.4);
-
-  color: #b9ddff;
-}
-
-.cart-modal-total strong {
-  color: #00d9ff;
-  font-size: 21px;
-}
-
-.cart-pay {
-  width: 100%;
-
-  margin-top: 20px;
-  padding: 15px;
-
-  border: none;
-  border-radius: 12px;
-
-  background:
-    linear-gradient(90deg, #006eff, #00c8ff);
-
-  color: white;
-
-  font-size: 18px;
-  font-weight: bold;
-
-  cursor: pointer;
-
-  box-shadow:
-    0 0 15px rgba(0, 170, 255, 0.7);
-}
-
-.cart-pay:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-.cart-clear {
-  width: 100%;
-
-  margin-top: 10px;
-  padding: 12px;
-
-  border: 1px solid #00bfff;
-  border-radius: 12px;
-
-  background: rgba(0, 50, 120, 0.7);
-
-  color: white;
-
-  font-weight: bold;
-
-  cursor: pointer;
-}
-
-
-/* =========================
-   ОКНО ОПЛАТЫ
-========================= */
-
-.payment {
-  position: fixed;
-  inset: 0;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  background: rgba(0, 5, 30, 0.95);
-
-  backdrop-filter: blur(12px);
-
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-
-  transition: 0.3s;
-
-  z-index: 11000;
-}
-
-.payment.active {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-}
-
-.payment-box {
-  width: 92%;
-  max-width: 470px;
-
-  max-height: 90vh;
-  overflow-y: auto;
-
-  padding: 30px 25px;
-
-  text-align: center;
-
-  border-radius: 25px;
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(0, 35, 100, 0.99),
-      rgba(0, 10, 40, 0.99)
-    );
-
-  border: 1px solid #00bfff;
-
-  box-shadow:
-    0 0 30px #008cff,
-    0 0 70px rgba(0, 100, 255, 0.5);
-}
-
-
-/* =========================
-   ПРОМО
-========================= */
-
-#promoStep {
-  display: block;
-}
-
-#promoStep.hidden {
-  display: none;
-}
-
-.promo-icon {
-  font-size: 55px;
-}
-
-.promo-title {
-  color: #00d9ff;
-
-  font-size: 27px;
-  font-weight: bold;
-
-  margin: 10px 0;
-}
-
-.promo-subtitle {
-  color: #b9ddff;
-
-  line-height: 1.5;
-
-  margin-bottom: 20px;
-}
-
-.promo-input {
-  width: 100%;
-
-  padding: 15px;
-
-  border-radius: 12px;
-
-  border: 1px solid #00bfff;
-
-  outline: none;
-
-  background: rgba(0, 10, 40, 0.9);
-
-  color: white;
-
-  font-size: 17px;
-
-  text-align: center;
-}
-
-.promo-message {
-  min-height: 25px;
-
-  margin: 10px 0;
-
-  color: #ffb3b3;
-}
-
-.promo-button,
-.no-promo-button {
-  width: 100%;
-
-  padding: 14px;
-
-  border-radius: 12px;
-
-  font-size: 17px;
-  font-weight: bold;
-
-  cursor: pointer;
-}
-
-.promo-button {
-  border: none;
-
-  color: white;
-
-  background:
-    linear-gradient(90deg, #006eff, #00c8ff);
-}
-
-.no-promo-button {
-  margin-top: 10px;
-
-  border: 1px solid #00bfff;
-
-  background: rgba(0, 50, 120, 0.7);
-
-  color: white;
-}
-
-.discount-success {
-  display: none;
-
-  margin: 15px 0;
-
-  padding: 14px;
-
-  border-radius: 13px;
-
-  background: rgba(0, 200, 255, 0.12);
-
-  border: 1px solid #00d9ff;
-
-  color: #7fe8ff;
-
-  font-weight: bold;
-}
-
-.discount-success.active {
-  display: block;
-}
-
-
-/* =========================
-   СТРАНИЦА РЕКВИЗИТОВ
-========================= */
-
-#requisitesStep {
-  display: none;
-}
-
-#requisitesStep.active {
-  display: block;
-}
-
-.requisites-icon {
-  font-size: 50px;
-
-  margin-bottom: 10px;
-}
-
-.requisites-title {
-  color: #00d9ff;
-
-  font-size: 27px;
-  font-weight: bold;
-
-  margin-bottom: 10px;
-}
-
-.payment-amount-box {
-  margin: 20px 0;
-
-  padding: 18px;
-
-  border-radius: 16px;
-
-  background:
-    rgba(0, 150, 255, 0.12);
-
-  border: 1px solid #00bfff;
+.category.active{
+    background:linear-gradient(135deg,#006eff,#00cfff);
+    box-shadow:0 0 20px #008cff;
+    transform:translateY(-2px);
+}
+
+.products{
+    width:min(1100px,94%);
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+    gap:20px;
+    padding-bottom:50px;
+}
+
+.product{
+    background:
+        linear-gradient(145deg,rgba(7,55,120,.9),rgba(2,17,40,.95));
+    border:1px solid rgba(0,174,255,.5);
+    border-radius:20px;
+    padding:22px;
+    box-shadow:0 0 20px rgba(0,130,255,.15);
+    transition:.25s;
 }
 
-.payment-amount-label {
-  color: #a9dfff;
-  font-size: 14px;
+.product:hover{
+    transform:translateY(-6px);
+    box-shadow:0 0 30px rgba(0,180,255,.45);
 }
 
-.payment-amount {
-  margin-top: 5px;
-
-  color: #00ffcc;
-
-  font-size: 34px;
-  font-weight: bold;
-
-  text-shadow:
-    0 0 15px #00bfff;
-}
-
-.discount-line {
-  margin-top: 8px;
-
-  color: #7fe8ff;
-
-  font-size: 14px;
-}
-
-.requisite-card {
-  text-align: left;
-
-  margin-top: 15px;
-
-  padding: 18px;
-
-  border-radius: 15px;
-
-  background:
-    rgba(0, 20, 70, 0.8);
-
-  border:
-    1px solid rgba(0, 190, 255, 0.5);
-}
-
-.requisite-row {
-  margin-bottom: 15px;
+.product h3{
+    margin-bottom:10px;
+    color:#00d9ff;
 }
 
-.requisite-row:last-child {
-  margin-bottom: 0;
+.price{
+    font-size:24px;
+    font-weight:bold;
+    margin:15px 0;
 }
 
-.requisite-label {
-  color: #82bce5;
-
-  font-size: 13px;
-
-  margin-bottom: 5px;
+.buy{
+    width:100%;
+    padding:13px;
+    border-radius:12px;
+    background:linear-gradient(135deg,#007bff,#00d9ff);
+    transition:.2s;
 }
-
-.requisite-value {
-  color: white;
 
-  font-size: 18px;
-
-  font-weight: bold;
-
-  word-break: break-word;
+.buy:hover{
+    transform:scale(1.03);
+    box-shadow:0 0 20px #00bfff;
 }
-
-.copy-button {
-  width: 100%;
 
-  margin-top: 8px;
-
-  padding: 8px;
-
-  border: 1px solid #00bfff;
-  border-radius: 8px;
-
-  background:
-    rgba(0, 90, 180, 0.6);
-
-  color: white;
-
-  cursor: pointer;
+.cart{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    z-index:50;
+    padding:16px 20px;
+    border-radius:50px;
+    background:linear-gradient(135deg,#006eff,#00d9ff);
+    box-shadow:0 0 25px rgba(0,180,255,.7);
 }
-
-.paid-button {
-  width: 100%;
-
-  margin-top: 20px;
-
-  padding: 16px;
-
-  border: none;
-  border-radius: 13px;
-
-  background:
-    linear-gradient(
-      90deg,
-      #008f5a,
-      #00d98b
-    );
-
-  color: white;
 
-  font-size: 18px;
-  font-weight: bold;
-
-  cursor: pointer;
-
-  box-shadow:
-    0 0 20px rgba(0, 255, 150, 0.5);
+.overlay{
+    position:fixed;
+    inset:0;
+    z-index:100;
+    background:rgba(0,5,20,.82);
+    backdrop-filter:blur(8px);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:15px;
 }
 
-.paid-button:hover {
-  transform: scale(1.03);
+.modal{
+    width:min(500px,100%);
+    max-height:90vh;
+    overflow:auto;
+    background:linear-gradient(145deg,#062b63,#020d20);
+    border:1px solid #00cfff;
+    border-radius:22px;
+    padding:25px;
+    box-shadow:0 0 40px rgba(0,190,255,.45);
 }
-
-.back-button {
-  width: 100%;
-
-  margin-top: 10px;
-
-  padding: 12px;
 
-  border: 1px solid #00bfff;
-  border-radius: 12px;
-
-  background: rgba(0, 50, 120, 0.7);
-
-  color: white;
-
-  cursor: pointer;
+.modal h2{
+    color:#00d9ff;
+    margin-bottom:18px;
+    text-align:center;
 }
 
-
-/* =========================
-   ЗАГРУЗКА
-========================= */
-
-#paymentLoading {
-  display: none;
+.input{
+    width:100%;
+    padding:13px;
+    margin:7px 0;
+    border-radius:10px;
+    border:1px solid #087bd1;
+    background:#020d20;
+    color:white;
+    outline:none;
 }
 
-#paymentLoading.active {
-  display: block;
+.input:focus{
+    border-color:#00d9ff;
+    box-shadow:0 0 10px rgba(0,210,255,.3);
 }
-
-.spinner {
-  width: 65px;
-  height: 65px;
 
-  margin: 0 auto 25px;
-
-  border-radius: 50%;
-
-  border: 5px solid rgba(255,255,255,0.15);
-
-  border-top-color: #00d9ff;
-
-  animation: spin 1s linear infinite;
+.modal-btn{
+    width:100%;
+    padding:13px;
+    margin-top:10px;
+    border-radius:11px;
+    background:linear-gradient(135deg,#007bff,#00cfff);
 }
 
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
+.close-btn{
+    background:#263951;
 }
-
-.payment-box h2 {
-  color: #00d9ff;
 
-  font-size: 26px;
-
-  margin-bottom: 15px;
+.error{
+    color:#ff6b6b;
+    margin-top:10px;
+    text-align:center;
 }
 
-.payment-box p {
-  color: #b9ddff;
+.success{
+    color:#5dff9a;
+    margin-top:10px;
+    text-align:center;
 }
-
-.progress {
-  width: 100%;
-
-  height: 7px;
-
-  margin-top: 25px;
-
-  background: rgba(255,255,255,0.15);
-
-  border-radius: 10px;
 
-  overflow: hidden;
+.code-box{
+    margin:18px 0;
+    padding:20px;
+    text-align:center;
+    border:2px dashed #00d9ff;
+    border-radius:15px;
+    background:rgba(0,100,180,.18);
 }
 
-.progress-bar {
-  width: 0%;
-  height: 100%;
-
-  background: #00d9ff;
+.confirm-code{
+    display:block;
+    font-size:30px;
+    font-weight:900;
+    color:#00eaff;
+    letter-spacing:3px;
+    margin-top:10px;
 }
 
-.progress-bar.running {
-  animation:
-    progress 5s linear forwards;
+.requisites{
+    padding:15px;
+    border-radius:15px;
+    background:#031a39;
+    border:1px solid #008cff;
+    margin:15px 0;
 }
-
-@keyframes progress {
-  from {
-    width: 0%;
-  }
 
-  to {
-    width: 100%;
-  }
+.requisites div{
+    margin:7px 0;
 }
 
-.counter {
-  margin-top: 15px;
-
-  color: #8edcff;
-
-  font-size: 17px;
+.admin-section{
+    margin-top:20px;
+    padding:15px;
+    border:1px solid #00cfff;
+    border-radius:15px;
+    background:rgba(0,80,160,.12);
 }
-
-.cancel-payment {
-  width: 100%;
-
-  margin-top: 25px;
-
-  padding: 13px;
-
-  border: 1px solid #00bfff;
-  border-radius: 12px;
-
-  background: rgba(0, 50, 120, 0.8);
-
-  color: white;
-
-  font-size: 17px;
-  font-weight: bold;
 
-  cursor: pointer;
+.admin-user{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+    padding:10px;
+    margin:8px 0;
+    border-radius:10px;
+    background:#031a39;
 }
 
-
-/* =========================
-   УСПЕШНАЯ ОТПЛАТА
-========================= */
-
-#paidStep {
-  display: none;
+.small-btn{
+    padding:8px 12px;
+    border-radius:8px;
+    background:#007bff;
 }
 
-#paidStep.active {
-  display: block;
+.hidden{
+    display:none!important;
 }
 
-.paid-icon {
-  font-size: 70px;
-
-  margin-bottom: 15px;
-
-  filter:
-    drop-shadow(0 0 20px #00ff99);
+.cart-item{
+    padding:12px 0;
+    border-bottom:1px solid rgba(255,255,255,.1);
 }
-
-.paid-title {
-  color: #00ffae;
 
-  font-size: 28px;
-  font-weight: bold;
-
-  margin-bottom: 12px;
+.cart-total{
+    font-size:23px;
+    margin:18px 0;
+    color:#00eaff;
+    font-weight:bold;
 }
 
-.paid-text {
-  color: #b9ddff;
-
-  line-height: 1.5;
+.empty{
+    text-align:center;
+    color:#aaa;
+    padding:20px;
 }
-
-
-/* =========================
-   FOOTER
-========================= */
-
-footer {
-  text-align: center;
-
-  margin-top: 50px;
-  padding: 25px;
 
-  color: #7fb3df;
-
-  position: relative;
-  z-index: 1;
+.support-btn{
+    margin-top:10px;
+    width:100%;
+    padding:12px;
+    border-radius:10px;
+    background:#12b981;
 }
-
-
-/* =========================
-   МОБИЛЬНЫЙ
-========================= */
-
-@media (max-width: 800px) {
-
-  .products {
-    grid-template-columns: 1fr;
-  }
 
-  .logo {
-    font-size: 42px;
-  }
-
-  .category,
-  .game-button {
-    width: 100%;
-  }
-
-  .product {
-    padding: 24px;
-  }
-
-  .cart-bar {
-    width: 94%;
-    bottom: 10px;
-  }
-
+.history-item{
+    padding:12px;
+    margin-top:10px;
+    background:#031a39;
+    border-radius:10px;
+    border:1px solid rgba(0,200,255,.25);
 }
 
-@media (max-width: 400px) {
+@media(max-width:600px){
 
-  .logo {
-    font-size: 35px;
-  }
+    .logo{
+        font-size:35px;
+    }
 
-  .cart-total strong {
-    font-size: 18px;
-  }
+    .products{
+        grid-template-columns:1fr;
+    }
 
-  .payment-box {
-    padding: 25px 18px;
-  }
-
+    .admin-user{
+        flex-direction:column;
+        align-items:stretch;
+    }
 }
-
 </style>
 </head>
 
-
 <body>
-
 
 <header>
 
-  <div class="logo">
-    MaxFlomShop
-  </div>
+    <div class="logo">
+        MaxFlomShop
+    </div>
 
-  <div class="subtitle">
-    Добро пожаловать в наш магазин ⚡
-  </div>
+    <div class="subtitle">
+        Roblox • Услуги • Аккаунты • Предметы
+    </div>
 
 </header>
 
 
-<!-- =========================
-     КАТЕГОРИИ
-========================= -->
+<div class="topbar">
+
+    <button
+        class="top-btn"
+        id="authBtn"
+        onclick="openAuth()">
+
+        👤 Войти / Регистрация
+
+    </button>
+
+
+    <button
+        class="top-btn hidden"
+        id="accountBtn"
+        onclick="openAccount()">
+
+        💰 Личный кабинет
+
+    </button>
+
+
+    <button
+        class="top-btn hidden"
+        id="adminBtn"
+        onclick="openAdmin()">
+
+        ⚙️ Админ-панель
+
+    </button>
+
+
+    <button
+        class="top-btn hidden"
+        id="logoutBtn"
+        onclick="logout()">
+
+        🚪 Выйти
+
+    </button>
+
+</div>
+
+
+<div
+    class="user-info"
+    id="userInfo">
+
+    <div id="userEmail"></div>
+
+    <div class="balance">
+        Баланс:
+        <span id="balance">0</span> ₽
+    </div>
+
+</div>
+
 
 <div class="categories">
 
-  <button class="category active"
-    onclick="showCategory('all', this)">
-    🛍 Все товары
-  </button>
+    <button
+        class="category active"
+        onclick="showCategory('robux',this)">
 
-  <button class="category"
-    onclick="showCategory('robux', this)">
-    💎 Робуксы
-  </button>
+        💎 Робуксы
 
-  <button class="category"
-    onclick="showCategory('services', this)">
-    🛠 Услуги
-  </button>
+    </button>
 
-  <button class="category"
-    onclick="showCategory('accounts', this)">
-    👤 Аккаунты
-  </button>
+    <button
+        class="category"
+        onclick="showCategory('services',this)">
 
-  <button class="category"
-    onclick="showCategory('items', this)">
-    🧸 Предметы
-  </button>
+        🛠 Услуги
 
-</div>
+    </button>
 
+    <button
+        class="category"
+        onclick="showCategory('accounts',this)">
 
-<!-- =========================
-     ИГРЫ
-========================= -->
+        👤 Аккаунты
 
-<div class="game-selector" id="gameSelector">
+    </button>
 
-  <button class="game-button active"
-    onclick="showGame('mm2', this)">
-    🔪 Murder Mystery 2
-  </button>
+    <button
+        class="category"
+        onclick="showCategory('mm2',this)">
 
-  <button class="game-button"
-    onclick="showGame('brainrot', this)">
-    🧠 Steal a Brainrot
-  </button>
+        🔪 MM2
+
+    </button>
+
+    <button
+        class="category"
+        onclick="showCategory('brainrot',this)">
+
+        🧠 Brainrot
+
+    </button>
 
 </div>
 
 
-<!-- =========================
-     ТОВАРЫ
-========================= -->
-
-<main class="products">
+<div class="products">
 
 
-<!-- РОБУКСЫ -->
+<!-- ROBUX -->
 
-<div class="product robux">
-  <h2>100 Робуксов</h2>
-  <div class="description">
-    Пополнение на 100 Robux
-  </div>
-  <div class="price">150 ₽</div>
+<div class="product category-robux">
 
-  <button class="buy" onclick="addToCart(this)">
-    🛒 Добавить в корзину
-  </button>
+    <h3>100 Робуксов</h3>
+
+    <p>Пополнение Robux</p>
+
+    <div class="price">
+        150 ₽
+    </div>
+
+    <button
+        class="buy"
+        onclick="addToCart('100 Робуксов',150)">
+
+        Купить
+
+    </button>
+
 </div>
 
 
-<div class="product robux">
-  <h2>200 Робуксов</h2>
-  <div class="description">
-    Пополнение на 200 Robux
-  </div>
-  <div class="price">250 ₽</div>
+<div class="product category-robux">
 
-  <button class="buy" onclick="addToCart(this)">
-    🛒 Добавить в корзину
-  </button>
+    <h3>200 Робуксов</h3>
+
+    <p>Пополнение Robux</p>
+
+    <div class="price">
+        250 ₽
+    </div>
+
+    <button
+        class="buy"
+        onclick="addToCart('200 Робуксов',250)">
+
+        Купить
+
+    </button>
+
 </div>
 
 
-<div class="product robux">
-  <h2>500 Робуксов</h2>
-  <div class="description">
-    Пополнение на 500 Robux
-  </div>
-  <div class="price">569 ₽</div>
+<div class="product category-robux">
 
-  <button class="buy" onclick="addToCart(this)">
-    🛒 Добавить в корзину
-  </button>
+    <h3>500 Робуксов</h3>
+
+    <p>Пополнение Robux</p>
+
+    <div class="price">
+        569 ₽
+    </div>
+
+    <button
+        class="buy"
+        onclick="addToCart('500 Робуксов',569)">
+
+        Купить
+
+    </button>
+
 </div>
 
 
-<div class="product robux">
-  <h2>1000 Робуксов</h2>
-  <div class="description">
-    Пополнение на 1000 Robux
-  </div>
-  <div class="price">1210 ₽</div>
+<div class="product category-robux">
 
-  <button class="buy" onclick="addToCart(this)">
-    🛒 Добавить в корзину
-  </button>
+    <h3>1000 Робуксов</h3>
+
+    <p>Пополнение Robux</p>
+
+    <div class="price">
+        1210 ₽
+    </div>
+
+    <button
+        class="buy"
+        onclick="addToCart('1000 Робуксов',1210)">
+
+        Купить
+
+    </button>
+
 </div>
 
 
-<div class="product robux">
-  <h2>2000 Робуксов</h2>
-  <div class="description">
-    Пополнение на 2000 Robux
-  </div>
-  <div class="price">2199 ₽</div>
+<div class="product category-robux">
 
-  <button class="buy" onclick="addToCart(this)">
-    🛒 Добавить в корзину
-  </button>
+    <h3>2000 Робуксов</h3>
+
+    <p>Пополнение Robux</p>
+
+    <div class="price">
+        2199 ₽
+    </div>
+
+    <button
+        class="buy"
+        onclick="addToCart('2000 Робуксов',2199)">
+
+        Купить
+
+    </button>
+
 </div>
 
 
-<!-- УСЛУГИ -->
+<!-- SERVICES -->
 
-<div class="product services">
-  <h2>Лучшие читы!</h2>
-  <div class="description">
-    Помогу настроить лучшие читы и скажу где скачать!
-  </div>
-  <div class="price">110 ₽</div>
+<div class="product category-services hidden">
 
-  <button class="buy" onclick="addToCart(this)">
-    🛒 Добавить в корзину
-  </button>
+    <h3>Лучшие читы!</h3>
+
+    <div class="price">
+        110 ₽
+    </div>
+
+    <button
+        class="buy"
+        onclick="addToCart('Лучшие читы!',110)">
+
+        Купить
+
+    </button>
+
 </div>
 
 
-<div class="product services">
-  <h2>Пиар</h2>
-  <div class="description">
-    Пиар вашего аккаунта в Likee
-  </div>
-  <div class="price">100 ₽</div>
+<div class="product category-services hidden">
 
-  <button class="buy" onclick="addToCart(this)">
-    🛒 Добавить в корзину
-  </button>
+    <h3>Пиар</h3>
+
+    <div class="price">
+        100 ₽
+    </div>
+
+    <button
+        class="buy"
+        onclick="addToCart('Пиар',100)">
+
+        Купить
+
+    </button>
+
 </div>
 
 
-<div class="product services">
-  <h2>Помощь с Roblox</h2>
-  <div class="description">
-    Помощь с настройкой и аккаунтом Roblox
-  </div>
-  <div class="price">50 ₽</div>
+<div class="product category-services hidden">
 
-  <button class="buy" onclick="addToCart(this)">
-    🛒 Добавить в корзину
-  </button>
+    <h3>Помощь с Roblox</h3>
+
+    <div class="price">
+        50 ₽
+    </div>
+
+    <button
+        class="buy"
+        onclick="addToCart('Помощь с Roblox',50)">
+
+        Купить
+
+    </button>
+
 </div>
 
 
-<div class="product services">
-  <h2>Помогу развиться в Steal a Brainrot</h2>
-  <div class="description">
-    Помощь с развитием в игре
-  </div>
-  <div class="price">20 ₽</div>
+<div class="product category-services hidden">
 
-  <button class="buy" onclick="addToCart(this)">
-    🛒 Добавить в корзину
-  </button>
+    <h3>Помогу развиться в Steal a Brainrot</h3>
+
+    <div class="price">
+        20 ₽
+    </div>
+
+    <button
+        class="buy"
+        onclick="addToCart('Помогу развиться в Steal a Brainrot',20)">
+
+        Купить
+
+    </button>
+
 </div>
 
 
-<div class="product services">
-  <h2>Помогу создать сайт</h2>
-  <div class="description">
-    Создание сайта
-  </div>
-  <div class="price">1400 ₽</div>
+<div class="product category-services hidden">
 
-  <button class="buy" onclick="addToCart(this)">
-    🛒 Добавить в корзину
-  </button>
+    <h3>Помогу создать сайт</h3>
+
+    <div class="price">
+        1400 ₽
+    </div>
+
+    <button
+        class="buy"
+        onclick="addToCart('Помогу создать сайт',1400)">
+
+        Купить
+
+    </button>
+
 </div>
 
 
-<!-- АККАУНТЫ -->
+<!-- ACCOUNTS -->
 
-<div class="product accounts">
-  <h2>Донат 200 Robux</h2>
-  <div class="description">
-    Игровой аккаунт
-  </div>
-  <div class="price">100 ₽</div>
+<div class="product category-accounts hidden">
 
-  <button class="buy" onclick="addToCart(this)">
-    🛒 Добавить в корзину
-  </button>
+    <h3>Донат 200 Robux</h3>
+
+    <div class="price">
+        100 ₽
+    </div>
+
+    <button
+        class="buy"
+        onclick="addToCart('Донат 200 Robux',100)">
+
+        Купить
+
+    </button>
+
 </div>
 
 
-<div class="product accounts">
-  <h2>Донат 1000 Robux</h2>
-  <div class="description">
-    Игровой аккаунт
-  </div>
-  <div class="price">699 ₽</div>
+<div class="product category-accounts hidden">
 
-  <button class="buy" onclick="addToCart(this)">
-    🛒 Добавить в корзину
-  </button>
+    <h3>Донат 1000 Robux</h3>
+
+    <div class="price">
+        699 ₽
+    </div>
+
+    <button
+        class="buy"
+        onclick="addToCart('Донат 1000 Robux',699)">
+
+        Купить
+
+    </button>
+
 </div>
 
 
-<div class="product accounts">
-  <h2>Донат 2000 Robux</h2>
-  <div class="description">
-    Игровой аккаунт
-  </div>
-  <div class="price">1200 ₽</div>
+<div class="product category-accounts hidden">
 
-  <button class="buy" onclick="addToCart(this)">
-    🛒 Добавить в корзину
-  </button>
+    <h3>Донат 2000 Robux</h3>
+
+    <div class="price">
+        1200 ₽
+    </div>
+
+    <button
+        class="buy"
+        onclick="addToCart('Донат 2000 Robux',1200)">
+
+        Купить
+
+    </button>
+
 </div>
 
 
-<div class="product accounts">
-  <h2>Рандом аккаунт</h2>
-  <div class="description">
-    Аккаунт с рандомными донат-предметами
-  </div>
-  <div class="price">99 ₽</div>
+<div class="product category-accounts hidden">
 
-  <button class="buy" onclick="addToCart(this)">
-    🛒 Добавить в корзину
-  </button>
+    <h3>Рандом аккаунт</h3>
+
+    <div class="price">
+        99 ₽
+    </div>
+
+    <button
+        class="buy"
+        onclick="addToCart('Рандом аккаунт',99)">
+
+        Купить
+
+    </button>
+
 </div>
 
 
-<div class="product accounts">
-  <h2>Донат 12K+ Robux</h2>
-  <div class="description">
-    Прокачанный аккаунт
-  </div>
-  <div class="price">9898 ₽</div>
+<div class="product category-accounts hidden">
 
-  <button class="buy" onclick="addToCart(this)">
-    🛒 Добавить в корзину
-  </button>
+    <h3>Донат 12K+ Robux</h3>
+
+    <div class="price">
+        9898 ₽
+    </div>
+
+    <button
+        class="buy"
+        onclick="addToCart('Донат 12K+ Robux',9898)">
+
+        Купить
+
+    </button>
+
 </div>
 
 
 <!-- MM2 -->
 
-<div class="product items mm2">
-  <h2>🔪 Bat</h2>
-  <div class="description">
-    Предмет для Murder Mystery 2
-  </div>
-  <div class="price">510 ₽</div>
+<div class="product category-mm2 hidden">
 
-  <button class="buy" onclick="addToCart(this)">
-    🛒 Добавить в корзину
-  </button>
+    <h3>Bat</h3>
+
+    <div class="price">
+        510 ₽
+    </div>
+
+    <button
+        class="buy"
+        onclick="addToCart('MM2 Bat',510)">
+
+        Купить
+
+    </button>
+
 </div>
 
 
-<div class="product items mm2">
-  <h2>🔫 Beach Gun</h2>
-  <div class="description">
-    Предмет для Murder Mystery 2
-  </div>
-  <div class="price">400 ₽</div>
+<div class="product category-mm2 hidden">
 
-  <button class="buy" onclick="addToCart(this)">
-    🛒 Добавить в корзину
-  </button>
+    <h3>Beach Gun</h3>
+
+    <div class="price">
+        400 ₽
+    </div>
+
+    <button
+        class="buy"
+        onclick="addToCart('MM2 Beach Gun',400)">
+
+        Купить
+
+    </button>
+
 </div>
 
 
-<div class="product items mm2">
-  <h2>⚔️ Harvester</h2>
-  <div class="description">
-    Редкий предмет для Murder Mystery 2
-  </div>
-  <div class="price">611 ₽</div>
+<div class="product category-mm2 hidden">
 
-  <button class="buy" onclick="addToCart(this)">
-    🛒 Добавить в корзину
-  </button>
+    <h3>Harvester</h3>
+
+    <div class="price">
+        611 ₽
+    </div>
+
+    <button
+        class="buy"
+        onclick="addToCart('MM2 Harvester',611)">
+
+        Купить
+
+    </button>
+
 </div>
 
 
 <!-- BRAINROT -->
 
-<div class="product items brainrot">
-  <h2>🧠 Brainrot #1</h2>
-  <div class="description">
-    Предмет для Steal a Brainrot
-  </div>
-  <div class="price">100 ₽</div>
+<div class="product category-brainrot hidden">
 
-  <button class="buy" onclick="addToCart(this)">
-    🛒 Добавить в корзину
-  </button>
-</div>
+    <h3>Brainrot #1</h3>
 
-
-<div class="product items brainrot">
-  <h2>🧠 Brainrot #2</h2>
-  <div class="description">
-    Предмет для Steal a Brainrot
-  </div>
-  <div class="price">200 ₽</div>
-
-  <button class="buy" onclick="addToCart(this)">
-    🛒 Добавить в корзину
-  </button>
-</div>
-
-
-<div class="product items brainrot">
-  <h2>🧠 Brainrot #3</h2>
-  <div class="description">
-    Редкий предмет для Steal a Brainrot
-  </div>
-  <div class="price">300 ₽</div>
-
-  <button class="buy" onclick="addToCart(this)">
-    🛒 Добавить в корзину
-  </button>
-</div>
-
-
-</main>
-
-
-<!-- =========================
-     НИЖНЯЯ КОРЗИНА
-========================= -->
-
-<div class="cart-bar"
-     id="cartBar"
-     onclick="openCart()">
-
-  <div class="cart-info">
-
-    <div class="cart-icon">
-      🛒
+    <div class="price">
+        100 ₽
     </div>
 
-    <div>
+    <button
+        class="buy"
+        onclick="addToCart('Brainrot #1',100)">
 
-      <div class="cart-title">
-        Корзина
-      </div>
-
-      <div class="cart-count"
-           id="cartCount">
-        0 товаров
-      </div>
-
-    </div>
-
-  </div>
-
-  <div class="cart-total">
-
-    <span>
-      К оплате:
-    </span>
-
-    <strong id="cartTotal">
-      0 ₽
-    </strong>
-
-  </div>
-
-</div>
-
-
-<!-- =========================
-     КОРЗИНА
-========================= -->
-
-<div class="cart-modal"
-     id="cartModal">
-
-  <div class="cart-box">
-
-    <button class="cart-close"
-            onclick="closeCart()">
-      ✕
-    </button>
-
-    <div class="cart-header">
-      🛒 Ваша корзина
-    </div>
-
-    <div id="cartItems"></div>
-
-    <div class="cart-summary">
-
-      <div>
-        Товаров:
-        <strong id="cartModalCount">
-          0
-        </strong>
-      </div>
-
-      <div class="cart-modal-total">
-
-        Итого:
-        <strong id="cartModalTotal">
-          0 ₽
-        </strong>
-
-      </div>
-
-    </div>
-
-    <button class="cart-pay"
-            id="cartPayButton"
-            onclick="payCart()">
-
-      💳 Перейти к оплате
+        Купить
 
     </button>
 
-    <button class="cart-clear"
-            onclick="clearCart()">
+</div>
 
-      🗑 Очистить корзину
+
+<div class="product category-brainrot hidden">
+
+    <h3>Brainrot #2</h3>
+
+    <div class="price">
+        200 ₽
+    </div>
+
+    <button
+        class="buy"
+        onclick="addToCart('Brainrot #2',200)">
+
+        Купить
 
     </button>
 
-  </div>
+</div>
+
+
+<div class="product category-brainrot hidden">
+
+    <h3>Brainrot #3</h3>
+
+    <div class="price">
+        300 ₽
+    </div>
+
+    <button
+        class="buy"
+        onclick="addToCart('Brainrot #3',300)">
+
+        Купить
+
+    </button>
+
+</div>
 
 </div>
 
 
-<!-- =========================
-     ОПЛАТА
-========================= -->
+<button
+    class="cart"
+    onclick="openCart()">
 
-<div class="payment"
-     id="payment">
+    🛒 Корзина
+    <span id="cartCount">0</span>
 
-  <div class="payment-box">
+</button>
 
 
-    <!-- ПРОМОКОД -->
+<!-- AUTH -->
 
-    <div id="promoStep">
+<div
+    class="overlay"
+    id="authOverlay">
 
-      <div class="promo-icon">
-        🎁
-      </div>
+    <div class="modal">
 
-      <div class="promo-title">
-        Промокод
-      </div>
+        <h2>
+            👤 MaxFlomShop
+        </h2>
 
-      <div class="promo-subtitle">
-        Введите промокод, чтобы получить скидку 10 ₽.
-      </div>
+        <input
+            class="input"
+            id="authEmail"
+            type="email"
+            placeholder="Email">
 
-      <input
-        type="text"
-        id="promoInput"
-        class="promo-input"
-        placeholder="Введите промокод"
-        autocomplete="off"
-      >
 
-      <div id="promoMessage"
-           class="promo-message">
-      </div>
+        <input
+            class="input"
+            id="authPassword"
+            type="password"
+            placeholder="Пароль">
 
-      <div id="discountSuccess"
-           class="discount-success">
-
-        🎉 Промокод применён!
-
-      </div>
-
-      <button class="promo-button"
-              onclick="applyPromo()">
-
-        🎁 Применить промокод
-
-      </button>
-
-      <button class="no-promo-button"
-              onclick="skipPromo()">
-
-        ➡️ Нет промокода
-
-      </button>
-
-    </div>
-
-
-    <!-- =========================
-         РЕКВИЗИТЫ
-    ========================= -->
-
-    <div id="requisitesStep">
-
-      <div class="requisites-icon">
-        💳
-      </div>
-
-      <div class="requisites-title">
-        Реквизиты для оплаты
-      </div>
-
-      <div class="payment-amount-box">
-
-        <div class="payment-amount-label">
-          К оплате
-        </div>
-
-        <div class="payment-amount"
-             id="finalAmount">
-          0 ₽
-        </div>
-
-        <div class="discount-line"
-             id="discountLine">
-        </div>
-
-      </div>
-
-
-      <div class="requisite-card">
-
-        <!-- ==================================
-             ЗДЕСЬ ВСТАВЬ СВОИ РЕКВИЗИТЫ
-        ================================== -->
-
-        <div class="requisite-row">
-
-          <div class="requisite-label">
-            Банк
-          </div>
-
-          <div class="requisite-value">
-            Т-Банк
-          </div>
-
-        </div>
-
-
-        <div class="requisite-row">
-
-          <div class="requisite-label">
-            Номер карты / телефона
-          </div>
-
-          <div class="requisite-value"
-               id="paymentRequisite">
-
-            79996512682
-
-          </div>
-
-          <button class="copy-button"
-                  onclick="copyRequisite()">
-
-            📋 Скопировать
-
-          </button>
-
-        </div>
-
-
-        <div class="requisite-row">
-
-          <div class="requisite-label">
-            Получатель
-          </div>
-
-          <div class="requisite-value">
-            Максим Р. или Аретм Р.
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <button class="paid-button"
-              onclick="paid()">
-
-        ✅ Я оплатил
-
-      </button>
-
-
-      <button class="back-button"
-              onclick="backToPromo()">
-
-        ← Назад
-
-      </button>
-
-    </div>
-
-
-    <!-- =========================
-         ПОДГОТОВКА
-    ========================= -->
-
-    <div id="paymentLoading">
-
-      <div class="spinner"></div>
-
-      <h2>
-        Подготавливаем оплату...
-      </h2>
-
-      <p>
-        Пожалуйста, подождите
-      </p>
-
-      <div class="progress">
-
-        <div class="progress-bar"
-             id="progressBar">
-        </div>
-
-      </div>
-
-      <div class="counter"
-           id="counter">
-
-        Осталось 5 секунд
-
-      </div>
-
-      <button class="cancel-payment"
-              onclick="cancelPayment()">
-
-        ❌ Отменить
-
-      </button>
-
-    </div>
-
-
-    <!-- =========================
-         ОПЛАТА ПОДТВЕРЖДЕНА
-    ========================= -->
-
-    <div id="paidStep">
-
-      <div class="paid-icon">
-        ✅
-      </div>
-
-      <div class="paid-title">
-        Спасибо за оплату!
-      </div>
-
-      <div class="paid-text">
-
-        Отправьте подтверждение в чат с поддержкой!.<br><br>
-
-        К поддержке возможно не перекинет!
-        Она внизу или скраю сайта!
-        Если долго нет ответа ждите! 
-        Значит я занят
-
-      </div>
-
-      <button class="paid-button"
-              onclick="closePayment()">
-
-        💬 Перейти к поддержке
-
-      </button>
-
-    </div>
-
-
-  </div>
-
-</div>
-
-
-<footer>
-  © 2026 MaxFlomShop
-</footer>
-
-
-<script>
-
-
-/* =========================
-   НАСТРОЙКИ
-========================= */
-
-const PROMO_CODE =
-  "FREESENT232313";
-
-const PROMO_DISCOUNT =
-  20;
-
-
-/* =========================
-   ПЕРЕМЕННЫЕ
-========================= */
-
-let cart = [];
-
-let promoApplied = false;
-
-let paymentTimer = null;
-
-let paymentRedirectTimer = null;
-
-let finalPaymentAmount = 0;
-
-
-/* =========================
-   ЗАГРУЗКА КОРЗИНЫ
-========================= */
-
-try {
-
-  const saved =
-    localStorage.getItem(
-      "maxflom_cart"
-    );
-
-  if (saved) {
-
-    cart = JSON.parse(saved);
-
-    if (!Array.isArray(cart)) {
-      cart = [];
-    }
-
-  }
-
-} catch(e) {
-
-  cart = [];
-
-}
-
-
-/* =========================
-   СОХРАНЕНИЕ
-========================= */
-
-function saveCart() {
-
-  localStorage.setItem(
-    "maxflom_cart",
-    JSON.stringify(cart)
-  );
-
-}
-
-
-/* =========================
-   СЛОВО «ТОВАР»
-========================= */
-
-function productWord(number) {
-
-  if (
-    number % 100 >= 11 &&
-    number % 100 <= 19
-  ) {
-    return "товаров";
-  }
-
-  if (number % 10 === 1) {
-    return "товар";
-  }
-
-  if (
-    number % 10 >= 2 &&
-    number % 10 <= 4
-  ) {
-    return "товара";
-  }
-
-  return "товаров";
-
-}
-
-
-/* =========================
-   ОБНОВИТЬ КОРЗИНУ
-========================= */
-
-function updateCart() {
-
-  const count =
-    cart.length;
-
-  const total =
-    cart.reduce(
-      (sum, item) =>
-        sum + item.price,
-      0
-    );
-
-
-  document.getElementById(
-    "cartCount"
-  ).textContent =
-    count + " " +
-    productWord(count);
-
-
-  document.getElementById(
-    "cartTotal"
-  ).textContent =
-    total + " ₽";
-
-
-  document.getElementById(
-    "cartModalCount"
-  ).textContent =
-    count;
-
-
-  document.getElementById(
-    "cartModalTotal"
-  ).textContent =
-    total + " ₽";
-
-
-  renderCart();
-
-}
-
-
-/* =========================
-   ДОБАВИТЬ
-========================= */
-
-function addToCart(button) {
-
-  const product =
-    button.closest(".product");
-
-
-  const name =
-    product.querySelector("h2")
-    .textContent
-    .trim();
-
-
-  const price =
-    Number(
-      product.querySelector(".price")
-      .textContent
-      .replace(/[^\d]/g, "")
-    );
-
-
-  cart.push({
-
-    id:
-      Date.now() +
-      Math.random(),
-
-    name:
-      name,
-
-    price:
-      price
-
-  });
-
-
-  saveCart();
-
-  updateCart();
-
-
-  button.classList.add(
-    "in-cart"
-  );
-
-  button.textContent =
-    "✅ Добавлено!";
-
-
-  setTimeout(
-    function() {
-
-      button.classList.remove(
-        "in-cart"
-      );
-
-      button.textContent =
-        "🛒 Добавить ещё";
-
-    },
-    900
-  );
-
-}
-
-
-/* =========================
-   ОТКРЫТЬ КОРЗИНУ
-========================= */
-
-function openCart() {
-
-  renderCart();
-
-  document.getElementById(
-    "cartModal"
-  ).classList.add("active");
-
-}
-
-
-/* =========================
-   ЗАКРЫТЬ КОРЗИНУ
-========================= */
-
-function closeCart() {
-
-  document.getElementById(
-    "cartModal"
-  ).classList.remove("active");
-
-}
-
-
-/* =========================
-   ОТОБРАЖЕНИЕ КОРЗИНЫ
-========================= */
-
-function renderCart() {
-
-  const container =
-    document.getElementById(
-      "cartItems"
-    );
-
-
-  if (cart.length === 0) {
-
-    container.innerHTML = `
-      <div class="empty-cart">
-        🛒 Корзина пустая
-        <br><br>
-        Добавьте товары из магазина.
-      </div>
-    `;
-
-    document.getElementById(
-      "cartPayButton"
-    ).disabled = true;
-
-    return;
-
-  }
-
-
-  document.getElementById(
-    "cartPayButton"
-  ).disabled = false;
-
-
-  container.innerHTML = "";
-
-
-  cart.forEach(
-    function(item, index) {
-
-      const div =
-        document.createElement(
-          "div"
-        );
-
-      div.className =
-        "cart-item";
-
-
-      div.innerHTML = `
-
-        <div class="cart-item-info">
-
-          <div class="cart-item-name">
-            ${escapeHTML(item.name)}
-          </div>
-
-          <div class="cart-item-price">
-            ${item.price} ₽
-          </div>
-
-        </div>
 
         <button
-          class="cart-remove"
-          onclick="removeFromCart(${index})">
+            class="modal-btn"
+            onclick="register()">
 
-          🗑
+            Создать аккаунт
 
         </button>
 
-      `;
+
+        <button
+            class="modal-btn"
+            onclick="login()">
+
+            Войти
+
+        </button>
 
 
-      container.appendChild(div);
+        <button
+            class="modal-btn close-btn"
+            onclick="closeModal('authOverlay')">
 
-    }
-  );
+            Закрыть
 
+        </button>
+
+
+        <div id="authMessage"></div>
+
+    </div>
+
+</div>
+
+
+<!-- ACCOUNT -->
+
+<div
+    class="overlay"
+    id="accountOverlay">
+
+    <div class="modal">
+
+        <h2>
+            💰 Личный кабинет
+        </h2>
+
+
+        <p>
+            Email:
+        </p>
+
+        <p id="accountEmail"></p>
+
+
+        <div class="balance">
+
+            Баланс:
+            <span id="accountBalance">0</span> ₽
+
+        </div>
+
+
+        <button
+            class="modal-btn"
+            onclick="loadAccount()">
+
+            🔄 Обновить баланс
+
+        </button>
+
+
+        <button
+            class="modal-btn"
+            onclick="loadHistory()">
+
+            📜 История покупок
+
+        </button>
+
+
+        <div id="purchaseHistory"></div>
+
+
+        <button
+            class="modal-btn close-btn"
+            onclick="closeModal('accountOverlay')">
+
+            Закрыть
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- CART -->
+
+<div
+    class="overlay"
+    id="cartOverlay">
+
+    <div class="modal">
+
+        <h2>
+            🛒 Корзина
+        </h2>
+
+
+        <div id="cartItems"></div>
+
+
+        <div class="cart-total">
+
+            Итого:
+            <span id="cartTotal">0</span> ₽
+
+        </div>
+
+
+        <button
+            class="modal-btn"
+            onclick="checkout()">
+
+            Перейти к оплате
+
+        </button>
+
+
+        <button
+            class="modal-btn close-btn"
+            onclick="closeModal('cartOverlay')">
+
+            Закрыть
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- PAYMENT -->
+
+<div
+    class="overlay"
+    id="paymentOverlay">
+
+    <div class="modal">
+
+        <div id="paymentContent"></div>
+
+    </div>
+
+</div>
+
+
+<!-- ADMIN -->
+
+<div
+    class="overlay"
+    id="adminOverlay">
+
+    <div class="modal">
+
+        <h2>
+            ⚙️ Админ-панель
+        </h2>
+
+
+        <div id="adminContent">
+            Загрузка...
+        </div>
+
+
+        <button
+            class="modal-btn close-btn"
+            onclick="closeModal('adminOverlay')">
+
+            Закрыть
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<script type="module">
+
+/* =========================================================
+   FIREBASE
+   ========================================================= */
+
+import {
+    initializeApp
+}
+from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+
+
+import {
+    getAuth,
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    onAuthStateChanged,
+    signOut
+}
+from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+
+
+import {
+    getFirestore,
+    doc,
+    getDoc,
+    setDoc,
+    updateDoc,
+    collection,
+    getDocs,
+    query,
+    where,
+    orderBy,
+    limit,
+    serverTimestamp
+}
+from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+
+
+/* =========================================================
+   ВАЖНО:
+   ВСТАВЬ СЮДА СВОЙ FIREBASE CONFIG
+   ========================================================= */
+
+const firebaseConfig = {
+
+    apiKey: "ВСТАВЬ_СЮДА_API_KEY",
+
+    authDomain: "ВСТАВЬ_СЮДА_AUTH_DOMAIN",
+
+    projectId: "ВСТАВЬ_СЮДА_PROJECT_ID",
+
+    storageBucket: "ВСТАВЬ_СЮДА_STORAGE_BUCKET",
+
+    messagingSenderId: "ВСТАВЬ_СЮДА_MESSAGING_SENDER_ID",
+
+    appId: "ВСТАВЬ_СЮДА_APP_ID"
+
+};
+
+
+/* ========================================================= */
+
+const app =
+    initializeApp(firebaseConfig);
+
+
+const auth =
+    getAuth(app);
+
+
+const db =
+    getFirestore(app);
+
+
+/* =========================================================
+   ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ
+   ========================================================= */
+
+let currentUser = null;
+
+let currentProfile = null;
+
+let cart =
+    JSON.parse(
+        localStorage.getItem("maxflom_cart") || "[]"
+    );
+
+
+/* =========================================================
+   КОРЗИНА
+   ========================================================= */
+
+function saveCart(){
+
+    localStorage.setItem(
+        "maxflom_cart",
+        JSON.stringify(cart)
+    );
+
+    updateCartCount();
 }
 
 
-/* =========================
-   ЗАЩИТА HTML
-========================= */
+function updateCartCount(){
 
-function escapeHTML(text) {
-
-  return String(text)
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
-
+    document.getElementById("cartCount")
+        .textContent = cart.length;
 }
 
 
-/* =========================
-   УДАЛИТЬ
-========================= */
+window.addToCart =
+function(name,price){
 
-function removeFromCart(index) {
+    cart.push({
 
-  cart.splice(index, 1);
+        name:name,
 
-  saveCart();
+        price:Number(price)
 
-  updateCart();
+    });
 
-}
-
-
-/* =========================
-   ОЧИСТИТЬ
-========================= */
-
-function clearCart() {
-
-  cart = [];
-
-  saveCart();
-
-  updateCart();
-
-}
-
-
-/* =========================
-   НАЧАТЬ ОПЛАТУ
-========================= */
-
-function payCart() {
-
-  if (cart.length === 0) {
+    saveCart();
 
     alert(
-      "Корзина пустая!"
+        "Товар добавлен в корзину!"
+    );
+};
+
+
+window.openCart =
+function(){
+
+    renderCart();
+
+    document
+        .getElementById("cartOverlay")
+        .style.display = "flex";
+};
+
+
+function renderCart(){
+
+    const box =
+        document.getElementById("cartItems");
+
+    const total =
+        document.getElementById("cartTotal");
+
+
+    if(cart.length === 0){
+
+        box.innerHTML =
+            '<div class="empty">Корзина пуста</div>';
+
+        total.textContent = "0";
+
+        return;
+    }
+
+
+    let html = "";
+
+    let sum = 0;
+
+
+    cart.forEach(
+        (item,index)=>{
+
+            sum += Number(item.price);
+
+
+            html += `
+
+                <div class="cart-item">
+
+                    <strong>
+                        ${escapeHtml(item.name)}
+                    </strong>
+
+                    <div>
+                        ${Number(item.price)} ₽
+                    </div>
+
+                    <button
+                        class="small-btn"
+                        onclick="removeFromCart(${index})">
+
+                        Удалить
+
+                    </button>
+
+                </div>
+
+            `;
+
+        }
     );
 
-    return;
 
-  }
+    box.innerHTML = html;
 
-
-  closeCart();
-
-
-  promoApplied =
-    false;
-
-
-  document.getElementById(
-    "promoStep"
-  ).style.display =
-    "block";
-
-
-  document.getElementById(
-    "requisitesStep"
-  ).classList.remove(
-    "active"
-  );
-
-
-  document.getElementById(
-    "paymentLoading"
-  ).classList.remove(
-    "active"
-  );
-
-
-  document.getElementById(
-    "paidStep"
-  ).classList.remove(
-    "active"
-  );
-
-
-  document.getElementById(
-    "payment"
-  ).classList.add(
-    "active"
-  );
-
-
-  setTimeout(
-    function() {
-
-      document.getElementById(
-        "promoInput"
-      ).focus();
-
-    },
-    250
-  );
-
+    total.textContent = sum;
 }
 
 
-/* =========================
-   ПРОМОКОД
-========================= */
+window.removeFromCart =
+function(index){
 
-function applyPromo() {
+    cart.splice(index,1);
 
-  const input =
-    document.getElementById(
-      "promoInput"
+    saveCart();
+
+    renderCart();
+};
+
+
+function getCartTotal(){
+
+    return cart.reduce(
+        (sum,item)=>
+            sum + Number(item.price),
+        0
     );
-
-  const message =
-    document.getElementById(
-      "promoMessage"
-    );
-
-  const success =
-    document.getElementById(
-      "discountSuccess"
-    );
-
-
-  const entered =
-    input.value.trim();
-
-
-  if (
-    entered ===
-    PROMO_CODE
-  ) {
-
-    promoApplied =
-      true;
-
-
-    message.textContent =
-      "";
-
-
-    success.innerHTML =
-      "🎉 Промокод применён!<br>" +
-      "Скидка: 10 ₽";
-
-
-    success.classList.add(
-      "active"
-    );
-
-
-    setTimeout(
-      showRequisites,
-      1000
-    );
-
-  }
-
-  else {
-
-    promoApplied =
-      false;
-
-    success.classList.remove(
-      "active"
-    );
-
-    message.textContent =
-      "❌ Неверный промокод.";
-
-  }
-
 }
 
 
-/* =========================
-   БЕЗ ПРОМО
-========================= */
+/* =========================================================
+   AUTH
+   ========================================================= */
 
-function skipPromo() {
+window.openAuth =
+function(){
 
-  promoApplied =
-    false;
-
-  showRequisites();
-
-}
-
-
-/* =========================
-   РЕКВИЗИТЫ
-========================= */
-
-function showRequisites() {
-
-  const total =
-    cart.reduce(
-      (sum, item) =>
-        sum + item.price,
-      0
-    );
+    document
+        .getElementById("authOverlay")
+        .style.display = "flex";
+};
 
 
-  let discount =
-    promoApplied
-      ? PROMO_DISCOUNT
-      : 0;
+window.register =
+async function(){
+
+    const email =
+        document
+        .getElementById("authEmail")
+        .value
+        .trim();
 
 
-  finalPaymentAmount =
-    Math.max(
-      0,
-      total - discount
-    );
+    const password =
+        document
+        .getElementById("authPassword")
+        .value;
 
 
-  document.getElementById(
-    "finalAmount"
-  ).textContent =
-    finalPaymentAmount +
-    " ₽";
+    const message =
+        document
+        .getElementById("authMessage");
 
 
-  if (discount > 0) {
+    if(!email){
 
-    document.getElementById(
-      "discountLine"
-    ).textContent =
-      "🎁 Скидка по промокоду: -" +
-      discount +
-      " ₽";
+        message.innerHTML =
+            '<div class="error">Введите email.</div>';
 
-  }
-
-  else {
-
-    document.getElementById(
-      "discountLine"
-    ).textContent =
-      "Скидка не применена";
-
-  }
+        return;
+    }
 
 
-  document.getElementById(
-    "promoStep"
-  ).style.display =
-    "none";
+    if(password.length < 6){
+
+        message.innerHTML =
+            '<div class="error">Пароль должен содержать минимум 6 символов.</div>';
+
+        return;
+    }
 
 
-  document.getElementById(
-    "requisitesStep"
-  ).classList.add(
-    "active"
-  );
+    try{
 
-}
-
-
-/* =========================
-   НАЗАД
-========================= */
-
-function backToPromo() {
-
-  document.getElementById(
-    "requisitesStep"
-  ).classList.remove(
-    "active"
-  );
+        const result =
+            await createUserWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
 
 
-  document.getElementById(
-    "promoStep"
-  ).style.display =
-    "block";
+        await setDoc(
+            doc(
+                db,
+                "users",
+                result.user.uid
+            ),
+            {
 
-}
+                email:email,
+
+                balance:0,
+
+                isAdmin:false,
+
+                createdAt:serverTimestamp()
+
+            }
+        );
 
 
-/* =========================
-   КОПИРОВАТЬ РЕКВИЗИТ
-========================= */
-
-function copyRequisite() {
-
-  const text =
-    document.getElementById(
-      "paymentRequisite"
-    ).textContent.trim();
+        message.innerHTML =
+            '<div class="success">Аккаунт создан!</div>';
 
 
-  navigator.clipboard.writeText(
-    text
-  ).then(
-    function() {
+    }catch(error){
 
-      alert(
-        "Реквизит скопирован!"
-      );
+        message.innerHTML =
+            '<div class="error">' +
+            escapeHtml(getFirebaseError(error)) +
+            '</div>';
 
     }
-  );
+
+};
+
+
+window.login =
+async function(){
+
+    const email =
+        document
+        .getElementById("authEmail")
+        .value
+        .trim();
+
+
+    const password =
+        document
+        .getElementById("authPassword")
+        .value;
+
+
+    const message =
+        document
+        .getElementById("authMessage");
+
+
+    try{
+
+        await signInWithEmailAndPassword(
+            auth,
+            email,
+            password
+        );
+
+
+        closeModal("authOverlay");
+
+
+    }catch(error){
+
+        message.innerHTML =
+            '<div class="error">' +
+            escapeHtml(getFirebaseError(error)) +
+            '</div>';
+
+    }
+
+};
+
+
+window.logout =
+async function(){
+
+    await signOut(auth);
+
+};
+
+
+/* =========================================================
+   AUTH STATE
+   ========================================================= */
+
+onAuthStateChanged(
+    auth,
+    async(user)=>{
+
+        currentUser = user;
+
+
+        if(!user){
+
+            currentProfile = null;
+
+
+            document
+                .getElementById("userInfo")
+                .style.display = "none";
+
+
+            document
+                .getElementById("authBtn")
+                .classList.remove("hidden");
+
+
+            document
+                .getElementById("accountBtn")
+                .classList.add("hidden");
+
+
+            document
+                .getElementById("adminBtn")
+                .classList.add("hidden");
+
+
+            document
+                .getElementById("logoutBtn")
+                .classList.add("hidden");
+
+
+            return;
+        }
+
+
+        document
+            .getElementById("userInfo")
+            .style.display = "block";
+
+
+        document
+            .getElementById("authBtn")
+            .classList.add("hidden");
+
+
+        document
+            .getElementById("accountBtn")
+            .classList.remove("hidden");
+
+
+        document
+            .getElementById("logoutBtn")
+            .classList.remove("hidden");
+
+
+        document
+            .getElementById("userEmail")
+            .textContent = user.email;
+
+
+        await loadProfile();
+
+    }
+);
+
+
+/* =========================================================
+   PROFILE
+   ========================================================= */
+
+async function loadProfile(){
+
+    if(!currentUser)
+        return;
+
+
+    const profileRef =
+        doc(
+            db,
+            "users",
+            currentUser.uid
+        );
+
+
+    const snap =
+        await getDoc(profileRef);
+
+
+    if(!snap.exists()){
+
+        await setDoc(
+            profileRef,
+            {
+
+                email:currentUser.email,
+
+                balance:0,
+
+                isAdmin:false,
+
+                createdAt:serverTimestamp()
+
+            }
+        );
+
+
+        currentProfile = {
+
+            email:currentUser.email,
+
+            balance:0,
+
+            isAdmin:false
+
+        };
+
+    }else{
+
+        currentProfile =
+            snap.data();
+
+    }
+
+
+    updateBalanceUI();
+
+
+    if(currentProfile.isAdmin === true){
+
+        document
+            .getElementById("adminBtn")
+            .classList.remove("hidden");
+
+    }else{
+
+        document
+            .getElementById("adminBtn")
+            .classList.add("hidden");
+
+    }
 
 }
 
 
-/* =========================
-   Я ОПЛАТИЛ
-========================= */
+function updateBalanceUI(){
 
-function paid() {
-
-  document.getElementById(
-    "requisitesStep"
-  ).classList.remove(
-    "active"
-  );
+    const balance =
+        Number(
+            currentProfile?.balance || 0
+        );
 
 
-  document.getElementById(
-    "paidStep"
-  ).classList.add(
-    "active"
-  );
+    document
+        .getElementById("balance")
+        .textContent =
+        balance.toFixed(2);
 
 
-  /*
-    После подтверждения
-    очищаем корзину.
-  */
-
-  cart = [];
-
-  saveCart();
-
-  updateCart();
+    document
+        .getElementById("accountBalance")
+        .textContent =
+        balance.toFixed(2);
 
 }
 
 
-/* =========================
-   ЗАКРЫТЬ ОПЛАТУ
-========================= */
+window.openAccount =
+function(){
 
-function closePayment() {
+    if(!currentUser){
 
-  document.getElementById(
-    "payment"
-  ).classList.remove(
-    "active"
-  );
+        openAuth();
+
+        return;
+    }
+
+
+    document
+        .getElementById("accountOverlay")
+        .style.display = "flex";
+
+
+    loadAccount();
+
+};
+
+
+window.loadAccount =
+async function(){
+
+    await loadProfile();
+
+
+    if(currentUser){
+
+        document
+            .getElementById("accountEmail")
+            .textContent =
+            currentUser.email;
+
+    }
+
+};
+
+
+/* =========================================================
+   ОПЛАТА
+   ========================================================= */
+
+window.checkout =
+function(){
+
+    if(cart.length === 0){
+
+        alert(
+            "Корзина пуста."
+        );
+
+        return;
+    }
+
+
+    if(!currentUser){
+
+        closeModal("cartOverlay");
+
+        openAuth();
+
+        return;
+    }
+
+
+    closeModal("cartOverlay");
+
+    showPayment();
+
+};
+
+
+function showPayment(){
+
+    const total =
+        getCartTotal();
+
+
+    const userBalance =
+        Number(
+            currentProfile?.balance || 0
+        );
+
+
+    const content =
+        document
+        .getElementById("paymentContent");
+
+
+    content.innerHTML = `
+
+        <h2>
+            💳 Оплата
+        </h2>
+
+
+        <div class="requisites">
+
+            <div>
+                <strong>
+                    Сумма заказа:
+                </strong>
+
+                ${total} ₽
+            </div>
+
+
+            <div>
+                <strong>
+                    Ваш баланс:
+                </strong>
+
+                ${userBalance.toFixed(2)} ₽
+            </div>
+
+
+            <div>
+                <strong>
+                    После оплаты останется:
+                </strong>
+
+                ${Math.max(
+                    0,
+                    userBalance-total
+                ).toFixed(2)} ₽
+            </div>
+
+        </div>
+
+
+        <button
+            class="modal-btn"
+            onclick="payWithBalance()">
+
+            💰 Оплатить с баланса
+
+        </button>
+
+
+        <div class="requisites">
+
+            <div>
+                <strong>
+                    Оплата переводом
+                </strong>
+            </div>
+
+            <div>
+                Банк: Т-Банк
+            </div>
+
+            <div>
+                Номер: 79996512682
+            </div>
+
+            <div>
+                Получатель:
+                Максим Р. или Аретм Р.
+            </div>
+
+        </div>
+
+
+        <p style="text-align:center">
+
+            После перевода отправьте
+            подтверждение в чат поддержки.
+
+        </p>
+
+
+        <button
+            class="support-btn"
+            onclick="openSupport()">
+
+            💬 Открыть чат поддержки
+
+        </button>
+
+
+        <button
+            class="modal-btn close-btn"
+            onclick="closeModal('paymentOverlay')">
+
+            Закрыть
+
+        </button>
+
+    `;
+
+
+    document
+        .getElementById("paymentOverlay")
+        .style.display = "flex";
 
 }
 
 
-/* =========================
+/* =========================================================
+   ПОКУПКА С БАЛАНСА
+   ========================================================= */
+
+window.payWithBalance =
+async function(){
+
+    if(!currentUser){
+
+        alert(
+            "Сначала войдите в аккаунт."
+        );
+
+        return;
+    }
+
+
+    if(cart.length === 0){
+
+        alert(
+            "Корзина пуста."
+        );
+
+        return;
+    }
+
+
+    const total =
+        getCartTotal();
+
+
+    try{
+
+        const userRef =
+            doc(
+                db,
+                "users",
+                currentUser.uid
+            );
+
+
+        const snap =
+            await getDoc(userRef);
+
+
+        if(!snap.exists()){
+
+            alert(
+                "Профиль не найден."
+            );
+
+            return;
+        }
+
+
+        const profile =
+            snap.data();
+
+
+        const balance =
+            Number(
+                profile.balance || 0
+            );
+
+
+        if(balance < total){
+
+            const missing =
+                total - balance;
+
+
+            document
+                .getElementById("paymentContent")
+                .innerHTML = `
+
+                    <h2>
+                        ❌ Недостаточно средств
+                    </h2>
+
+
+                    <div class="requisites">
+
+                        <div>
+                            Цена:
+                            <strong>
+                                ${total} ₽
+                            </strong>
+                        </div>
+
+
+                        <div>
+                            Баланс:
+                            <strong>
+                                ${balance.toFixed(2)} ₽
+                            </strong>
+                        </div>
+
+
+                        <div>
+                            Не хватает:
+                            <strong>
+                                ${missing.toFixed(2)} ₽
+                            </strong>
+                        </div>
+
+                    </div>
+
+
+                    <p style="text-align:center">
+                        Пополните баланс через администратора.
+                    </p>
+
+
+                    <button
+                        class="modal-btn close-btn"
+                        onclick="closeModal('paymentOverlay')">
+
+                        Закрыть
+
+                    </button>
+
+                `;
+
+            return;
+        }
+
+
+        const code =
+            "MXF-" +
+            randomCode(8);
+
+
+        const newBalance =
+            balance - total;
+
+
+        /*
+         * Создаём заказ.
+         */
+
+        const orderRef =
+            doc(
+                collection(db,"orders")
+            );
+
+
+        await setDoc(
+            orderRef,
+            {
+
+                uid:currentUser.uid,
+
+                email:currentUser.email,
+
+                items:cart,
+
+                total:total,
+
+                confirmationCode:code,
+
+                paymentMethod:"balance",
+
+                status:"paid",
+
+                createdAt:serverTimestamp()
+
+            }
+        );
+
+
+        /*
+         * Списываем баланс.
+         */
+
+        await updateDoc(
+            userRef,
+            {
+
+                balance:newBalance
+
+            }
+        );
+
+
+        /*
+         * Очищаем корзину.
+         */
+
+        cart=[];
+
+        saveCart();
+
+
+        /*
+         * Обновляем локальный профиль.
+         */
+
+        currentProfile.balance =
+            newBalance;
+
+
+        updateBalanceUI();
+
+
+        /*
+         * Показываем код.
+         */
+
+        document
+            .getElementById("paymentContent")
+            .innerHTML = `
+
+                <h2>
+                    ✅ Оплата успешна
+                </h2>
+
+
+                <p style="text-align:center">
+                    Заказ успешно создан.
+                </p>
+
+
+                <div class="code-box">
+
+                    Код подтверждения:
+
+                    <span class="confirm-code">
+                        ${code}
+                    </span>
+
+                </div>
+
+
+                <p style="text-align:center">
+
+                    📸 Сделайте скриншот этого окна
+                    и отправьте код в чат поддержки.
+
+                </p>
+
+
+                <button
+                    class="support-btn"
+                    onclick="openSupport()">
+
+                    💬 Открыть чат поддержки
+
+                </button>
+
+
+                <button
+                    class="modal-btn close-btn"
+                    onclick="closeModal('paymentOverlay')">
+
+                    Закрыть
+
+                </button>
+
+            `;
+
+
+    }catch(error){
+
+        console.error(error);
+
+
+        document
+            .getElementById("paymentContent")
+            .innerHTML = `
+
+                <h2>
+                    ❌ Ошибка
+                </h2>
+
+
+                <p class="error">
+
+                    ${escapeHtml(
+                        getFirebaseError(error)
+                    )}
+
+                </p>
+
+
+                <button
+                    class="modal-btn close-btn"
+                    onclick="closeModal('paymentOverlay')">
+
+                    Закрыть
+
+                </button>
+
+            `;
+
+    }
+
+};
+
+
+/* =========================================================
+   ИСТОРИЯ ПОКУПОК
+   ========================================================= */
+
+window.loadHistory =
+async function(){
+
+    if(!currentUser)
+        return;
+
+
+    const box =
+        document
+        .getElementById("purchaseHistory");
+
+
+    box.innerHTML =
+        "<p>Загрузка...</p>";
+
+
+    try{
+
+        const ordersRef =
+            collection(
+                db,
+                "orders"
+            );
+
+
+        const q =
+            query(
+                ordersRef,
+                where(
+                    "uid",
+                    "==",
+                    currentUser.uid
+                ),
+                orderBy(
+                    "createdAt",
+                    "desc"
+                ),
+                limit(20)
+            );
+
+
+        const snap =
+            await getDocs(q);
+
+
+        if(snap.empty){
+
+            box.innerHTML =
+                '<div class="empty">Покупок пока нет.</div>';
+
+            return;
+        }
+
+
+        let html =
+            "<h3>История покупок</h3>";
+
+
+        snap.forEach(
+            docSnap=>{
+
+                const data =
+                    docSnap.data();
+
+
+                const date =
+                    data.createdAt?.toDate
+                    ? data.createdAt
+                        .toDate()
+                        .toLocaleString("ru-RU")
+                    : "Дата неизвестна";
+
+
+                html += `
+
+                    <div class="history-item">
+
+                        <strong>
+                            ${escapeHtml(
+                                data.confirmationCode || ""
+                            )}
+                        </strong>
+
+                        <br>
+
+                        Сумма:
+                        ${Number(
+                            data.total || 0
+                        )} ₽
+
+                        <br>
+
+                        ${date}
+
+                    </div>
+
+                `;
+
+            }
+        );
+
+
+        box.innerHTML = html;
+
+
+    }catch(error){
+
+        box.innerHTML =
+            `<div class="error">
+                Не удалось загрузить историю.
+            </div>`;
+
+    }
+
+};
+
+
+/* =========================================================
+   АДМИН
+   ========================================================= */
+
+window.openAdmin =
+async function(){
+
+    if(!currentUser){
+
+        alert(
+            "Необходимо войти."
+        );
+
+        return;
+    }
+
+
+    await loadProfile();
+
+
+    if(
+        !currentProfile ||
+        currentProfile.isAdmin !== true
+    ){
+
+        alert(
+            "Доступ запрещён."
+        );
+
+        return;
+    }
+
+
+    document
+        .getElementById("adminOverlay")
+        .style.display = "flex";
+
+
+    loadAdminUsers();
+
+};
+
+
+async function loadAdminUsers(){
+
+    const box =
+        document
+        .getElementById("adminContent");
+
+
+    box.innerHTML =
+        "Загрузка пользователей...";
+
+
+    try{
+
+        const snap =
+            await getDocs(
+                collection(
+                    db,
+                    "users"
+                )
+            );
+
+
+        if(snap.empty){
+
+            box.innerHTML =
+                "Пользователей пока нет.";
+
+            return;
+        }
+
+
+        let html = `
+
+            <div class="admin-section">
+
+                <h3>
+                    💰 Выдать баланс
+                </h3>
+
+                <p style="margin-top:8px">
+                    Выбери пользователя
+                    и укажи сумму.
+                </p>
+
+            </div>
+
+        `;
+
+
+        snap.forEach(
+            docSnap=>{
+
+                const data =
+                    docSnap.data();
+
+
+                html += `
+
+                    <div class="admin-user">
+
+                        <div>
+
+                            <strong>
+                                ${escapeHtml(
+                                    data.email ||
+                                    "Без email"
+                                )}
+                            </strong>
+
+                            <br>
+
+                            Баланс:
+                            ${Number(
+                                data.balance || 0
+                            ).toFixed(2)} ₽
+
+                        </div>
+
+
+                        <button
+                            class="small-btn"
+                            onclick="addBalancePrompt('${docSnap.id}')">
+
+                            + Баланс
+
+                        </button>
+
+                    </div>
+
+                `;
+
+            }
+        );
+
+
+        box.innerHTML = html;
+
+
+    }catch(error){
+
+        box.innerHTML =
+            `<div class="error">
+                ${escapeHtml(
+                    getFirebaseError(error)
+                )}
+            </div>`;
+
+    }
+
+}
+
+
+/* =========================================================
+   ДОБАВИТЬ БАЛАНС
+   ========================================================= */
+
+window.addBalancePrompt =
+async function(uid){
+
+    if(!currentUser){
+
+        alert(
+            "Вы не авторизованы."
+        );
+
+        return;
+    }
+
+
+    /*
+     * Повторно проверяем,
+     * что текущий пользователь админ.
+     */
+
+    const adminRef =
+        doc(
+            db,
+            "users",
+            currentUser.uid
+        );
+
+
+    const adminSnap =
+        await getDoc(adminRef);
+
+
+    if(
+        !adminSnap.exists() ||
+        adminSnap.data().isAdmin !== true
+    ){
+
+        alert(
+            "Доступ запрещён."
+        );
+
+        return;
+    }
+
+
+    const amount =
+        prompt(
+            "Сколько ₽ добавить пользователю?"
+        );
+
+
+    if(amount === null)
+        return;
+
+
+    const value =
+        Number(amount);
+
+
+    if(
+        !Number.isFinite(value) ||
+        value <= 0
+    ){
+
+        alert(
+            "Введите положительное число."
+        );
+
+        return;
+    }
+
+
+    try{
+
+        const userRef =
+            doc(
+                db,
+                "users",
+                uid
+            );
+
+
+        const userSnap =
+            await getDoc(userRef);
+
+
+        if(!userSnap.exists()){
+
+            alert(
+                "Пользователь не найден."
+            );
+
+            return;
+        }
+
+
+        const oldBalance =
+            Number(
+                userSnap.data().balance || 0
+            );
+
+
+        await updateDoc(
+            userRef,
+            {
+
+                balance:
+                    oldBalance + value
+
+            }
+        );
+
+
+        alert(
+            "Баланс пополнен на " +
+            value +
+            " ₽"
+        );
+
+
+        loadAdminUsers();
+
+
+    }catch(error){
+
+        alert(
+            "Ошибка: " +
+            getFirebaseError(error)
+        );
+
+    }
+
+};
+
+
+/* =========================================================
    КАТЕГОРИИ
-========================= */
+   ========================================================= */
 
-function showCategory(
-  category,
-  button
-) {
+window.showCategory =
+function(category,button){
 
-  const products =
-    document.querySelectorAll(
-      ".product"
-    );
-
-  const selector =
-    document.getElementById(
-      "gameSelector"
-    );
+    document
+        .querySelectorAll(".category")
+        .forEach(
+            x =>
+            x.classList.remove("active")
+        );
 
 
-  products.forEach(
-    product =>
-      product.style.display =
-        "none"
-  );
+    button.classList.add("active");
 
 
-  if (category === "all") {
-
-    selector.classList.remove(
-      "active"
-    );
-
-    products.forEach(
-      product =>
-        product.style.display =
-          "block"
-    );
-
-  }
-
-  else if (
-    category === "robux"
-  ) {
-
-    selector.classList.remove(
-      "active"
-    );
-
-    products.forEach(
-      product => {
-
-        if (
-          product.classList.contains(
-            "robux"
-          )
-        ) {
-          product.style.display =
-            "block";
-        }
-
-      }
-    );
-
-  }
-
-  else if (
-    category === "services"
-  ) {
-
-    selector.classList.remove(
-      "active"
-    );
-
-    products.forEach(
-      product => {
-
-        if (
-          product.classList.contains(
-            "services"
-          )
-        ) {
-          product.style.display =
-            "block";
-        }
-
-      }
-    );
-
-  }
-
-  else if (
-    category === "accounts"
-  ) {
-
-    selector.classList.remove(
-      "active"
-    );
-
-    products.forEach(
-      product => {
-
-        if (
-          product.classList.contains(
-            "accounts"
-          )
-        ) {
-          product.style.display =
-            "block";
-        }
-
-      }
-    );
-
-  }
-
-  else if (
-    category === "items"
-  ) {
-
-    selector.classList.add(
-      "active"
-    );
-
-    showGame(
-      "mm2",
-      document.querySelector(
-        ".game-button"
-      )
-    );
-
-  }
+    document
+        .querySelectorAll(".product")
+        .forEach(
+            product =>
+            product.classList.add("hidden")
+        );
 
 
-  document
-    .querySelectorAll(".category")
-    .forEach(
-      btn =>
-        btn.classList.remove(
-          "active"
+    document
+        .querySelectorAll(
+            ".category-" + category
         )
-    );
+        .forEach(
+            product =>
+            product.classList.remove("hidden")
+        );
+
+};
 
 
-  button.classList.add(
-    "active"
-  );
+/* =========================================================
+   TAWK SUPPORT
+   ========================================================= */
 
-}
+window.openSupport =
+function(){
 
+    if(
+        window.Tawk_API &&
+        typeof window.Tawk_API.maximize ===
+        "function"
+    ){
 
-/* =========================
-   ИГРЫ
-========================= */
+        window.Tawk_API.maximize();
 
-function showGame(
-  game,
-  button
-) {
+    }else{
 
-  document
-    .querySelectorAll(".product")
-    .forEach(
-      product => {
-
-        if (
-          product.classList.contains(
-            "items"
-          ) &&
-          product.classList.contains(
-            game
-          )
-        ) {
-
-          product.style.display =
-            "block";
-
-        }
-
-        else {
-
-          product.style.display =
-            "none";
-
-        }
-
-      }
-    );
-
-
-  document
-    .querySelectorAll(".game-button")
-    .forEach(
-      btn =>
-        btn.classList.remove(
-          "active"
-        )
-    );
-
-
-  if (button) {
-
-    button.classList.add(
-      "active"
-    );
-
-  }
-
-}
-
-
-/* =========================
-   ОТМЕНА
-========================= */
-
-function cancelPayment() {
-
-  if (paymentTimer) {
-
-    clearInterval(
-      paymentTimer
-    );
-
-    paymentTimer =
-      null;
-
-  }
-
-
-  if (paymentRedirectTimer) {
-
-    clearTimeout(
-      paymentRedirectTimer
-    );
-
-    paymentRedirectTimer =
-      null;
-
-  }
-
-
-  document.getElementById(
-    "paymentLoading"
-  ).classList.remove(
-    "active"
-  );
-
-
-  document.getElementById(
-    "payment"
-  ).classList.remove(
-    "active"
-  );
-
-}
-
-
-/* =========================
-   ENTER
-========================= */
-
-document.addEventListener(
-  "keydown",
-  function(event) {
-
-    if (
-      event.key === "Enter" &&
-      document.getElementById(
-        "promoStep"
-      ).style.display !== "none" &&
-      document.getElementById(
-        "payment"
-      ).classList.contains("active")
-    ) {
-
-      applyPromo();
+        alert(
+            "Чат поддержки ещё загружается. Попробуйте через несколько секунд."
+        );
 
     }
 
-  }
-);
+};
 
 
-/* =========================
-   ЗАПУСК
-========================= */
+/* =========================================================
+   MODAL
+   ========================================================= */
 
-document.addEventListener(
-  "DOMContentLoaded",
-  function() {
+window.closeModal =
+function(id){
 
-    updateCart();
+    document
+        .getElementById(id)
+        .style.display = "none";
 
-
-    const allButton =
-      document.querySelector(
-        ".category"
-      );
+};
 
 
-    if (allButton) {
+/* =========================================================
+   RANDOM CODE
+   ========================================================= */
 
-      showCategory(
-        "all",
-        allButton
-      );
+function randomCode(length){
+
+    const chars =
+        "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+
+
+    let result = "";
+
+
+    for(
+        let i=0;
+        i<length;
+        i++
+    ){
+
+        result +=
+            chars[
+                Math.floor(
+                    Math.random() *
+                    chars.length
+                )
+            ];
 
     }
 
-  }
+
+    return result;
+}
+
+
+/* =========================================================
+   HTML SECURITY
+   ========================================================= */
+
+function escapeHtml(value){
+
+    return String(value)
+
+        .replaceAll(
+            "&",
+            "&amp;"
+        )
+
+        .replaceAll(
+            "<",
+            "&lt;"
+        )
+
+        .replaceAll(
+            ">",
+            "&gt;"
+        )
+
+        .replaceAll(
+            '"',
+            "&quot;"
+        )
+
+        .replaceAll(
+            "'",
+            "&#039;"
+        );
+
+}
+
+
+/* =========================================================
+   FIREBASE ERROR
+   ========================================================= */
+
+function getFirebaseError(error){
+
+    if(!error)
+        return "Неизвестная ошибка.";
+
+
+    const code =
+        error.code || "";
+
+
+    const messages = {
+
+        "auth/email-already-in-use":
+            "Этот email уже зарегистрирован.",
+
+        "auth/invalid-email":
+            "Неверный email.",
+
+        "auth/weak-password":
+            "Пароль слишком простой.",
+
+        "auth/invalid-credential":
+            "Неверный email или пароль.",
+
+        "auth/user-not-found":
+            "Пользователь не найден.",
+
+        "auth/wrong-password":
+            "Неверный пароль.",
+
+        "permission-denied":
+            "Firebase Rules запретили операцию."
+
+    };
+
+
+    return messages[code] ||
+           error.message ||
+           "Произошла ошибка.";
+
+}
+
+
+updateCartCount();
+
+</script>
+
+
+<!-- =====================================================
+     TAWK.TO
+     ===================================================== -->
+
+<script type="text/javascript">
+
+var Tawk_API=Tawk_API||{},
+Tawk_LoadStart=new Date();
+
+(function(){
+
+var s1=document.createElement("script"),
+s0=document.getElementsByTagName("script")[0];
+
+s1.async=true;
+
+s1.src=
+'https://embed.tawk.to/6a9e514d563b0f3444fcdd58/1k1t6r66';
+
+s1.charset='UTF-8';
+
+s1.setAttribute(
+    'crossorigin',
+    '*'
 );
+
+s0.parentNode.insertBefore(
+    s1,
+    s0
+);
+
+})();
 
 </script>
 
