@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <!--Start of Tawk.to Script-->
+
+<!-- TAWK.TO -->
 <script type="text/javascript">
 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
 (function(){
@@ -13,1586 +14,1467 @@ s1.setAttribute('crossorigin','*');
 s0.parentNode.insertBefore(s1,s0);
 })();
 </script>
-<!--End of Tawk.to Script-->
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>MaxFlomShop</title>
-
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      min-height: 100vh;
-      font-family: Arial, sans-serif;
-      color: white;
-
-      background:
-        radial-gradient(
-          circle at 50% 0%,
-          #006eff 0%,
-          transparent 35%
-        ),
-        linear-gradient(
-          135deg,
-          #020617,
-          #001b52,
-          #000b25
-        );
 
-      overflow-x: hidden;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MaxFlomShop</title>
+
+<style>
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  color: white;
+
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      #006eff 0%,
+      transparent 35%
+    ),
+    linear-gradient(
+      135deg,
+      #020617,
+      #001b52,
+      #000b25
+    );
+
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+
+  background-image:
+    radial-gradient(
+      #00bfff 1px,
+      transparent 1px
+    );
+
+  background-size: 35px 35px;
+  opacity: 0.12;
+  z-index: 0;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header {
+  text-align: center;
+  padding: 50px 20px 30px;
+  position: relative;
+  z-index: 1;
+}
+
+.logo {
+  font-size: clamp(40px, 8vw, 75px);
+  font-weight: 900;
+  letter-spacing: 3px;
+  color: white;
+
+  text-shadow:
+    0 0 5px #00d9ff,
+    0 0 15px #00aaff,
+    0 0 30px #0077ff,
+    0 0 60px #0055ff;
+
+  animation:
+    neon 2s ease-in-out infinite alternate;
+}
+
+@keyframes neon {
+
+  from {
+    text-shadow:
+      0 0 5px #00d9ff,
+      0 0 15px #00aaff,
+      0 0 30px #0077ff;
+  }
+
+  to {
+    text-shadow:
+      0 0 10px white,
+      0 0 25px #00d9ff,
+      0 0 50px #0077ff,
+      0 0 80px #0055ff;
+  }
+
+}
 
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
+.subtitle {
+  margin-top: 15px;
+  color: #aeeaff;
+  font-size: 18px;
+}
 
-      pointer-events: none;
+/* =========================
+   КАТЕГОРИИ
+========================= */
 
-      background-image:
-        radial-gradient(
-          #00bfff 1px,
-          transparent 1px
-        );
+.categories {
+  width: 92%;
+  max-width: 1100px;
 
-      background-size: 35px 35px;
-      opacity: 0.12;
+  margin: 20px auto 30px;
 
-      z-index: 0;
-    }
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
 
-    /* ========================= */
-    /* HEADER */
-    /* ========================= */
+  position: relative;
+  z-index: 1;
+}
 
-    header {
-      text-align: center;
+.category {
+  padding: 15px 30px;
 
-      padding: 50px 20px 30px;
+  border: 1px solid #00bfff;
+  border-radius: 15px;
 
-      position: relative;
-      z-index: 1;
-    }
+  background: rgba(0, 30, 90, 0.8);
 
-    .logo {
-      font-size: clamp(40px, 8vw, 75px);
+  color: white;
 
-      font-weight: 900;
+  font-size: 18px;
+  font-weight: bold;
 
-      letter-spacing: 3px;
+  cursor: pointer;
 
-      color: white;
+  box-shadow:
+    0 0 12px rgba(0, 150, 255, 0.4);
 
-      text-shadow:
-        0 0 5px #00d9ff,
-        0 0 15px #00aaff,
-        0 0 30px #0077ff,
-        0 0 60px #0055ff;
+  transition: 0.25s;
+}
 
-      animation:
-        neon 2s ease-in-out infinite alternate;
-    }
+.category:hover {
+  transform: translateY(-3px);
 
-    @keyframes neon {
-      from {
-        text-shadow:
-          0 0 5px #00d9ff,
-          0 0 15px #00aaff,
-          0 0 30px #0077ff;
-      }
+  box-shadow:
+    0 0 20px #008cff,
+    0 0 35px rgba(0, 150, 255, 0.5);
+}
 
-      to {
-        text-shadow:
-          0 0 10px white,
-          0 0 25px #00d9ff,
-          0 0 50px #0077ff,
-          0 0 80px #0055ff;
-      }
-    }
+.category.active {
+  background:
+    linear-gradient(
+      90deg,
+      #006eff,
+      #00c8ff
+    );
 
-    .subtitle {
-      margin-top: 15px;
+  box-shadow:
+    0 0 20px #00bfff,
+    0 0 40px rgba(0, 120, 255, 0.6);
+}
 
-      color: #aeeaff;
+/* =========================
+   ВЫБОР ИГРЫ
+========================= */
 
-      font-size: 18px;
-    }
+.game-selector {
+  width: 92%;
+  max-width: 1100px;
 
-    /* ========================= */
-    /* КАТЕГОРИИ */
-    /* ========================= */
+  margin: 0 auto 30px;
 
-    .categories {
-      width: 92%;
-      max-width: 1100px;
+  display: none;
 
-      margin: 20px auto 30px;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
 
-      display: flex;
+  position: relative;
+  z-index: 1;
+}
 
-      justify-content: center;
+.game-selector.active {
+  display: flex;
+}
 
-      gap: 15px;
+.game-button {
+  padding: 15px 25px;
 
-      flex-wrap: wrap;
+  border: 1px solid #00bfff;
+  border-radius: 15px;
 
-      position: relative;
-      z-index: 1;
-    }
+  background: rgba(0, 30, 90, 0.85);
 
-    .category {
-      padding: 15px 30px;
+  color: white;
 
-      border: 1px solid #00bfff;
+  font-size: 17px;
+  font-weight: bold;
 
-      border-radius: 15px;
+  cursor: pointer;
 
-      background: rgba(0, 30, 90, 0.8);
+  box-shadow:
+    0 0 12px rgba(0, 150, 255, 0.4);
 
-      color: white;
+  transition: 0.25s;
+}
 
-      font-size: 18px;
+.game-button:hover {
+  transform: translateY(-3px);
 
-      font-weight: bold;
+  box-shadow:
+    0 0 20px #008cff,
+    0 0 35px rgba(0, 150, 255, 0.6);
+}
 
-      cursor: pointer;
+.game-button.active {
+  background:
+    linear-gradient(
+      90deg,
+      #006eff,
+      #00c8ff
+    );
 
-      box-shadow:
-        0 0 12px rgba(0, 150, 255, 0.4);
+  box-shadow:
+    0 0 20px #00bfff,
+    0 0 40px rgba(0, 120, 255, 0.6);
+}
 
-      transition: 0.25s;
-    }
+/* =========================
+   ТОВАРЫ
+========================= */
 
-    .category:hover {
-      transform: translateY(-3px);
+.products {
+  width: 92%;
+  max-width: 1100px;
 
-      box-shadow:
-        0 0 20px #008cff,
-        0 0 35px rgba(0, 150, 255, 0.5);
-    }
+  margin: 0 auto;
 
-    .category.active {
-      background:
-        linear-gradient(
-          90deg,
-          #006eff,
-          #00c8ff
-        );
+  display: grid;
 
-      box-shadow:
-        0 0 20px #00bfff,
-        0 0 40px rgba(0, 120, 255, 0.6);
-    }
+  grid-template-columns:
+    repeat(3, 1fr);
 
-    /* ========================= */
-    /* ВЫБОР ИГРЫ */
-    /* ========================= */
+  gap: 25px;
 
-    .game-selector {
-      width: 92%;
-      max-width: 1100px;
+  position: relative;
+  z-index: 1;
+}
 
-      margin: 0 auto 30px;
+.product {
+  padding: 28px;
 
-      display: none;
+  border-radius: 20px;
 
-      justify-content: center;
+  background:
+    rgba(0, 25, 80, 0.75);
 
-      gap: 15px;
+  border:
+    1px solid rgba(0, 190, 255, 0.7);
 
-      flex-wrap: wrap;
+  box-shadow:
+    0 0 15px rgba(0, 150, 255, 0.35),
+    inset 0 0 20px rgba(0, 150, 255, 0.08);
 
-      position: relative;
-      z-index: 1;
-    }
+  backdrop-filter: blur(10px);
 
-    .game-selector.active {
-      display: flex;
-    }
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 
-    .game-button {
-      padding: 15px 25px;
+  min-width: 0;
+}
 
-      border: 1px solid #00bfff;
+.product:hover {
+  transform: translateY(-8px);
 
-      border-radius: 15px;
+  box-shadow:
+    0 0 20px #008cff,
+    0 0 45px rgba(0, 120, 255, 0.5);
+}
 
-      background: rgba(0, 30, 90, 0.85);
+.product h2 {
+  font-size: 26px;
+  margin-bottom: 15px;
+  word-break: break-word;
+}
 
-      color: white;
+.description {
+  color: #b8dcff;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
 
-      font-size: 17px;
+.price {
+  color: #00d9ff;
 
-      font-weight: bold;
+  font-size: 30px;
+  font-weight: bold;
 
-      cursor: pointer;
+  margin-bottom: 20px;
 
-      box-shadow:
-        0 0 12px rgba(0, 150, 255, 0.4);
+  text-shadow:
+    0 0 10px #008cff;
+}
 
-      transition: 0.25s;
-    }
+/* =========================
+   КНОПКА
+========================= */
 
-    .game-button:hover {
-      transform: translateY(-3px);
+.buy {
+  width: 100%;
 
-      box-shadow:
-        0 0 20px #008cff,
-        0 0 35px rgba(0, 150, 255, 0.6);
-    }
+  padding: 15px;
 
-    .game-button.active {
-      background:
-        linear-gradient(
-          90deg,
-          #006eff,
-          #00c8ff
-        );
+  border: none;
+  border-radius: 12px;
 
-      box-shadow:
-        0 0 20px #00bfff,
-        0 0 40px rgba(0, 120, 255, 0.6);
-    }
+  color: white;
 
-    /* ========================= */
-    /* ТОВАРЫ */
-    /* ========================= */
+  font-size: 18px;
+  font-weight: bold;
 
-    .products {
-      width: 92%;
-      max-width: 1100px;
+  cursor: pointer;
 
-      margin: 0 auto;
+  background:
+    linear-gradient(
+      90deg,
+      #006eff,
+      #00c8ff
+    );
 
-      display: grid;
+  box-shadow:
+    0 0 15px rgba(0, 170, 255, 0.7);
 
-      grid-template-columns:
-        repeat(3, 1fr);
+  transition: 0.25s;
+}
 
-      gap: 25px;
+.buy:hover {
+  transform: scale(1.04);
 
-      position: relative;
-      z-index: 1;
-    }
+  box-shadow:
+    0 0 20px #00c8ff,
+    0 0 40px #006eff;
+}
 
-    .product {
-      padding: 28px;
+.buy:active {
+  transform: scale(0.97);
+}
 
-      border-radius: 20px;
+/* =========================
+   ОКНО ПЛАТЕЖА
+========================= */
 
-      background:
-        rgba(0, 25, 80, 0.75);
+.payment {
+  position: fixed;
+  inset: 0;
 
-      border:
-        1px solid rgba(0, 190, 255, 0.7);
+  display: flex;
 
-      box-shadow:
-        0 0 15px rgba(0, 150, 255, 0.35),
-        inset 0 0 20px rgba(0, 150, 255, 0.08);
+  justify-content: center;
+  align-items: center;
 
-      backdrop-filter: blur(10px);
+  background:
+    rgba(0, 5, 30, 0.88);
 
-      transition:
-        transform 0.3s ease,
-        box-shadow 0.3s ease;
+  backdrop-filter: blur(10px);
 
-      min-width: 0;
-    }
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 
-    .product:hover {
-      transform: translateY(-8px);
+  transition:
+    opacity 0.4s ease,
+    visibility 0.4s ease;
 
-      box-shadow:
-        0 0 20px #008cff,
-        0 0 45px rgba(0, 120, 255, 0.5);
-    }
+  z-index: 9999;
+}
 
-    .product h2 {
-      font-size: 26px;
+.payment.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
 
-      margin-bottom: 15px;
+.payment-box {
+  width: 90%;
+  max-width: 430px;
 
-      word-break: break-word;
-    }
+  padding: 40px 30px;
 
-    .description {
-      color: #b8dcff;
+  text-align: center;
 
-      line-height: 1.5;
+  border-radius: 25px;
 
-      margin-bottom: 20px;
-    }
+  background:
+    rgba(0, 25, 75, 0.97);
 
-    .price {
-      color: #00d9ff;
+  border:
+    1px solid #00bfff;
 
-      font-size: 30px;
+  box-shadow:
+    0 0 25px #008cff,
+    0 0 70px rgba(0, 100, 255, 0.5);
 
-      font-weight: bold;
+  transform: scale(0.8);
 
-      margin-bottom: 20px;
+  transition:
+    transform 0.4s ease;
+}
 
-      text-shadow:
-        0 0 10px #008cff;
-    }
+.payment.active .payment-box {
+  transform: scale(1);
+}
 
-    /* ========================= */
-    /* КНОПКА ОПЛАТЫ */
-    /* ========================= */
+.payment-box h2 {
+  color: #00d9ff;
 
-    .buy {
-      width: 100%;
+  font-size: 26px;
 
-      padding: 15px;
+  margin-bottom: 15px;
 
-      border: none;
+  text-shadow:
+    0 0 15px #008cff;
+}
 
-      border-radius: 12px;
+.payment-box p {
+  color: #b9ddff;
+  font-size: 16px;
+}
 
-      color: white;
+/* =========================
+   КРУТИЛКА
+========================= */
 
-      font-size: 18px;
+.spinner {
+  width: 65px;
+  height: 65px;
 
-      font-weight: bold;
+  margin:
+    0 auto 25px;
 
-      cursor: pointer;
+  border-radius: 50%;
 
-      background:
-        linear-gradient(
-          90deg,
-          #006eff,
-          #00c8ff
-        );
+  border:
+    5px solid rgba(255,255,255,0.15);
 
-      box-shadow:
-        0 0 15px rgba(0, 170, 255, 0.7);
+  border-top-color: #00d9ff;
 
-      transition: 0.25s;
-    }
+  animation:
+    spin 1s linear infinite;
 
-    .buy:hover {
-      transform: scale(1.04);
+  box-shadow:
+    0 0 20px #008cff;
+}
 
-      box-shadow:
-        0 0 20px #00c8ff,
-        0 0 40px #006eff;
-    }
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
 
-    .buy:active {
-      transform: scale(0.97);
-    }
+/* =========================
+   ПРОГРЕСС
+========================= */
 
-    /* ========================= */
-    /* ОКНО ПЛАТЕЖА */
-    /* ========================= */
+.progress {
+  width: 100%;
+  height: 7px;
 
-    .payment {
-      position: fixed;
+  margin-top: 25px;
 
-      inset: 0;
+  background:
+    rgba(255,255,255,0.15);
 
-      display: flex;
+  border-radius: 10px;
 
-      justify-content: center;
+  overflow: hidden;
+}
 
-      align-items: center;
+.progress-bar {
+  width: 0%;
+  height: 100%;
 
-      background:
-        rgba(0, 5, 30, 0.88);
+  background: #00d9ff;
 
-      backdrop-filter: blur(10px);
+  box-shadow:
+    0 0 15px #00c8ff;
+}
 
-      opacity: 0;
+.progress-bar.running {
+  animation:
+    progress 5s linear forwards;
+}
 
-      visibility: hidden;
+@keyframes progress {
 
-      pointer-events: none;
+  from {
+    width: 0%;
+  }
 
-      transition:
-        opacity 0.4s ease,
-        visibility 0.4s ease;
+  to {
+    width: 100%;
+  }
 
-      z-index: 9999;
-    }
+}
 
-    .payment.active {
-      opacity: 1;
+.counter {
+  margin-top: 15px;
 
-      visibility: visible;
+  color: #8edcff;
 
-      pointer-events: auto;
-    }
+  font-size: 17px;
 
-    .payment-box {
-      width: 90%;
+  min-height: 22px;
+}
 
-      max-width: 430px;
+/* =========================
+   ОТМЕНА
+========================= */
 
-      padding: 40px 30px;
+.cancel-payment {
+  width: 100%;
 
-      text-align: center;
+  margin-top: 25px;
 
-      border-radius: 25px;
+  padding: 13px;
 
-      background:
-        rgba(0, 25, 75, 0.97);
+  border:
+    1px solid #00bfff;
 
-      border:
-        1px solid #00bfff;
+  border-radius: 12px;
 
-      box-shadow:
-        0 0 25px #008cff,
-        0 0 70px rgba(0, 100, 255, 0.5);
+  background:
+    rgba(0, 50, 120, 0.8);
 
-      transform: scale(0.8);
+  color: white;
 
-      transition:
-        transform 0.4s ease;
-    }
+  font-size: 17px;
+  font-weight: bold;
 
-    .payment.active .payment-box {
-      transform: scale(1);
-    }
+  cursor: pointer;
 
-    .payment-box h2 {
-      color: #00d9ff;
+  transition: 0.25s;
+}
 
-      font-size: 26px;
+.cancel-payment:hover {
+  transform: scale(1.03);
 
-      margin-bottom: 15px;
+  background:
+    linear-gradient(
+      90deg,
+      #006eff,
+      #00c8ff
+    );
 
-      text-shadow:
-        0 0 15px #008cff;
-    }
+  box-shadow:
+    0 0 15px #00bfff,
+    0 0 30px #006eff;
+}
 
-    .payment-box p {
-      color: #b9ddff;
+.cancel-payment:active {
+  transform: scale(0.97);
+}
 
-      font-size: 16px;
-    }
+/* =========================
+   FOOTER
+========================= */
 
-    /* ========================= */
-    /* КРУТИЛКА */
-    /* ========================= */
+footer {
+  text-align: center;
 
-    .spinner {
-      width: 65px;
+  margin-top: 50px;
 
-      height: 65px;
+  padding: 25px;
 
-      margin:
-        0 auto 25px;
+  color: #7fb3df;
 
-      border-radius: 50%;
+  position: relative;
+  z-index: 1;
+}
 
-      border:
-        5px solid rgba(255,255,255,0.15);
+/* =========================
+   ТЕЛЕФОН
+========================= */
 
-      border-top-color: #00d9ff;
+@media (max-width: 800px) {
 
-      animation:
-        spin 1s linear infinite;
+  .products {
+    grid-template-columns: 1fr;
+  }
 
-      box-shadow:
-        0 0 20px #008cff;
-    }
+  .logo {
+    font-size: 42px;
+  }
 
-    @keyframes spin {
-      to {
-        transform: rotate(360deg);
-      }
-    }
+  .category {
+    width: 100%;
+  }
 
-    /* ========================= */
-    /* ПРОГРЕСС */
-    /* ========================= */
+  .game-button {
+    width: 100%;
+  }
 
-    .progress {
-      width: 100%;
+  .product {
+    padding: 24px;
+  }
 
-      height: 7px;
+}
 
-      margin-top: 25px;
+@media (max-width: 400px) {
 
-      background:
-        rgba(255,255,255,0.15);
+  header {
+    padding-top: 35px;
+  }
 
-      border-radius: 10px;
+  .logo {
+    font-size: 35px;
+  }
 
-      overflow: hidden;
-    }
+  .subtitle {
+    font-size: 16px;
+  }
 
-    .progress-bar {
-      width: 0%;
+  .payment-box {
+    padding: 30px 20px;
+  }
 
-      height: 100%;
+}
 
-      background: #00d9ff;
-
-      box-shadow:
-        0 0 15px #00c8ff;
-    }
-
-    .progress-bar.running {
-      animation:
-        progress 5s linear forwards;
-    }
-
-    @keyframes progress {
-      from {
-        width: 0%;
-      }
-
-      to {
-        width: 100%;
-      }
-    }
-
-    .counter {
-      margin-top: 15px;
-
-      color: #8edcff;
-
-      font-size: 17px;
-
-      min-height: 22px;
-    }
-
-    /* ========================= */
-    /* КНОПКА ОТМЕНЫ */
-    /* ========================= */
-
-    .cancel-payment {
-      width: 100%;
-
-      margin-top: 25px;
-
-      padding: 13px;
-
-      border:
-        1px solid #00bfff;
-
-      border-radius: 12px;
-
-      background:
-        rgba(0, 50, 120, 0.8);
-
-      color: white;
-
-      font-size: 17px;
-
-      font-weight: bold;
-
-      cursor: pointer;
-
-      transition: 0.25s;
-    }
-
-    .cancel-payment:hover {
-      transform: scale(1.03);
-
-      background:
-        linear-gradient(
-          90deg,
-          #006eff,
-          #00c8ff
-        );
-
-      box-shadow:
-        0 0 15px #00bfff,
-        0 0 30px #006eff;
-    }
-
-    .cancel-payment:active {
-      transform: scale(0.97);
-    }
-
-    /* ========================= */
-    /* FOOTER */
-    /* ========================= */
-
-    footer {
-      text-align: center;
-
-      margin-top: 50px;
-
-      padding: 25px;
-
-      color: #7fb3df;
-
-      position: relative;
-
-      z-index: 1;
-    }
-
-    /* ========================= */
-    /* ТЕЛЕФОН */
-    /* ========================= */
-
-    @media (max-width: 800px) {
-
-      .products {
-        grid-template-columns: 1fr;
-      }
-
-      .logo {
-        font-size: 42px;
-      }
-
-      .category {
-        width: 100%;
-      }
-
-      .game-button {
-        width: 100%;
-      }
-
-      .product {
-        padding: 24px;
-      }
-    }
-
-    @media (max-width: 400px) {
-
-      header {
-        padding-top: 35px;
-      }
-
-      .logo {
-        font-size: 35px;
-      }
-
-      .subtitle {
-        font-size: 16px;
-      }
-
-      .payment-box {
-        padding: 30px 20px;
-      }
-    }
-
-  </style>
+</style>
 </head>
 
 <body>
 
-  <!-- ========================= -->
-  <!-- HEADER -->
-  <!-- ========================= -->
+<header>
 
-  <header>
+  <div class="logo">
+    MaxFlomShop
+  </div>
 
-    <div class="logo">
-      MaxFlomShop
+  <div class="subtitle">
+    Добро пожаловать в наш магазин ⚡
+  </div>
+
+</header>
+
+
+<!-- =========================
+     КАТЕГОРИИ
+========================= -->
+
+<div class="categories">
+
+  <!-- НОВАЯ КНОПКА -->
+  <button
+    class="category active"
+    onclick="showCategory('all', this)">
+    🛍 Все товары
+  </button>
+
+  <button
+    class="category"
+    onclick="showCategory('robux', this)">
+    💎 Робуксы
+  </button>
+
+  <button
+    class="category"
+    onclick="showCategory('services', this)">
+    🛠 Услуги
+  </button>
+
+  <button
+    class="category"
+    onclick="showCategory('accounts', this)">
+    👤 Аккаунты
+  </button>
+
+  <button
+    class="category"
+    onclick="showCategory('items', this)">
+    🧸 Предметы
+  </button>
+
+</div>
+
+
+<!-- =========================
+     ВЫБОР ИГРЫ
+========================= -->
+
+<div
+  class="game-selector"
+  id="gameSelector">
+
+  <button
+    class="game-button active"
+    onclick="showGame('mm2', this)">
+    🔪 Murder Mystery 2
+  </button>
+
+  <button
+    class="game-button"
+    onclick="showGame('brainrot', this)">
+    🧠 Steal a Brainrot
+  </button>
+
+</div>
+
+
+<!-- =========================
+     ТОВАРЫ
+========================= -->
+
+<main
+  class="products"
+  id="products">
+
+
+  <!-- РОБУКСЫ -->
+
+  <div class="product robux">
+    <h2>100 Робуксов</h2>
+    <div class="description">
+      Пополнение на 100 Robux
     </div>
-
-    <div class="subtitle">
-      Добро пожаловать в наш магазин ⚡
+    <div class="price">
+      150 ₽
     </div>
-
-  </header>
-
-
-  <!-- ========================= -->
-  <!-- КАТЕГОРИИ -->
-  <!-- ========================= -->
-
-  <div class="categories">
-
     <button
-      class="category active"
-      onclick="showCategory('robux', this)">
-      💎 Робуксы
+      class="buy"
+      onclick="startPayment('https://mmmxfff2310-crypto.github.io/Rekvisits/')">
+      Оплатить
     </button>
-
-    <button
-      class="category"
-      onclick="showCategory('services', this)">
-      🛠 Услуги
-    </button>
-
-    <button
-      class="category"
-      onclick="showCategory('accounts', this)">
-      👤 Аккаунты
-    </button>
-
-    <button
-      class="category"
-      onclick="showCategory('items', this)">
-      🧸 Предметы
-    </button>
-
   </div>
 
 
-  <!-- ========================= -->
-  <!-- ВЫБОР ИГРЫ -->
-  <!-- ========================= -->
-
-  <div
-    class="game-selector"
-    id="gameSelector">
-
+  <div class="product robux">
+    <h2>200 Робуксов</h2>
+    <div class="description">
+      Пополнение на 200 Robux
+    </div>
+    <div class="price">
+      250 ₽
+    </div>
     <button
-      class="game-button active"
-      onclick="showGame('mm2', this)">
-      🔪 Murder Mystery 2
+      class="buy"
+      onclick="startPayment('https://mmmxfff2310-crypto.github.io/Rekvisits/')">
+      Оплатить
     </button>
-
-    <button
-      class="game-button"
-      onclick="showGame('brainrot', this)">
-      🧠 Steal a Brainrot
-    </button>
-
   </div>
 
 
-  <!-- ========================= -->
-  <!-- ТОВАРЫ -->
-  <!-- ========================= -->
-
-  <main
-    class="products"
-    id="products">
-
-
-    <!-- ========================= -->
-    <!-- РОБУКСЫ -->
-    <!-- ========================= -->
-
-    <div class="product robux">
-
-      <h2>100 Робуксов</h2>
-
-      <div class="description">
-        Пополнение на 100 Robux
-      </div>
-
-      <div class="price">
-        150 ₽
-      </div>
-
-      <button
-        class="buy"
-        onclick="startPayment('https://mmmxfff2310-crypto.github.io/Rekvisits/')">
-        Оплатить
-      </button>
-
+  <div class="product robux">
+    <h2>500 Робуксов</h2>
+    <div class="description">
+      Пополнение на 500 Robux
     </div>
-
-
-    <div class="product robux">
-
-      <h2>200 Робуксов</h2>
-
-      <div class="description">
-        Пополнение на 200 Robux
-      </div>
-
-      <div class="price">
-        250 ₽
-      </div>
-
-      <button
-        class="buy"
-        onclick="startPayment('https://mmmxfff2310-crypto.github.io/Rekvisits/')">
-        Оплатить
-      </button>
-
+    <div class="price">
+      569 ₽
     </div>
+    <button
+      class="buy"
+      onclick="startPayment('https://mmmxfff2310-crypto.github.io/Rekvisits/')">
+      Оплатить
+    </button>
+  </div>
 
 
-    <div class="product robux">
-
-      <h2>500 Робуксов</h2>
-
-      <div class="description">
-        Пополнение на 500 Robux
-      </div>
-
-      <div class="price">
-        569 ₽
-      </div>
-
-      <button
-        class="buy"
-        onclick="startPayment('https://mmmxfff2310-crypto.github.io/Rekvisits/')">
-        Оплатить
-      </button>
-
+  <div class="product robux">
+    <h2>1000 Робуксов</h2>
+    <div class="description">
+      Пополнение на 1000 Robux
     </div>
-
-
-    <div class="product robux">
-
-      <h2>1000 Робуксов</h2>
-
-      <div class="description">
-        Пополнение на 1000 Robux
-      </div>
-
-      <div class="price">
-        1210 ₽
-      </div>
-
-      <button
-        class="buy"
-        onclick="startPayment('https://mmmxfff2310-crypto.github.io/Rekvisits/')">
-        Оплатить
-      </button>
-
+    <div class="price">
+      1210 ₽
     </div>
+    <button
+      class="buy"
+      onclick="startPayment('https://mmmxfff2310-crypto.github.io/Rekvisits/')">
+      Оплатить
+    </button>
+  </div>
 
 
-    <div class="product robux">
-
-      <h2>2000 Робуксов</h2>
-
-      <div class="description">
-        Пополнение на 2000 Robux
-      </div>
-
-      <div class="price">
-        2199 ₽
-      </div>
-
-      <button
-        class="buy"
-        onclick="startPayment('https://mmmxfff2310-crypto.github.io/Rekvisits/')">
-        Оплатить
-      </button>
-
+  <div class="product robux">
+    <h2>2000 Робуксов</h2>
+    <div class="description">
+      Пополнение на 2000 Robux
     </div>
-
-
-    <!-- ========================= -->
-    <!-- УСЛУГИ -->
-    <!-- ========================= -->
-
-    <div class="product services">
-
-      <h2>Лучшие читы!</h2>
-
-      <div class="description">
-        Помогу настроить лучшие читы и скажу где скачать!
-      </div>
-
-      <div class="price">
-        110 ₽
-      </div>
-
-      <button
-        class="buy"
-        onclick="startPayment('https://mmmxfff2310-crypto.github.io/Rekvisits/')">
-        Оплатить
-      </button>
-
+    <div class="price">
+      2199 ₽
     </div>
+    <button
+      class="buy"
+      onclick="startPayment('https://mmmxfff2310-crypto.github.io/Rekvisits/')">
+      Оплатить
+    </button>
+  </div>
 
 
-    <div class="product services">
+  <!-- УСЛУГИ -->
 
-      <h2>Пиар</h2>
-
-      <div class="description">
-        Пиар вашего аккаунта в Likee
-      </div>
-
-      <div class="price">
-        100 ₽
-      </div>
-
-      <button
-        class="buy"
-        onclick="startPayment('https://mmmxfff2310-crypto.github.io/Rekvisits/')">
-        Оплатить
-      </button>
-
+  <div class="product services">
+    <h2>Лучшие читы!</h2>
+    <div class="description">
+      Помогу настроить лучшие читы и скажу где скачать!
     </div>
-
-
-    <div class="product services">
-
-      <h2>Помощь с Roblox</h2>
-
-      <div class="description">
-        Помощь с настройкой и аккаунтом Roblox
-      </div>
-
-      <div class="price">
-        50 ₽
-      </div>
-
-      <button
-        class="buy"
-        onclick="startPayment('https://mmmxfff2310-crypto.github.io/Rekvisits/')">
-        Оплатить
-      </button>
-
+    <div class="price">
+      110 ₽
     </div>
+    <button
+      class="buy"
+      onclick="startPayment('https://mmmxfff2310-crypto.github.io/Rekvisits/')">
+      Оплатить
+    </button>
+  </div>
 
 
-    <div class="product services">
-
-      <h2>Помогу развиться в Steal a Brainrot</h2>
-
-      <div class="description">
-        Помощь с развитием в игре
-      </div>
-
-      <div class="price">
-        20 ₽
-      </div>
-
-      <button
-        class="buy"
-        onclick="startPayment('https://mmmxfff2310-crypto.github.io/Rekvisits/')">
-        Оплатить
-      </button>
-
+  <div class="product services">
+    <h2>Пиар</h2>
+    <div class="description">
+      Пиар вашего аккаунта в Likee
     </div>
-
-
-    <div class="product services">
-
-      <h2>Помогу создать сайт</h2>
-
-      <div class="description">
-        Создание сайта
-      </div>
-
-      <div class="price">
-        1400 ₽
-      </div>
-
-      <button
-        class="buy"
-        onclick="startPayment('https://mmmxfff2310-crypto.github.io/Rekvisits/')">
-        Оплатить
-      </button>
-
+    <div class="price">
+      100 ₽
     </div>
+    <button
+      class="buy"
+      onclick="startPayment('https://mmmxfff2310-crypto.github.io/Rekvisits/')">
+      Оплатить
+    </button>
+  </div>
 
 
-    <!-- ========================= -->
-    <!-- АККАУНТЫ -->
-    <!-- ========================= -->
-
-    <div class="product accounts">
-
-      <h2>Донат 200 Robux</h2>
-
-      <div class="description">
-        Игровой аккаунт
-      </div>
-
-      <div class="price">
-        100 ₽
-      </div>
-
-      <button
-        class="buy"
-        onclick="startPayment('https://mmmxfff2310-crypto.github.io/Rekvisits/')">
-        Оплатить
-      </button>
-
+  <div class="product services">
+    <h2>Помощь с Roblox</h2>
+    <div class="description">
+      Помощь с настройкой и аккаунтом Roblox
     </div>
-
-
-    <div class="product accounts">
-
-      <h2>Донат 1000 Robux</h2>
-
-      <div class="description">
-        Игровой аккаунт
-      </div>
-
-      <div class="price">
-        699 ₽
-      </div>
-
-      <button
-        class="buy"
-        onclick="startPayment('https://mmmxfff2310-crypto.github.io/Rekvisits/')">
-        Оплатить
-      </button>
-
+    <div class="price">
+      50 ₽
     </div>
+    <button
+      class="buy"
+      onclick="startPayment('https://mmmxfff2310-crypto.github.io/Rekvisits/')">
+      Оплатить
+    </button>
+  </div>
 
 
-    <div class="product accounts">
-
-      <h2>Донат 2000 Robux</h2>
-
-      <div class="description">
-        Игровой аккаунт
-      </div>
-
-      <div class="price">
-        1200 ₽
-      </div>
-
-      <button
-        class="buy"
-        onclick="startPayment('https://mmmxfff2310-crypto.github.io/Rekvisits/')">
-        Оплатить
-      </button>
-
+  <div class="product services">
+    <h2>Помогу развиться в Steal a Brainrot</h2>
+    <div class="description">
+      Помощь с развитием в игре
     </div>
-
-
-    <div class="product accounts">
-
-      <h2>Рандом аккаунт</h2>
-
-      <div class="description">
-        Аккаунт с рандомными донат-предметами
-      </div>
-
-      <div class="price">
-        99 ₽
-      </div>
-
-      <button
-        class="buy"
-        onclick="startPayment('https://mmmxfff2310-crypto.github.io/Rekvisits/')">
-        Оплатить
-      </button>
-
+    <div class="price">
+      20 ₽
     </div>
+    <button
+      class="buy"
+      onclick="startPayment('https://mmmxfff2310-crypto.github.io/Rekvisits/')">
+      Оплатить
+    </button>
+  </div>
 
 
-    <div class="product accounts">
-
-      <h2>Донат 12K+ Robux</h2>
-
-      <div class="description">
-        Прокачанный аккаунт
-      </div>
-
-      <div class="price">
-        9898 ₽
-      </div>
-
-      <button
-        class="buy"
-        onclick="startPayment('https://mmmxfff2310-crypto.github.io/Rekvisits/')">
-        Оплатить
-      </button>
-
+  <div class="product services">
+    <h2>Помогу создать сайт</h2>
+    <div class="description">
+      Создание сайта
     </div>
-
-
-    <!-- ========================= -->
-    <!-- MURDER MYSTERY 2 -->
-    <!-- ========================= -->
-
-    <div class="product items mm2">
-
-      <h2>🔪 Bat</h2>
-
-      <div class="description">
-        Предмет для Murder Mystery 2
-      </div>
-
-      <div class="price">
-        510 ₽
-      </div>
-
-      <button
-        class="buy"
-        onclick="startPayment('https://mmmxfff2310-crypto.github.io/Rekvisits/')">
-        Оплатить
-      </button>
-
+    <div class="price">
+      1400 ₽
     </div>
+    <button
+      class="buy"
+      onclick="startPayment('https://mmmxfff2310-crypto.github.io/Rekvisits/')">
+      Оплатить
+    </button>
+  </div>
 
 
-    <div class="product items mm2">
+  <!-- АККАУНТЫ -->
 
-      <h2>🔫 Beach Gun</h2>
-
-      <div class="description">
-        Предмет для Murder Mystery 2
-      </div>
-
-      <div class="price">
-        400 ₽
-      </div>
-
-      <button
-        class="buy"
-        onclick="startPayment('https://mmmxfff2310-crypto.github.io/Rekvisits/')">
-        Оплатить
-      </button>
-
+  <div class="product accounts">
+    <h2>Донат 200 Robux</h2>
+    <div class="description">
+      Игровой аккаунт
     </div>
-
-
-    <div class="product items mm2">
-
-      <h2>⚔️ Harvester</h2>
-
-      <div class="description">
-        Редкий предмет для Murder Mystery 2
-      </div>
-
-      <div class="price">
-        611 ₽
-      </div>
-
-      <button
-        class="buy"
-        onclick="startPayment('https://mmmxfff2310-crypto.github.io/Rekvisits/')">
-        Оплатить
-      </button>
-
+    <div class="price">
+      100 ₽
     </div>
+    <button
+      class="buy"
+      onclick="startPayment('https://mmmxfff2310-crypto.github.io/Rekvisits/')">
+      Оплатить
+    </button>
+  </div>
 
 
-    <!-- ========================= -->
-    <!-- STEAL A BRAINROT -->
-    <!-- ========================= -->
-
-    <div class="product items brainrot">
-
-      <h2>🧠 Brainrot #1</h2>
-
-      <div class="description">
-        Предмет для Steal a Brainrot
-      </div>
-
-      <div class="price">
-        100 ₽
-      </div>
-
-      <button
-        class="buy"
-        onclick="startPayment('https://mmmxfff2310-crypto.github.io/Rekvisits/')">
-        Оплатить
-      </button>
-
+  <div class="product accounts">
+    <h2>Донат 1000 Robux</h2>
+    <div class="description">
+      Игровой аккаунт
     </div>
-
-
-    <div class="product items brainrot">
-
-      <h2>🧠 Brainrot #2</h2>
-
-      <div class="description">
-        Предмет для Steal a Brainrot
-      </div>
-
-      <div class="price">
-        200 ₽
-      </div>
-
-      <button
-        class="buy"
-        onclick="startPayment('https://mmmxfff2310-crypto.github.io/Rekvisits/')">
-        Оплатить
-      </button>
-
+    <div class="price">
+      699 ₽
     </div>
+    <button
+      class="buy"
+      onclick="startPayment('https://mmmxfff2310-crypto.github.io/Rekvisits/')">
+      Оплатить
+    </button>
+  </div>
 
 
-    <div class="product items brainrot">
-
-      <h2>🧠 Brainrot #3</h2>
-
-      <div class="description">
-        Редкий предмет для Steal a Brainrot
-      </div>
-
-      <div class="price">
-        300 ₽
-      </div>
-
-      <button
-        class="buy"
-        onclick="startPayment('https://mmmxfff2310-crypto.github.io/Rekvisits/')">
-        Оплатить
-      </button>
-
+  <div class="product accounts">
+    <h2>Донат 2000 Robux</h2>
+    <div class="description">
+      Игровой аккаунт
     </div>
+    <div class="price">
+      1200 ₽
+    </div>
+    <button
+      class="buy"
+      onclick="startPayment('https://mmmxfff2310-crypto.github.io/Rekvisits/')">
+      Оплатить
+    </button>
+  </div>
 
-  </main>
+
+  <div class="product accounts">
+    <h2>Рандом аккаунт</h2>
+    <div class="description">
+      Аккаунт с рандомными донат-предметами
+    </div>
+    <div class="price">
+      99 ₽
+    </div>
+    <button
+      class="buy"
+      onclick="startPayment('https://mmmxfff2310-crypto.github.io/Rekvisits/')">
+      Оплатить
+    </button>
+  </div>
 
 
-  <!-- ========================= -->
-  <!-- ОКНО ЗАГРУЗКИ ПЛАТЕЖА -->
-  <!-- ========================= -->
+  <div class="product accounts">
+    <h2>Донат 12K+ Robux</h2>
+    <div class="description">
+      Прокачанный аккаунт
+    </div>
+    <div class="price">
+      9898 ₽
+    </div>
+    <button
+      class="buy"
+      onclick="startPayment('https://mmmxfff2310-crypto.github.io/Rekvisits/')">
+      Оплатить
+    </button>
+  </div>
 
-  <div
-    class="payment"
-    id="payment">
 
-    <div class="payment-box">
+  <!-- MM2 -->
 
-      <div class="spinner"></div>
+  <div class="product items mm2">
+    <h2>🔪 Bat</h2>
+    <div class="description">
+      Предмет для Murder Mystery 2
+    </div>
+    <div class="price">
+      510 ₽
+    </div>
+    <button
+      class="buy"
+      onclick="startPayment('https://mmmxfff2310-crypto.github.io/Rekvisits/')">
+      Оплатить
+    </button>
+  </div>
 
-      <h2>
-        Загрузка платежа...
-      </h2>
 
-      <p>
-        Подготавливаем платёж
-      </p>
+  <div class="product items mm2">
+    <h2>🔫 Beach Gun</h2>
+    <div class="description">
+      Предмет для Murder Mystery 2
+    </div>
+    <div class="price">
+      400 ₽
+    </div>
+    <button
+      class="buy"
+      onclick="startPayment('https://mmmxfff2310-crypto.github.io/Rekvisits/')">
+      Оплатить
+    </button>
+  </div>
 
-      <div class="progress">
 
-        <div
-          class="progress-bar"
-          id="progressBar">
-        </div>
+  <div class="product items mm2">
+    <h2>⚔️ Harvester</h2>
+    <div class="description">
+      Редкий предмет для Murder Mystery 2
+    </div>
+    <div class="price">
+      611 ₽
+    </div>
+    <button
+      class="buy"
+      onclick="startPayment('https://mmmxfff2310-crypto.github.io/Rekvisits/')">
+      Оплатить
+    </button>
+  </div>
 
-      </div>
+
+  <!-- BRAINROT -->
+
+  <div class="product items brainrot">
+    <h2>🧠 Brainrot #1</h2>
+    <div class="description">
+      Предмет для Steal a Brainrot
+    </div>
+    <div class="price">
+      100 ₽
+    </div>
+    <button
+      class="buy"
+      onclick="startPayment('https://mmmxfff2310-crypto.github.io/Rekvisits/')">
+      Оплатить
+    </button>
+  </div>
+
+
+  <div class="product items brainrot">
+    <h2>🧠 Brainrot #2</h2>
+    <div class="description">
+      Предмет для Steal a Brainrot
+    </div>
+    <div class="price">
+      200 ₽
+    </div>
+    <button
+      class="buy"
+      onclick="startPayment('https://mmmxfff2310-crypto.github.io/Rekvisits/')">
+      Оплатить
+    </button>
+  </div>
+
+
+  <div class="product items brainrot">
+    <h2>🧠 Brainrot #3</h2>
+    <div class="description">
+      Редкий предмет для Steal a Brainrot
+    </div>
+    <div class="price">
+      300 ₽
+    </div>
+    <button
+      class="buy"
+      onclick="startPayment('https://mmmxfff2310-crypto.github.io/Rekvisits/')">
+      Оплатить
+    </button>
+  </div>
+
+</main>
+
+
+<!-- =========================
+     ОКНО ПЛАТЕЖА
+========================= -->
+
+<div
+  class="payment"
+  id="payment">
+
+  <div class="payment-box">
+
+    <div class="spinner"></div>
+
+    <h2>
+      Загрузка платежа...
+    </h2>
+
+    <p>
+      Подготавливаем платёж
+    </p>
+
+    <div class="progress">
 
       <div
-        class="counter"
-        id="counter">
-
-        Осталось 5 секунд
-
+        class="progress-bar"
+        id="progressBar">
       </div>
-
-      <button
-        class="cancel-payment"
-        onclick="cancelPayment()">
-
-        ❌ Отменить загрузку
-
-      </button>
 
     </div>
 
+    <div
+      class="counter"
+      id="counter">
+
+      Осталось 5 секунд
+
+    </div>
+
+    <button
+      class="cancel-payment"
+      onclick="cancelPayment()">
+
+      ❌ Отменить загрузку
+
+    </button>
+
   </div>
 
-
-  <!-- ========================= -->
-  <!-- FOOTER -->
-  <!-- ========================= -->
-
-  <footer>
-    © 2026 MaxFlomShop
-  </footer>
+</div>
 
 
-  <!-- ========================= -->
-  <!-- JAVASCRIPT -->
-  <!-- ========================= -->
-
-  <script>
-
-    let paymentTimer = null;
-
-    let paymentRedirectTimer = null;
+<footer>
+  © 2026 MaxFlomShop
+</footer>
 
 
-    /* ========================= */
-    /* ПЕРЕКЛЮЧЕНИЕ КАТЕГОРИЙ */
-    /* ========================= */
+<script>
 
-    function showCategory(category, button) {
-
-      const products =
-        document.querySelectorAll(".product");
-
-      const gameSelector =
-        document.getElementById("gameSelector");
+let paymentTimer = null;
+let paymentRedirectTimer = null;
 
 
-      /* Скрываем все товары */
+/* =========================
+   КАТЕГОРИИ
+========================= */
 
-      products.forEach(function(product) {
+function showCategory(category, button) {
 
-        product.style.display = "none";
+  const products =
+    document.querySelectorAll(".product");
 
-      });
-
-
-      /* Если выбрали предметы */
-
-      if (category === "items") {
-
-        gameSelector.classList.add("active");
+  const gameSelector =
+    document.getElementById("gameSelector");
 
 
-        const firstGameButton =
-          document.querySelector(".game-button");
+  /* Сначала скрываем ВСЕ товары */
+
+  products.forEach(function(product) {
+    product.style.display = "none";
+  });
 
 
-        showGame(
-          "mm2",
-          firstGameButton
-        );
+  /* =========================
+     ВСЕ ТОВАРЫ
+  ========================= */
 
+  if (category === "all") {
+
+    /* Скрываем выбор игры */
+
+    gameSelector.classList.remove("active");
+
+    /* Показываем абсолютно все товары */
+
+    products.forEach(function(product) {
+      product.style.display = "block";
+    });
+
+  }
+
+
+  /* =========================
+     РОБУКСЫ
+  ========================= */
+
+  else if (category === "robux") {
+
+    gameSelector.classList.remove("active");
+
+    products.forEach(function(product) {
+
+      if (product.classList.contains("robux")) {
+        product.style.display = "block";
       }
 
+    });
 
-      /* Остальные категории */
-
-      else {
-
-        gameSelector.classList.remove("active");
+  }
 
 
-        products.forEach(function(product) {
+  /* =========================
+     УСЛУГИ
+  ========================= */
 
-          if (
-            product.classList.contains(category)
-          ) {
+  else if (category === "services") {
 
-            product.style.display = "block";
+    gameSelector.classList.remove("active");
 
-          }
+    products.forEach(function(product) {
 
-        });
-
+      if (product.classList.contains("services")) {
+        product.style.display = "block";
       }
 
+    });
 
-      /* Снимаем active со всех категорий */
-
-      const buttons =
-        document.querySelectorAll(".category");
+  }
 
 
-      buttons.forEach(function(btn) {
+  /* =========================
+     АККАУНТЫ
+  ========================= */
 
-        btn.classList.remove("active");
+  else if (category === "accounts") {
 
-      });
+    gameSelector.classList.remove("active");
+
+    products.forEach(function(product) {
+
+      if (product.classList.contains("accounts")) {
+        product.style.display = "block";
+      }
+
+    });
+
+  }
 
 
-      /* Добавляем active выбранной */
+  /* =========================
+     ПРЕДМЕТЫ
+  ========================= */
 
-      button.classList.add("active");
+  else if (category === "items") {
+
+    gameSelector.classList.add("active");
+
+    const firstGameButton =
+      document.querySelector(".game-button");
+
+    showGame(
+      "mm2",
+      firstGameButton
+    );
+
+  }
+
+
+  /* Делаем выбранную кнопку активной */
+
+  const buttons =
+    document.querySelectorAll(".category");
+
+  buttons.forEach(function(btn) {
+    btn.classList.remove("active");
+  });
+
+  button.classList.add("active");
+
+}
+
+
+/* =========================
+   ВЫБОР ИГРЫ
+========================= */
+
+function showGame(game, button) {
+
+  const products =
+    document.querySelectorAll(".product");
+
+
+  products.forEach(function(product) {
+
+    if (
+      product.classList.contains("items") &&
+      product.classList.contains(game)
+    ) {
+
+      product.style.display = "block";
 
     }
 
+    else {
 
-    /* ========================= */
-    /* ВЫБОР ИГРЫ */
-    /* ========================= */
-
-    function showGame(game, button) {
-
-      const products =
-        document.querySelectorAll(".product");
-
-
-      products.forEach(function(product) {
-
-        if (
-          product.classList.contains("items") &&
-          product.classList.contains(game)
-        ) {
-
-          product.style.display = "block";
-
-        }
-
-        else {
-
-          product.style.display = "none";
-
-        }
-
-      });
-
-
-      /* Active у кнопок игр */
-
-      const gameButtons =
-        document.querySelectorAll(".game-button");
-
-
-      gameButtons.forEach(function(btn) {
-
-        btn.classList.remove("active");
-
-      });
-
-
-      button.classList.add("active");
+      product.style.display = "none";
 
     }
 
-
-    /* ========================= */
-    /* НАЧАЛО ОПЛАТЫ */
-    /* ========================= */
-
-    function startPayment(paymentLink) {
-
-      const payment =
-        document.getElementById("payment");
-
-      const counter =
-        document.getElementById("counter");
-
-      const progressBar =
-        document.getElementById("progressBar");
+  });
 
 
-      /* Останавливаем старые таймеры */
-
-      if (paymentTimer !== null) {
-
-        clearInterval(paymentTimer);
-
-        paymentTimer = null;
-
-      }
+  const gameButtons =
+    document.querySelectorAll(".game-button");
 
 
-      if (paymentRedirectTimer !== null) {
-
-        clearTimeout(paymentRedirectTimer);
-
-        paymentRedirectTimer = null;
-
-      }
+  gameButtons.forEach(function(btn) {
+    btn.classList.remove("active");
+  });
 
 
-      /* Сбрасываем прогресс */
+  if (button) {
+    button.classList.add("active");
+  }
 
-      progressBar.classList.remove("running");
-
-      progressBar.style.width = "0%";
-
-
-      /* Небольшой перезапуск CSS-анимации */
-
-      void progressBar.offsetWidth;
+}
 
 
-      progressBar.classList.add("running");
+/* =========================
+   ОПЛАТА
+========================= */
+
+function startPayment(paymentLink) {
+
+  const payment =
+    document.getElementById("payment");
+
+  const counter =
+    document.getElementById("counter");
+
+  const progressBar =
+    document.getElementById("progressBar");
 
 
-      /* Показываем окно */
+  if (paymentTimer !== null) {
+    clearInterval(paymentTimer);
+    paymentTimer = null;
+  }
 
-      payment.classList.add("active");
+
+  if (paymentRedirectTimer !== null) {
+    clearTimeout(paymentRedirectTimer);
+    paymentRedirectTimer = null;
+  }
 
 
-      let seconds = 5;
+  progressBar.classList.remove("running");
+  progressBar.style.width = "0%";
 
+
+  void progressBar.offsetWidth;
+
+  progressBar.classList.add("running");
+
+
+  payment.classList.add("active");
+
+
+  let seconds = 5;
+
+
+  counter.textContent =
+    "Осталось " + seconds + " секунд";
+
+
+  paymentTimer = setInterval(function() {
+
+    seconds--;
+
+
+    if (seconds > 0) {
 
       counter.textContent =
         "Осталось " + seconds + " секунд";
 
-
-      /* Запускаем таймер */
-
-      paymentTimer = setInterval(function() {
-
-        seconds--;
-
-
-        if (seconds > 0) {
-
-          counter.textContent =
-            "Осталось " + seconds + " секунд";
-
-        }
-
-        else {
-
-          clearInterval(paymentTimer);
-
-          paymentTimer = null;
-
-
-          counter.textContent =
-            "Переходим к оплате...";
-
-
-          paymentRedirectTimer =
-            setTimeout(function() {
-
-              window.location.href =
-                paymentLink;
-
-            }, 300);
-
-        }
-
-      }, 1000);
-
     }
 
+    else {
 
-    /* ========================= */
-    /* ОТМЕНА ПЛАТЕЖА */
-    /* ========================= */
+      clearInterval(paymentTimer);
+      paymentTimer = null;
 
-    function cancelPayment() {
-
-      const payment =
-        document.getElementById("payment");
-
-      const counter =
-        document.getElementById("counter");
-
-      const progressBar =
-        document.getElementById("progressBar");
-
-
-      /* Останавливаем таймер */
-
-      if (paymentTimer !== null) {
-
-        clearInterval(paymentTimer);
-
-        paymentTimer = null;
-
-      }
-
-
-      /* Отменяем возможный переход */
-
-      if (paymentRedirectTimer !== null) {
-
-        clearTimeout(paymentRedirectTimer);
-
-        paymentRedirectTimer = null;
-
-      }
-
-
-      /* Останавливаем прогресс */
-
-      progressBar.classList.remove("running");
-
-      progressBar.style.width = "0%";
-
-
-      /* Меняем текст */
 
       counter.textContent =
-        "Загрузка отменена";
+        "Переходим к оплате...";
 
 
-      /* Закрываем окно */
+      paymentRedirectTimer =
+        setTimeout(function() {
 
-      payment.classList.remove("active");
+          window.location.href =
+            paymentLink;
+
+        }, 300);
 
     }
 
+  }, 1000);
 
-  </script>
+}
+
+
+/* =========================
+   ОТМЕНА ОПЛАТЫ
+========================= */
+
+function cancelPayment() {
+
+  const payment =
+    document.getElementById("payment");
+
+  const counter =
+    document.getElementById("counter");
+
+  const progressBar =
+    document.getElementById("progressBar");
+
+
+  if (paymentTimer !== null) {
+
+    clearInterval(paymentTimer);
+
+    paymentTimer = null;
+
+  }
+
+
+  if (paymentRedirectTimer !== null) {
+
+    clearTimeout(paymentRedirectTimer);
+
+    paymentRedirectTimer = null;
+
+  }
+
+
+  progressBar.classList.remove("running");
+
+  progressBar.style.width = "0%";
+
+
+  counter.textContent =
+    "Загрузка отменена";
+
+
+  payment.classList.remove("active");
+
+}
+
+
+/* =========================
+   ПРИ ОТКРЫТИИ САЙТА
+   ПОКАЗЫВАЕМ ВСЕ ТОВАРЫ
+========================= */
+
+document.addEventListener("DOMContentLoaded", function() {
+
+  const allButton =
+    document.querySelector(
+      ".category[onclick*=\"showCategory('all'\"]"
+    );
+
+  if (allButton) {
+    showCategory("all", allButton);
+  }
+
+});
+
+</script>
 
 </body>
 </html>
