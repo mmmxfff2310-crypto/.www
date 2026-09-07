@@ -1,0 +1,4714 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MaxFlomShop</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    min-height:100vh;
+    font-family:Arial,sans-serif;
+    color:#fff;
+    background:
+        radial-gradient(circle at 20% 10%,rgba(0,170,255,.25),transparent 30%),
+        radial-gradient(circle at 80% 80%,rgba(0,90,255,.25),transparent 30%),
+        linear-gradient(135deg,#020817,#061a38,#020817);
+    overflow-x:hidden;
+}
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    background:
+        radial-gradient(circle at center,transparent 35%,rgba(0,100,255,.08));
+    z-index:-1;
+}
+
+button,
+input,
+textarea{
+    font-family:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+.header{
+    text-align:center;
+    padding:35px 15px 15px;
+}
+
+.logo{
+    font-size:clamp(40px,8vw,78px);
+    font-weight:900;
+    color:#fff;
+    letter-spacing:3px;
+    text-shadow:
+        0 0 5px #00aaff,
+        0 0 15px #00aaff,
+        0 0 30px #0077ff,
+        0 0 60px #0066ff;
+    animation:neon 2s infinite alternate;
+}
+
+@keyframes neon{
+    from{
+        text-shadow:
+            0 0 5px #00aaff,
+            0 0 15px #00aaff,
+            0 0 30px #0077ff;
+    }
+    to{
+        text-shadow:
+            0 0 10px #00ffff,
+            0 0 25px #0088ff,
+            0 0 50px #0055ff,
+            0 0 80px #0044ff;
+    }
+}
+
+.subtitle{
+    margin-top:10px;
+    color:#9bdcff;
+    font-size:16px;
+}
+
+.top-buttons{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:10px;
+    padding:20px 15px;
+}
+
+.top-btn{
+    border:none;
+    color:#fff;
+    padding:12px 17px;
+    border-radius:13px;
+    background:linear-gradient(135deg,#064caa,#087dff);
+    box-shadow:0 0 12px rgba(0,130,255,.35);
+    transition:.25s;
+    font-weight:bold;
+}
+
+.top-btn:hover{
+    transform:translateY(-3px) scale(1.03);
+    box-shadow:0 0 25px rgba(0,180,255,.7);
+}
+
+.balance-btn{
+    background:linear-gradient(135deg,#008f63,#00c984);
+}
+
+.cart-btn{
+    background:linear-gradient(135deg,#005eff,#00aaff);
+}
+
+.admin-btn{
+    background:linear-gradient(135deg,#7137ff,#a855f7);
+}
+
+.support-btn{
+    background:linear-gradient(135deg,#008f63,#00d084);
+}
+
+.notification-btn{
+    background:linear-gradient(135deg,#2746b8,#667cff);
+}
+
+.logout-btn{
+    background:linear-gradient(135deg,#741d9b,#b12de3);
+}
+
+.badge{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-width:20px;
+    height:20px;
+    padding:0 6px;
+    margin-left:5px;
+    border-radius:20px;
+    background:#ff1744;
+    color:#fff;
+    font-size:12px;
+}
+
+.user-info{
+    width:min(900px,92%);
+    margin:5px auto 25px;
+    padding:15px;
+    border:1px solid rgba(0,174,255,.35);
+    border-radius:18px;
+    background:rgba(0,20,50,.65);
+    box-shadow:0 0 25px rgba(0,100,255,.12);
+    text-align:center;
+    display:none;
+}
+
+.user-email{
+    color:#a9dfff;
+    margin-bottom:7px;
+}
+
+.balance{
+    font-size:21px;
+    font-weight:bold;
+}
+
+#balanceValue{
+    color:#00eaff;
+    text-shadow:0 0 10px #00bfff;
+}
+
+.container{
+    width:min(1200px,94%);
+    margin:auto;
+}
+
+.categories{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:12px;
+    margin-bottom:25px;
+}
+
+.category{
+    border:1px solid rgba(0,180,255,.45);
+    color:#fff;
+    background:rgba(0,60,130,.5);
+    padding:13px 22px;
+    border-radius:14px;
+    font-weight:bold;
+    transition:.25s;
+}
+
+.category:hover,
+.category.active{
+    background:linear-gradient(135deg,#006cff,#00baff);
+    transform:translateY(-3px);
+    box-shadow:0 0 20px rgba(0,170,255,.55);
+}
+
+.products{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+    padding-bottom:40px;
+}
+
+.product{
+    padding:22px;
+    border-radius:20px;
+    border:1px solid rgba(0,180,255,.25);
+    background:
+        linear-gradient(145deg,rgba(7,35,75,.95),rgba(2,15,35,.95));
+    box-shadow:0 0 18px rgba(0,90,255,.13);
+    transition:.3s;
+}
+
+.product:hover{
+    transform:translateY(-7px);
+    border-color:#00baff;
+    box-shadow:
+        0 10px 30px rgba(0,100,255,.3),
+        0 0 25px rgba(0,180,255,.2);
+}
+
+.product h3{
+    font-size:20px;
+    margin-bottom:10px;
+}
+
+.product-description{
+    color:#9db8d5;
+    min-height:40px;
+    line-height:1.4;
+    margin-bottom:15px;
+}
+
+.price{
+    color:#00eaff;
+    font-size:23px;
+    font-weight:bold;
+    margin-bottom:15px;
+    text-shadow:0 0 10px rgba(0,220,255,.4);
+}
+
+.buy{
+    width:100%;
+    border:none;
+    border-radius:12px;
+    padding:13px;
+    color:#fff;
+    font-weight:bold;
+    background:linear-gradient(135deg,#006cff,#00baff);
+    transition:.25s;
+}
+
+.buy:hover{
+    transform:scale(1.03);
+    box-shadow:0 0 22px rgba(0,180,255,.65);
+}
+
+.footer{
+    text-align:center;
+    padding:30px 15px;
+    color:#6684a5;
+}
+
+/* MODALS */
+
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,5,15,.82);
+    backdrop-filter:blur(8px);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:1000;
+    padding:15px;
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-box{
+    width:min(600px,100%);
+    max-height:90vh;
+    overflow:auto;
+    background:
+        linear-gradient(145deg,#071b39,#020c1d);
+    border:1px solid rgba(0,190,255,.5);
+    border-radius:22px;
+    padding:25px;
+    box-shadow:
+        0 0 30px rgba(0,120,255,.25),
+        0 0 80px rgba(0,80,255,.12);
+    position:relative;
+}
+
+.modal-box.large{
+    width:min(1000px,100%);
+}
+
+.modal-title{
+    font-size:25px;
+    color:#00d9ff;
+    margin-bottom:20px;
+    text-align:center;
+}
+
+.close{
+    position:absolute;
+    right:16px;
+    top:12px;
+    width:34px;
+    height:34px;
+    border:none;
+    border-radius:50%;
+    background:#162c4a;
+    color:#fff;
+    font-size:20px;
+}
+
+.close:hover{
+    background:#e91e63;
+}
+
+.input,
+textarea{
+    width:100%;
+    border:1px solid rgba(0,170,255,.35);
+    background:#041329;
+    color:#fff;
+    padding:13px;
+    border-radius:11px;
+    outline:none;
+    margin-bottom:12px;
+}
+
+.input:focus,
+textarea:focus{
+    border-color:#00cfff;
+    box-shadow:0 0 15px rgba(0,180,255,.18);
+}
+
+textarea{
+    min-height:120px;
+    resize:vertical;
+}
+
+.modal-btn{
+    width:100%;
+    border:none;
+    border-radius:12px;
+    padding:13px;
+    color:#fff;
+    font-weight:bold;
+    background:linear-gradient(135deg,#006cff,#00baff);
+    margin-top:7px;
+}
+
+.modal-btn:hover{
+    box-shadow:0 0 20px rgba(0,180,255,.5);
+}
+
+.secondary{
+    background:#17304e;
+}
+
+.success{
+    background:linear-gradient(135deg,#008c5d,#00c982);
+}
+
+.danger{
+    background:linear-gradient(135deg,#b71c3b,#f32d50);
+}
+
+.warning{
+    background:linear-gradient(135deg,#9c6500,#e59b00);
+}
+
+.message{
+    padding:12px;
+    border-radius:10px;
+    background:rgba(0,150,255,.12);
+    border:1px solid rgba(0,170,255,.2);
+    margin:10px 0;
+    line-height:1.4;
+}
+
+.error{
+    color:#ff8fa3;
+}
+
+.success-text{
+    color:#61ffc2;
+}
+
+.auth-switch{
+    text-align:center;
+    margin-top:14px;
+    color:#8ca7c4;
+}
+
+.auth-switch button{
+    background:none;
+    border:none;
+    color:#00cfff;
+    font-weight:bold;
+}
+
+.forgot{
+    display:block;
+    width:100%;
+    border:none;
+    background:none;
+    color:#74cfff;
+    margin:12px 0;
+}
+
+/* CART */
+
+.cart-item{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    padding:14px;
+    border-radius:12px;
+    background:rgba(0,45,90,.45);
+    margin-bottom:10px;
+}
+
+.cart-item-info{
+    flex:1;
+}
+
+.cart-item-name{
+    font-weight:bold;
+}
+
+.cart-item-price{
+    color:#00eaff;
+    margin-top:4px;
+}
+
+.remove-item{
+    border:none;
+    background:#821c35;
+    color:#fff;
+    border-radius:9px;
+    padding:8px 11px;
+}
+
+.cart-total{
+    font-size:22px;
+    font-weight:bold;
+    text-align:right;
+    color:#00eaff;
+    margin:15px 0;
+}
+
+/* ROBLOX */
+
+.roblox-box{
+    padding:14px;
+    margin-bottom:15px;
+    border:1px solid rgba(0,200,255,.3);
+    background:rgba(0,100,180,.08);
+    border-radius:13px;
+}
+
+.roblox-box label{
+    display:block;
+    margin-bottom:8px;
+    color:#a8dfff;
+    font-weight:bold;
+}
+
+/* TOPUP */
+
+.topup-presets{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+    margin-bottom:15px;
+}
+
+.topup-preset{
+    padding:12px;
+    border:none;
+    border-radius:10px;
+    background:#0c315b;
+    color:#fff;
+    font-weight:bold;
+}
+
+.topup-preset:hover{
+    background:#006cff;
+}
+
+.requisites{
+    padding:15px;
+    border-radius:14px;
+    background:rgba(0,100,180,.1);
+    border:1px solid rgba(0,180,255,.3);
+    margin:15px 0;
+    line-height:1.8;
+}
+
+.requisites strong{
+    color:#00eaff;
+}
+
+.red-warning{
+    color:#ff526f;
+    font-weight:bold;
+    margin:10px 0;
+}
+
+/* ORDERS */
+
+.order-card{
+    padding:15px;
+    border-radius:14px;
+    background:rgba(0,45,85,.45);
+    border:1px solid rgba(0,150,255,.2);
+    margin-bottom:12px;
+    line-height:1.7;
+}
+
+.order-card strong{
+    color:#00dfff;
+}
+
+.status{
+    display:inline-block;
+    padding:4px 9px;
+    border-radius:20px;
+    font-size:12px;
+    background:#173a5d;
+}
+
+.status.open{
+    background:#754c00;
+}
+
+.status.answered{
+    background:#006b4a;
+}
+
+.status.closed{
+    background:#49314e;
+}
+
+/* ADMIN */
+
+.admin-section{
+    margin-bottom:25px;
+}
+
+.admin-section h3{
+    color:#00dfff;
+    margin-bottom:12px;
+}
+
+.admin-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+}
+
+.admin-card{
+    padding:14px;
+    border-radius:13px;
+    background:rgba(0,40,80,.5);
+    border:1px solid rgba(0,150,255,.2);
+    margin-bottom:10px;
+}
+
+.admin-card button{
+    border:none;
+    border-radius:8px;
+    padding:8px 11px;
+    color:#fff;
+    margin:4px 3px 0 0;
+}
+
+.admin-small{
+    color:#87a4c0;
+    font-size:13px;
+}
+
+/* NOTIFICATIONS */
+
+.notification-card{
+    padding:15px;
+    border-radius:14px;
+    margin-bottom:10px;
+    background:rgba(0,50,95,.5);
+    border:1px solid rgba(0,160,255,.25);
+}
+
+.notification-card.unread{
+    border-color:#00d9ff;
+    box-shadow:0 0 15px rgba(0,190,255,.12);
+}
+
+.notification-title{
+    color:#00eaff;
+    font-weight:bold;
+    margin-bottom:6px;
+}
+
+.notification-date{
+    color:#6986a3;
+    font-size:12px;
+    margin-top:8px;
+}
+
+/* CODE */
+
+.service-code{
+    text-align:center;
+    margin-top:20px;
+    padding:20px;
+    border-radius:18px;
+    border:1px solid #00d9ff;
+    background:rgba(0,140,255,.08);
+    box-shadow:0 0 25px rgba(0,170,255,.18);
+}
+
+.code-value{
+    font-size:30px;
+    letter-spacing:3px;
+    color:#00efff;
+    font-weight:900;
+    margin:12px 0;
+    word-break:break-all;
+}
+
+.code-help{
+    color:#fff;
+    line-height:1.6;
+    margin-bottom:15px;
+}
+
+/* LOADING */
+
+.loading{
+    text-align:center;
+    padding:25px;
+}
+
+.spinner{
+    width:50px;
+    height:50px;
+    border:4px solid rgba(255,255,255,.15);
+    border-top-color:#00dfff;
+    border-radius:50%;
+    animation:spin 1s linear infinite;
+    margin:0 auto 15px;
+}
+
+@keyframes spin{
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+.progress-wrap{
+    width:100%;
+    height:10px;
+    background:#10233b;
+    border-radius:10px;
+    overflow:hidden;
+    margin:15px 0;
+}
+
+.progress-bar{
+    width:0;
+    height:100%;
+    background:linear-gradient(90deg,#006cff,#00eaff);
+    transition:.2s;
+}
+
+/* SUPPORT */
+
+.support-note{
+    color:#7e9ab7;
+    font-size:13px;
+    margin-bottom:12px;
+}
+
+.file-label{
+    display:block;
+    padding:12px;
+    border:1px dashed rgba(0,180,255,.4);
+    border-radius:11px;
+    color:#8edcff;
+    margin-bottom:12px;
+}
+
+/* MOBILE */
+
+@media(max-width:800px){
+    .products{
+        grid-template-columns:1fr;
+    }
+
+    .admin-grid{
+        grid-template-columns:1fr;
+    }
+
+    .top-buttons{
+        padding-left:8px;
+        padding-right:8px;
+    }
+
+    .top-btn{
+        font-size:13px;
+        padding:10px 12px;
+    }
+
+    .modal-box{
+        padding:20px 15px;
+    }
+
+    .topup-presets{
+        grid-template-columns:1fr;
+    }
+
+    .cart-item{
+        align-items:flex-start;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+    <div class="logo">MaxFlomShop</div>
+    <div class="subtitle">
+        ⚡ Неоновый магазин игровых товаров и услуг ⚡
+    </div>
+</header>
+
+<div class="top-buttons">
+
+    <button class="top-btn"
+            id="authBtn"
+            onclick="openAuth()">
+        👤 Войти / Регистрация
+    </button>
+
+    <button class="top-btn"
+            id="accountBtn"
+            onclick="openAccount()"
+            style="display:none;">
+        💰 Личный кабинет
+    </button>
+
+    <button class="top-btn balance-btn"
+            id="balanceBtn"
+            onclick="openTopup()"
+            style="display:none;">
+        💳 Пополнить баланс
+    </button>
+
+    <button class="top-btn cart-btn"
+            onclick="openCart()">
+        🛒 Корзина
+        <span class="badge" id="cartBadge">0</span>
+    </button>
+
+    <button class="top-btn notification-btn"
+            id="notificationBtn"
+            onclick="openNotifications()"
+            style="display:none;">
+        🔔 Уведомления
+        <span class="badge" id="notificationBadge">0</span>
+    </button>
+
+    <button class="top-btn admin-btn"
+            id="adminBtn"
+            onclick="openAdmin()"
+            style="display:none;">
+        ⚙️ Админ-панель
+        <span class="badge" id="adminBadge">0</span>
+    </button>
+
+    <button class="top-btn support-btn"
+            onclick="openSupport()">
+        💬 Поддержка
+    </button>
+
+    <button class="top-btn logout-btn"
+            id="logoutBtn"
+            onclick="logout()"
+            style="display:none;">
+        🚪 Выйти
+    </button>
+
+</div>
+
+<div class="user-info" id="userInfo">
+    <div class="user-email" id="userEmail"></div>
+
+    <div class="balance">
+        Баланс:
+        <span id="balanceValue">0</span> ₽
+    </div>
+</div>
+
+<div class="container">
+
+    <div class="categories">
+
+        <button class="category active"
+                onclick="showCategory('robux',this)">
+            💎 Робуксы
+        </button>
+
+        <button class="category"
+                onclick="showCategory('services',this)">
+            🛠 Услуги
+        </button>
+
+        <button class="category"
+                onclick="showCategory('accounts',this)">
+            👤 Аккаунты
+        </button>
+
+        <button class="category"
+                onclick="showCategory('mm2',this)">
+            🔪 MM2
+        </button>
+
+        <button class="category"
+                onclick="showCategory('brainrot',this)">
+            🧠 Brainrot
+        </button>
+
+    </div>
+
+    <!-- ROBUX -->
+
+    <div class="products category-products"
+         id="category-robux">
+
+        <div class="product">
+            <h3>💎 100 Робуксов</h3>
+            <div class="product-description">
+                100 Robux
+            </div>
+            <div class="price">150 ₽</div>
+            <button class="buy"
+                    onclick="addToCart('100 Робуксов',150,'robux')">
+                🛒 В корзину
+            </button>
+        </div>
+
+        <div class="product">
+            <h3>💎 200 Робуксов</h3>
+            <div class="product-description">
+                200 Robux
+            </div>
+            <div class="price">250 ₽</div>
+            <button class="buy"
+                    onclick="addToCart('200 Робуксов',250,'robux')">
+                🛒 В корзину
+            </button>
+        </div>
+
+        <div class="product">
+            <h3>💎 500 Робуксов</h3>
+            <div class="product-description">
+                500 Robux
+            </div>
+            <div class="price">569 ₽</div>
+            <button class="buy"
+                    onclick="addToCart('500 Робуксов',569,'robux')">
+                🛒 В корзину
+            </button>
+        </div>
+
+        <div class="product">
+            <h3>💎 1000 Робуксов</h3>
+            <div class="product-description">
+                1000 Robux
+            </div>
+            <div class="price">1210 ₽</div>
+            <button class="buy"
+                    onclick="addToCart('1000 Робуксов',1210,'robux')">
+                🛒 В корзину
+            </button>
+        </div>
+
+        <div class="product">
+            <h3>💎 2000 Робуксов</h3>
+            <div class="product-description">
+                2000 Robux
+            </div>
+            <div class="price">2199 ₽</div>
+            <button class="buy"
+                    onclick="addToCart('2000 Робуксов',2199,'robux')">
+                🛒 В корзину
+            </button>
+        </div>
+
+    </div>
+
+    <!-- SERVICES -->
+
+    <div class="products category-products"
+         id="category-services"
+         style="display:none;">
+
+        <div class="product">
+            <h3>🛠 Лучшие читы!</h3>
+            <div class="product-description">
+                Помощь с игровыми настройками.
+            </div>
+            <div class="price">110 ₽</div>
+            <button class="buy"
+                    onclick="addToCart('Лучшие читы!',110,'services')">
+                🛒 В корзину
+            </button>
+        </div>
+
+        <div class="product">
+            <h3>📢 Пиар</h3>
+            <div class="product-description">
+                Продвижение.
+            </div>
+            <div class="price">100 ₽</div>
+            <button class="buy"
+                    onclick="addToCart('Пиар',100,'services')">
+                🛒 В корзину
+            </button>
+        </div>
+
+        <div class="product">
+            <h3>🎮 Помощь с Roblox</h3>
+            <div class="product-description">
+                Помощь с Roblox.
+            </div>
+            <div class="price">50 ₽</div>
+            <button class="buy"
+                    onclick="addToCart('Помощь с Roblox',50,'services')">
+                🛒 В корзину
+            </button>
+        </div>
+
+        <div class="product">
+            <h3>🧠 Помогу развиться в Steal a Brainrot</h3>
+            <div class="product-description">
+                Помощь с развитием.
+            </div>
+            <div class="price">20 ₽</div>
+            <button class="buy"
+                    onclick="addToCart('Помогу развиться в Steal a Brainrot',20,'services')">
+                🛒 В корзину
+            </button>
+        </div>
+
+        <div class="product">
+            <h3>🌐 Помогу создать сайт</h3>
+            <div class="product-description">
+                Помощь с созданием сайта.
+            </div>
+            <div class="price">1400 ₽</div>
+            <button class="buy"
+                    onclick="addToCart('Помогу создать сайт',1400,'services')">
+                🛒 В корзину
+            </button>
+        </div>
+
+    </div>
+
+    <!-- ACCOUNTS -->
+
+    <div class="products category-products"
+         id="category-accounts"
+         style="display:none;">
+
+        <div class="product">
+            <h3>👤 Донат 200 Robux</h3>
+            <div class="product-description">
+                Игровой аккаунт.
+            </div>
+            <div class="price">100 ₽</div>
+            <button class="buy"
+                    onclick="addToCart('Донат 200 Robux',100,'accounts')">
+                🛒 В корзину
+            </button>
+        </div>
+
+        <div class="product">
+            <h3>👤 Донат 1000 Robux</h3>
+            <div class="product-description">
+                Игровой аккаунт.
+            </div>
+            <div class="price">699 ₽</div>
+            <button class="buy"
+                    onclick="addToCart('Донат 1000 Robux',699,'accounts')">
+                🛒 В корзину
+            </button>
+        </div>
+
+        <div class="product">
+            <h3>👤 Донат 2000 Robux</h3>
+            <div class="product-description">
+                Игровой аккаунт.
+            </div>
+            <div class="price">1200 ₽</div>
+            <button class="buy"
+                    onclick="addToCart('Донат 2000 Robux',1200,'accounts')">
+                🛒 В корзину
+            </button>
+        </div>
+
+        <div class="product">
+            <h3>👤 Рандом аккаунт</h3>
+            <div class="product-description">
+                Случайный аккаунт.
+            </div>
+            <div class="price">99 ₽</div>
+            <button class="buy"
+                    onclick="addToCart('Рандом аккаунт',99,'accounts')">
+                🛒 В корзину
+            </button>
+        </div>
+
+        <div class="product">
+            <h3>👤 Донат 12K+ Robux</h3>
+            <div class="product-description">
+                Аккаунт с большим количеством Robux.
+            </div>
+            <div class="price">9898 ₽</div>
+            <button class="buy"
+                    onclick="addToCart('Донат 12K+ Robux',9898,'accounts')">
+                🛒 В корзину
+            </button>
+        </div>
+
+    </div>
+
+    <!-- MM2 -->
+
+    <div class="products category-products"
+         id="category-mm2"
+         style="display:none;">
+
+        <div class="product">
+            <h3>🔪 MM2 Bat</h3>
+            <div class="product-description">
+                Предмет MM2.
+            </div>
+            <div class="price">510 ₽</div>
+            <button class="buy"
+                    onclick="addToCart('MM2 Bat',510,'mm2')">
+                🛒 В корзину
+            </button>
+        </div>
+
+        <div class="product">
+            <h3>🔫 MM2 Beach Gun</h3>
+            <div class="product-description">
+                Предмет MM2.
+            </div>
+            <div class="price">400 ₽</div>
+            <button class="buy"
+                    onclick="addToCart('MM2 Beach Gun',400,'mm2')">
+                🛒 В корзину
+            </button>
+        </div>
+
+        <div class="product">
+            <h3>⚔️ MM2 Harvester</h3>
+            <div class="product-description">
+                Предмет MM2.
+            </div>
+            <div class="price">611 ₽</div>
+            <button class="buy"
+                    onclick="addToCart('MM2 Harvester',611,'mm2')">
+                🛒 В корзину
+            </button>
+        </div>
+
+    </div>
+
+    <!-- BRAINROT -->
+
+    <div class="products category-products"
+         id="category-brainrot"
+         style="display:none;">
+
+        <div class="product">
+            <h3>🧠 Brainrot #1</h3>
+            <div class="product-description">
+                Игровой предмет.
+            </div>
+            <div class="price">100 ₽</div>
+            <button class="buy"
+                    onclick="addToCart('Brainrot #1',100,'brainrot')">
+                🛒 В корзину
+            </button>
+        </div>
+
+        <div class="product">
+            <h3>🧠 Brainrot #2</h3>
+            <div class="product-description">
+                Игровой предмет.
+            </div>
+            <div class="price">200 ₽</div>
+            <button class="buy"
+                    onclick="addToCart('Brainrot #2',200,'brainrot')">
+                🛒 В корзину
+            </button>
+        </div>
+
+        <div class="product">
+            <h3>🧠 Brainrot #3</h3>
+            <div class="product-description">
+                Игровой предмет.
+            </div>
+            <div class="price">300 ₽</div>
+            <button class="buy"
+                    onclick="addToCart('Brainrot #3',300,'brainrot')">
+                🛒 В корзину
+            </button>
+        </div>
+
+    </div>
+
+</div>
+
+<footer class="footer">
+    © 2026 MaxFlomShop
+</footer>
+
+
+<!-- AUTH -->
+
+<div class="modal" id="authModal">
+    <div class="modal-box">
+
+        <button class="close"
+                onclick="closeModal('authModal')">
+            ×
+        </button>
+
+        <div class="modal-title"
+             id="authTitle">
+            Вход
+        </div>
+
+        <input class="input"
+               id="authEmail"
+               type="email"
+               placeholder="Email">
+
+        <input class="input"
+               id="authPassword"
+               type="password"
+               placeholder="Пароль">
+
+        <button class="modal-btn"
+                onclick="submitAuth()">
+            Продолжить
+        </button>
+
+        <button class="forgot"
+                onclick="resetPassword()">
+            Забыли пароль?
+        </button>
+
+        <div class="auth-switch">
+            <span id="authSwitchText">
+                Нет аккаунта?
+            </span>
+
+            <button onclick="switchAuthMode()">
+                <span id="authSwitchButton">
+                    Регистрация
+                </span>
+            </button>
+        </div>
+
+        <div id="authMessage"></div>
+
+    </div>
+</div>
+
+
+<!-- ACCOUNT -->
+
+<div class="modal" id="accountModal">
+    <div class="modal-box large">
+
+        <button class="close"
+                onclick="closeModal('accountModal')">
+            ×
+        </button>
+
+        <div class="modal-title">
+            💰 Личный кабинет
+        </div>
+
+        <div class="message">
+            Аккаунт:
+            <strong id="accountEmail"></strong>
+        </div>
+
+        <div class="message">
+            Баланс:
+            <strong id="accountBalance"></strong> ₽
+        </div>
+
+        <h3 style="color:#00dfff;margin:20px 0 12px;">
+            📦 История заказов
+        </h3>
+
+        <div id="orderHistory">
+            Загрузка...
+        </div>
+
+    </div>
+</div>
+
+
+<!-- CART -->
+
+<div class="modal" id="cartModal">
+    <div class="modal-box">
+
+        <button class="close"
+                onclick="closeModal('cartModal')">
+            ×
+        </button>
+
+        <div class="modal-title">
+            🛒 Корзина
+        </div>
+
+        <div id="cartList"></div>
+
+        <div class="cart-total">
+            Итого:
+            <span id="cartTotal">0</span> ₽
+        </div>
+
+        <button class="modal-btn success"
+                onclick="payCart()">
+            💳 Оплатить с баланса
+        </button>
+
+        <button class="modal-btn danger"
+                onclick="clearCart()">
+            🗑 Очистить корзину
+        </button>
+
+    </div>
+</div>
+
+
+<!-- ROBUX CHECKOUT -->
+
+<div class="modal" id="robuxModal">
+    <div class="modal-box">
+
+        <button class="close"
+                onclick="closeModal('robuxModal')">
+            ×
+        </button>
+
+        <div class="modal-title">
+            🎮 Roblox
+        </div>
+
+        <div class="message">
+            Для покупки Robux напишите ник Roblox,
+            на который нужно оформить заказ.
+        </div>
+
+        <div class="roblox-box">
+
+            <label>
+                Ник Roblox
+            </label>
+
+            <input class="input"
+                   id="robloxUsername"
+                   placeholder="Например: Builderman"
+                   autocomplete="off">
+
+            <div style="color:#7897b6;font-size:13px;">
+                Проверки ника нет — просто внимательно
+                напишите правильный ник.
+            </div>
+
+        </div>
+
+        <button class="modal-btn success"
+                onclick="continueRobuxPurchase()">
+            💳 Продолжить оплату
+        </button>
+
+    </div>
+</div>
+
+
+<!-- PAYMENT -->
+
+<div class="modal" id="paymentModal">
+    <div class="modal-box">
+
+        <button class="close"
+                onclick="closeModal('paymentModal')">
+            ×
+        </button>
+
+        <div class="modal-title">
+            💳 Оплата
+        </div>
+
+        <div id="paymentContent"></div>
+
+    </div>
+</div>
+
+
+<!-- TOPUP -->
+
+<div class="modal" id="topupModal">
+    <div class="modal-box">
+
+        <button class="close"
+                onclick="closeModal('topupModal')">
+            ×
+        </button>
+
+        <div class="modal-title">
+            💳 Пополнение баланса
+        </div>
+
+        <div id="topupContent">
+
+            <div class="message">
+                Выберите сумму пополнения:
+            </div>
+
+            <div class="topup-presets">
+
+                <button class="topup-preset"
+                        onclick="selectTopupAmount(500)">
+                    500 ₽
+                </button>
+
+                <button class="topup-preset"
+                        onclick="selectTopupAmount(1000)">
+                    1000 ₽
+                </button>
+
+                <button class="topup-preset"
+                        onclick="selectTopupAmount(2000)">
+                    2000 ₽
+                </button>
+
+            </div>
+
+            <input class="input"
+                   id="topupAmount"
+                   type="number"
+                   min="1"
+                   placeholder="Или введите свою сумму">
+
+            <button class="modal-btn"
+                    onclick="showTopupRequisites()">
+                Продолжить
+            </button>
+
+        </div>
+
+    </div>
+</div>
+
+
+<!-- SUPPORT -->
+
+<div class="modal" id="supportModal">
+    <div class="modal-box">
+
+        <button class="close"
+                onclick="closeModal('supportModal')">
+            ×
+        </button>
+
+        <div class="modal-title">
+            💬 Поддержка
+        </div>
+
+        <div class="message">
+            Опишите проблему, и продавец сможет ответить
+            вам через раздел уведомлений.
+        </div>
+
+        <textarea id="supportProblem"
+                  placeholder="Опишите вашу проблему..."></textarea>
+
+        <div class="support-note">
+            📷 Фото теперь необязательно.
+            Можно отправить обращение только с текстом.
+        </div>
+
+        <label class="file-label">
+            📷 Прикрепить фото (необязательно)
+            <input type="file"
+                   id="supportPhoto"
+                   accept="image/*"
+                   style="display:block;margin-top:10px;">
+        </label>
+
+        <button class="modal-btn success"
+                onclick="createSupportTicket()">
+            📩 Отправить обращение
+        </button>
+
+        <div id="supportMessage"></div>
+
+    </div>
+</div>
+
+
+<!-- NOTIFICATIONS -->
+
+<div class="modal" id="notificationsModal">
+    <div class="modal-box">
+
+        <button class="close"
+                onclick="closeModal('notificationsModal')">
+            ×
+        </button>
+
+        <div class="modal-title">
+            🔔 Уведомления
+        </div>
+
+        <div id="notificationsList">
+            Загрузка...
+        </div>
+
+    </div>
+</div>
+
+
+<!-- ADMIN -->
+
+<div class="modal" id="adminModal">
+    <div class="modal-box large">
+
+        <button class="close"
+                onclick="closeModal('adminModal')">
+            ×
+        </button>
+
+        <div class="modal-title">
+            ⚙️ Админ-панель
+        </div>
+
+        <div class="admin-section">
+
+            <h3>💰 Выдать баланс</h3>
+
+            <div class="admin-grid">
+
+                <input class="input"
+                       id="giveUID"
+                       placeholder="UID пользователя">
+
+                <input class="input"
+                       id="giveAmount"
+                       type="number"
+                       placeholder="Сумма">
+
+            </div>
+
+            <button class="modal-btn success"
+                    onclick="giveBalance()">
+                Выдать баланс
+            </button>
+
+        </div>
+
+        <div class="admin-section">
+
+            <h3>🔄 Обнулить баланс</h3>
+
+            <input class="input"
+                   id="resetUID"
+                   placeholder="UID пользователя">
+
+            <button class="modal-btn danger"
+                    onclick="resetBalanceByUID()">
+                Обнулить
+            </button>
+
+        </div>
+
+        <div class="admin-section">
+
+            <h3>💳 Пополнения</h3>
+
+            <div id="adminTopups">
+                Загрузка...
+            </div>
+
+        </div>
+
+        <div class="admin-section">
+
+            <h3>📦 Заказы</h3>
+
+            <div id="adminOrders">
+                Загрузка...
+            </div>
+
+        </div>
+
+        <div class="admin-section">
+
+            <h3>💬 Поддержка</h3>
+
+            <div id="adminSupport">
+                Загрузка...
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+<!-- SERVICE CODE -->
+
+<div class="modal" id="serviceCodeModal">
+    <div class="modal-box">
+
+        <button class="close"
+                onclick="closeModal('serviceCodeModal')">
+            ×
+        </button>
+
+        <div class="modal-title">
+            ✅ Оплата прошла успешно!
+        </div>
+
+        <div class="message">
+            Услуга:
+            <strong id="serviceCodeProduct"></strong>
+        </div>
+
+        <div class="service-code">
+
+            <div>
+                🔑 Ваш код:
+            </div>
+
+            <div class="code-value"
+                 id="serviceCodeValue">
+            </div>
+
+            <div class="code-help">
+                Напишите этот код в WhatsApp или Max
+                по номеру <strong>79996512682</strong>
+            </div>
+
+            <button class="modal-btn success"
+                    onclick="copyServiceCode()">
+                📋 Скопировать код
+            </button>
+
+        </div>
+
+    </div>
+</div>
+
+
+<script type="module">
+
+import { initializeApp } from
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+
+import {
+    getAuth,
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    sendPasswordResetEmail,
+    onAuthStateChanged,
+    signOut
+} from
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+
+import {
+    getFirestore,
+    doc,
+    getDoc,
+    setDoc,
+    addDoc,
+    updateDoc,
+    collection,
+    getDocs,
+    query,
+    where,
+    limit,
+    serverTimestamp,
+    runTransaction,
+    onSnapshot
+} from
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+
+import {
+    getStorage,
+    ref,
+    uploadBytesResumable,
+    getDownloadURL
+} from
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-storage.js";
+
+
+/* =========================
+   FIREBASE
+========================= */
+
+const firebaseConfig = {
+    apiKey: "AIzaSyA7hFpXtYghLXqipjaaQRItzmfDo_FHeq0",
+    authDomain: "coffee-spark-ai-barista-344ce.firebaseapp.com",
+    projectId: "coffee-spark-ai-barista-344ce",
+    storageBucket: "coffee-spark-ai-barista-344ce.firebasestorage.app",
+    messagingSenderId: "1064082579547",
+    appId: "1:1064082579547:web:c3d2b7e53c6455c8149f7e"
+};
+
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+const db = getFirestore(app);
+const storage = getStorage(app);
+
+
+/* =========================
+   SETTINGS
+========================= */
+
+const ADMIN_UID =
+    "uGqo5MfkbPg3aeeYkcW8KkYMqhq1";
+
+const REKVIZITY = {
+    bank:"Т-Банк",
+    name:"Аретем Р. или Максим Р.",
+    phone:"+7 9996512682",
+    comment:"Пополнение MaxFlomShop"
+};
+
+
+/* =========================
+   STATE
+========================= */
+
+let currentUser = null;
+let currentBalance = 0;
+let authMode = "login";
+
+let cart =
+    JSON.parse(localStorage.getItem("maxflom_cart") || "[]");
+
+let currentRobuxItems = [];
+let currentServiceCode = "";
+
+let adminOrdersUnsubscribe = null;
+let adminTopupsUnsubscribe = null;
+let adminSupportUnsubscribe = null;
+let userNotificationsUnsubscribe = null;
+
+let latestAdminOrders = [];
+let latestAdminTopups = [];
+let latestAdminSupport = [];
+let latestNotifications = [];
+
+
+/* =========================
+   HELPERS
+========================= */
+
+window.escapeHtml = function(value){
+    return String(value ?? "")
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+};
+
+function formatDate(timestamp){
+
+    if(!timestamp){
+        return "Дата неизвестна";
+    }
+
+    try{
+
+        const date =
+            timestamp.toDate
+                ? timestamp.toDate()
+                : new Date(timestamp);
+
+        return date.toLocaleString("ru-RU");
+
+    }catch{
+        return "Дата неизвестна";
+    }
+}
+
+function getFirebaseError(error){
+
+    if(!error){
+        return "Неизвестная ошибка";
+    }
+
+    const code = error.code || "";
+
+    const messages = {
+
+        "auth/email-already-in-use":
+            "Этот email уже зарегистрирован.",
+
+        "auth/invalid-email":
+            "Неверный email.",
+
+        "auth/weak-password":
+            "Пароль слишком слабый.",
+
+        "auth/invalid-credential":
+            "Неверный email или пароль.",
+
+        "auth/user-not-found":
+            "Пользователь не найден.",
+
+        "auth/wrong-password":
+            "Неверный пароль.",
+
+        "storage/unauthorized":
+            "Firebase Storage запретил загрузку. Проверьте Storage Rules.",
+
+        "storage/canceled":
+            "Загрузка была отменена.",
+
+        "storage/quota-exceeded":
+            "Превышена квота Firebase Storage.",
+
+        "storage/unauthenticated":
+            "Пользователь не авторизован."
+    };
+
+    return messages[code] ||
+        error.message ||
+        "Произошла ошибка.";
+}
+
+function isAdmin(){
+    return currentUser &&
+           currentUser.uid === ADMIN_UID;
+}
+
+function openModal(id){
+    document.getElementById(id).classList.add("show");
+}
+
+window.closeModal = function(id){
+    document.getElementById(id).classList.remove("show");
+};
+
+
+/* =========================
+   AUTH
+========================= */
+
+window.openAuth = function(){
+
+    if(currentUser){
+        openAccount();
+        return;
+    }
+
+    document.getElementById("authEmail").value = "";
+    document.getElementById("authPassword").value = "";
+    document.getElementById("authMessage").innerHTML = "";
+
+    openModal("authModal");
+};
+
+window.switchAuthMode = function(){
+
+    authMode =
+        authMode === "login"
+            ? "register"
+            : "login";
+
+    document.getElementById("authTitle").textContent =
+        authMode === "login"
+            ? "Вход"
+            : "Регистрация";
+
+    document.getElementById("authSwitchText").textContent =
+        authMode === "login"
+            ? "Нет аккаунта?"
+            : "Уже есть аккаунт?";
+
+    document.getElementById("authSwitchButton").textContent =
+        authMode === "login"
+            ? "Регистрация"
+            : "Войти";
+
+    document.getElementById("authMessage").innerHTML = "";
+};
+
+window.submitAuth = async function(){
+
+    const email =
+        document.getElementById("authEmail").value.trim();
+
+    const password =
+        document.getElementById("authPassword").value;
+
+    const message =
+        document.getElementById("authMessage");
+
+    if(!email || !password){
+
+        message.innerHTML =
+            `<div class="message error">
+                Заполните email и пароль.
+            </div>`;
+
+        return;
+    }
+
+    try{
+
+        if(authMode === "register"){
+
+            const result =
+                await createUserWithEmailAndPassword(
+                    auth,
+                    email,
+                    password
+                );
+
+            await setDoc(
+                doc(db,"users",result.user.uid),
+                {
+                    uid:result.user.uid,
+                    email:result.user.email,
+                    balance:0,
+                    createdAt:serverTimestamp()
+                },
+                {merge:true}
+            );
+
+        }else{
+
+            await signInWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
+        }
+
+        closeModal("authModal");
+
+    }catch(error){
+
+        message.innerHTML =
+            `<div class="message error">
+                ❌ ${escapeHtml(getFirebaseError(error))}
+            </div>`;
+    }
+};
+
+
+window.resetPassword = async function(){
+
+    const email =
+        document.getElementById("authEmail").value.trim();
+
+    const message =
+        document.getElementById("authMessage");
+
+    if(!email){
+
+        message.innerHTML =
+            `<div class="message error">
+                Сначала введите email.
+            </div>`;
+
+        return;
+    }
+
+    try{
+
+        await sendPasswordResetEmail(auth,email);
+
+        message.innerHTML =
+            `<div class="message success-text">
+                ✅ Письмо для восстановления пароля отправлено.
+            </div>`;
+
+    }catch(error){
+
+        message.innerHTML =
+            `<div class="message error">
+                ❌ ${escapeHtml(getFirebaseError(error))}
+            </div>`;
+    }
+};
+
+
+window.logout = async function(){
+
+    await signOut(auth);
+};
+
+
+/* =========================
+   USER PROFILE
+========================= */
+
+async function loadUserProfile(){
+
+    if(!currentUser){
+        return;
+    }
+
+    const userRef =
+        doc(db,"users",currentUser.uid);
+
+    const snapshot =
+        await getDoc(userRef);
+
+    if(!snapshot.exists()){
+
+        await setDoc(
+            userRef,
+            {
+                uid:currentUser.uid,
+                email:currentUser.email,
+                balance:0,
+                createdAt:serverTimestamp()
+            },
+            {merge:true}
+        );
+
+        currentBalance = 0;
+
+    }else{
+
+        currentBalance =
+            Number(snapshot.data().balance || 0);
+    }
+
+    updateUserUI();
+}
+
+function updateUserUI(){
+
+    const logged =
+        !!currentUser;
+
+    document.getElementById("authBtn").style.display =
+        logged ? "none" : "inline-block";
+
+    document.getElementById("accountBtn").style.display =
+        logged ? "inline-block" : "none";
+
+    document.getElementById("balanceBtn").style.display =
+        logged ? "inline-block" : "none";
+
+    document.getElementById("notificationBtn").style.display =
+        logged ? "inline-block" : "none";
+
+    document.getElementById("logoutBtn").style.display =
+        logged ? "inline-block" : "none";
+
+    document.getElementById("adminBtn").style.display =
+        isAdmin() ? "inline-block" : "none";
+
+    document.getElementById("userInfo").style.display =
+        logged ? "block" : "none";
+
+    if(logged){
+
+        document.getElementById("userEmail").textContent =
+            currentUser.email;
+
+        document.getElementById("balanceValue").textContent =
+            currentBalance.toFixed(2);
+    }
+}
+
+
+/* =========================
+   CATEGORIES
+========================= */
+
+window.showCategory = function(category,button){
+
+    document
+        .querySelectorAll(".category-products")
+        .forEach(el => {
+            el.style.display = "none";
+        });
+
+    document
+        .querySelectorAll(".category")
+        .forEach(el => {
+            el.classList.remove("active");
+        });
+
+    document.getElementById(
+        "category-" + category
+    ).style.display = "grid";
+
+    if(button){
+        button.classList.add("active");
+    }
+};
+
+
+/* =========================
+   CART
+========================= */
+
+function saveCart(){
+
+    localStorage.setItem(
+        "maxflom_cart",
+        JSON.stringify(cart)
+    );
+
+    updateCartBadge();
+}
+
+function updateCartBadge(){
+
+    const count =
+        cart.reduce(
+            (sum,item) => sum + Number(item.quantity || 1),
+            0
+        );
+
+    document.getElementById("cartBadge").textContent =
+        count;
+}
+
+window.addToCart = function(name,price,category){
+
+    const existing =
+        cart.find(item =>
+            item.name === name &&
+            item.category === category
+        );
+
+    if(existing){
+        existing.quantity =
+            Number(existing.quantity || 1) + 1;
+    }else{
+        cart.push({
+            name,
+            price,
+            category,
+            quantity:1
+        });
+    }
+
+    saveCart();
+
+    alert("✅ Товар добавлен в корзину!");
+};
+
+window.openCart = function(){
+
+    renderCart();
+    openModal("cartModal");
+};
+
+function renderCart(){
+
+    const list =
+        document.getElementById("cartList");
+
+    if(cart.length === 0){
+
+        list.innerHTML =
+            `<div class="message">
+                🛒 Корзина пуста.
+            </div>`;
+
+        document.getElementById("cartTotal").textContent =
+            "0";
+
+        return;
+    }
+
+    let total = 0;
+
+    list.innerHTML =
+        cart.map((item,index)=>{
+
+            const quantity =
+                Number(item.quantity || 1);
+
+            const itemTotal =
+                Number(item.price) * quantity;
+
+            total += itemTotal;
+
+            return `
+                <div class="cart-item">
+
+                    <div class="cart-item-info">
+
+                        <div class="cart-item-name">
+                            ${escapeHtml(item.name)}
+                        </div>
+
+                        <div class="cart-item-price">
+                            ${item.price} ₽ × ${quantity}
+                        </div>
+
+                    </div>
+
+                    <button class="remove-item"
+                            onclick="removeFromCart(${index})">
+                        🗑
+                    </button>
+
+                </div>
+            `;
+
+        }).join("");
+
+    document.getElementById("cartTotal").textContent =
+        total;
+}
+
+window.removeFromCart = function(index){
+
+    cart.splice(index,1);
+
+    saveCart();
+    renderCart();
+};
+
+window.clearCart = function(){
+
+    if(cart.length === 0){
+        return;
+    }
+
+    cart = [];
+
+    saveCart();
+    renderCart();
+};
+
+function getCartTotal(){
+
+    return cart.reduce(
+        (sum,item) =>
+            sum +
+            Number(item.price) *
+            Number(item.quantity || 1),
+        0
+    );
+}
+
+
+/* =========================
+   ROBUX
+========================= */
+
+function isRobuxItem(item){
+
+    if(item.category === "robux"){
+        return true;
+    }
+
+    return /робук|robux/i.test(item.name);
+}
+
+window.payCart = function(){
+
+    if(!currentUser){
+
+        closeModal("cartModal");
+        openAuth();
+
+        return;
+    }
+
+    if(cart.length === 0){
+
+        alert("Корзина пуста.");
+        return;
+    }
+
+    currentRobuxItems =
+        cart.filter(item => isRobuxItem(item));
+
+    if(currentRobuxItems.length > 0){
+
+        closeModal("cartModal");
+
+        document.getElementById("robloxUsername").value = "";
+
+        openModal("robuxModal");
+
+    }else{
+
+        closeModal("cartModal");
+
+        processPurchase({
+            items:[...cart],
+            robloxUsername:""
+        });
+    }
+};
+
+
+window.continueRobuxPurchase = function(){
+
+    const username =
+        document.getElementById("robloxUsername")
+        .value
+        .trim();
+
+    if(!username){
+
+        alert("Введите ник Roblox.");
+        return;
+    }
+
+    closeModal("robuxModal");
+
+    processPurchase({
+        items:[...cart],
+        robloxUsername:username
+    });
+};
+
+
+/* =========================
+   PAYMENT
+========================= */
+
+async function processPurchase(data){
+
+    if(!currentUser){
+
+        openAuth();
+        return;
+    }
+
+    const items =
+        data.items || [];
+
+    const total =
+        items.reduce(
+            (sum,item)=>
+                sum +
+                Number(item.price) *
+                Number(item.quantity || 1),
+            0
+        );
+
+    if(total <= 0){
+        return;
+    }
+
+    if(currentBalance < total){
+
+        openModal("paymentModal");
+
+        document.getElementById("paymentContent").innerHTML = `
+            <div class="message error">
+                ❌ Недостаточно средств.
+                <br><br>
+                Нужно: <strong>${total} ₽</strong>
+                <br>
+                На балансе:
+                <strong>${currentBalance.toFixed(2)} ₽</strong>
+            </div>
+
+            <button class="modal-btn"
+                    onclick="closeModal('paymentModal');openTopup();">
+                💳 Пополнить баланс
+            </button>
+        `;
+
+        return;
+    }
+
+    openModal("paymentModal");
+
+    document.getElementById("paymentContent").innerHTML = `
+        <div class="loading">
+
+            <div class="spinner"></div>
+
+            <div>
+                Проверяем баланс...
+            </div>
+
+            <div class="progress-wrap">
+                <div class="progress-bar"
+                     id="purchaseProgress">
+                </div>
+            </div>
+
+            <div id="purchaseProgressText">
+                0%
+            </div>
+
+        </div>
+    `;
+
+    let progress = 0;
+
+    const progressTimer =
+        setInterval(()=>{
+
+            progress += 10;
+
+            if(progress > 90){
+                progress = 90;
+            }
+
+            const bar =
+                document.getElementById("purchaseProgress");
+
+            const text =
+                document.getElementById("purchaseProgressText");
+
+            if(bar){
+                bar.style.width = progress + "%";
+            }
+
+            if(text){
+                text.textContent = progress + "%";
+            }
+
+        },100);
+
+    try{
+
+        const result =
+            await runTransaction(
+                db,
+                async transaction => {
+
+                    const userRef =
+                        doc(db,"users",currentUser.uid);
+
+                    const userSnapshot =
+                        await transaction.get(userRef);
+
+                    if(!userSnapshot.exists()){
+                        throw new Error("Профиль пользователя не найден.");
+                    }
+
+                    const userData =
+                        userSnapshot.data();
+
+                    const balance =
+                        Number(userData.balance || 0);
+
+                    if(balance < total){
+                        throw new Error("Недостаточно средств.");
+                    }
+
+                    const orderRef =
+                        doc(collection(db,"orders"));
+
+                    const robuxUsername =
+                        data.robloxUsername || "";
+
+                    const serviceCodes = [];
+
+                    for(const item of items){
+
+                        const quantity =
+                            Number(item.quantity || 1);
+
+                        for(let i=0;i<quantity;i++){
+
+                            let serviceCode = "";
+
+                            if(
+                                item.name ===
+                                "Помогу создать сайт"
+                            ){
+                                serviceCode =
+                                    generateServiceCode();
+
+                                serviceCodes.push({
+                                    product:item.name,
+                                    code:serviceCode
+                                });
+                            }
+
+                        }
+                    }
+
+                    transaction.update(
+                        userRef,
+                        {
+                            balance:balance-total,
+                            updatedAt:serverTimestamp()
+                        }
+                    );
+
+                    transaction.set(
+                        orderRef,
+                        {
+                            uid:currentUser.uid,
+                            email:currentUser.email,
+
+                            items:items,
+
+                            total:total,
+
+                            robloxUsername:
+                                robuxUsername,
+
+                            robloxVerified:false,
+
+                            serviceCodes:
+                                serviceCodes,
+
+                            status:"paid",
+
+                            createdAt:
+                                serverTimestamp()
+                        }
+                    );
+
+                    return {
+                        orderId:orderRef.id,
+                        serviceCodes
+                    };
+                }
+            );
+
+        clearInterval(progressTimer);
+
+        currentBalance -= total;
+
+        updateUserUI();
+
+        cart = [];
+
+        saveCart();
+
+        renderCart();
+
+        document.getElementById("purchaseProgress").style.width =
+            "100%";
+
+        document.getElementById("purchaseProgressText").textContent =
+            "100%";
+
+        await createUserNotification(
+            "order_paid",
+            "✅ Заказ оплачен",
+            `Ваш заказ на сумму ${total} ₽ успешно оплачен.`,
+            result.orderId
+        );
+
+        await createAdminNotification(
+            `🛒 Новый заказ на ${total} ₽`,
+            currentUser.email
+        );
+
+        setTimeout(()=>{
+
+            closeModal("paymentModal");
+
+            if(result.serviceCodes &&
+               result.serviceCodes.length > 0){
+
+                const firstCode =
+                    result.serviceCodes[0];
+
+                currentServiceCode =
+                    firstCode.code;
+
+                document.getElementById(
+                    "serviceCodeProduct"
+                ).textContent =
+                    firstCode.product;
+
+                document.getElementById(
+                    "serviceCodeValue"
+                ).textContent =
+                    firstCode.code;
+
+                openModal("serviceCodeModal");
+
+            }else{
+
+                alert(
+                    "✅ Заказ успешно оплачен!"
+                );
+            }
+
+        },700);
+
+    }catch(error){
+
+        clearInterval(progressTimer);
+
+        document.getElementById("paymentContent").innerHTML = `
+            <div class="message error">
+                ❌ Оплата не выполнена.
+                <br><br>
+                ${escapeHtml(error.message)}
+            </div>
+
+            <button class="modal-btn secondary"
+                    onclick="closeModal('paymentModal')">
+                Закрыть
+            </button>
+        `;
+    }
+}
+
+
+/* =========================
+   SERVICE CODE
+========================= */
+
+function generateServiceCode(){
+
+    const chars =
+        "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+
+    let result = "MF-";
+
+    for(let i=0;i<8;i++){
+
+        result +=
+            chars.charAt(
+                Math.floor(
+                    Math.random()*chars.length
+                )
+            );
+    }
+
+    return result;
+}
+
+window.copyServiceCode = async function(){
+
+    if(!currentServiceCode){
+        return;
+    }
+
+    try{
+
+        await navigator.clipboard.writeText(
+            currentServiceCode
+        );
+
+        alert("✅ Код скопирован!");
+
+    }catch{
+
+        const area =
+            document.createElement("textarea");
+
+        area.value =
+            currentServiceCode;
+
+        document.body.appendChild(area);
+
+        area.select();
+
+        document.execCommand("copy");
+
+        area.remove();
+
+        alert("✅ Код скопирован!");
+    }
+};
+
+
+/* =========================
+   ACCOUNT
+========================= */
+
+window.openAccount = async function(){
+
+    if(!currentUser){
+
+        openAuth();
+        return;
+    }
+
+    document.getElementById("accountEmail").textContent =
+        currentUser.email;
+
+    document.getElementById("accountBalance").textContent =
+        currentBalance.toFixed(2);
+
+    openModal("accountModal");
+
+    await loadOrderHistory();
+};
+
+
+async function loadOrderHistory(){
+
+    const box =
+        document.getElementById("orderHistory");
+
+    box.innerHTML =
+        "Загрузка...";
+
+    try{
+
+        const q =
+            query(
+                collection(db,"orders"),
+                where("uid","==",currentUser.uid),
+                limit(50)
+            );
+
+        const snapshot =
+            await getDocs(q);
+
+        const orders =
+            snapshot.docs.map(doc => ({
+                id:doc.id,
+                ...doc.data()
+            }));
+
+        orders.sort((a,b)=>{
+
+            const aa =
+                a.createdAt?.seconds || 0;
+
+            const bb =
+                b.createdAt?.seconds || 0;
+
+            return bb-aa;
+        });
+
+        if(orders.length === 0){
+
+            box.innerHTML =
+                `<div class="message">
+                    Заказов пока нет.
+                </div>`;
+
+            return;
+        }
+
+        box.innerHTML =
+            orders.map(order => {
+
+                const items =
+                    (order.items || [])
+                    .map(item =>
+                        `${escapeHtml(item.name)} × ${item.quantity || 1}`
+                    )
+                    .join("<br>");
+
+                return `
+                    <div class="order-card">
+
+                        <strong>Заказ #${escapeHtml(order.id)}</strong>
+
+                        <br>
+
+                        ${items}
+
+                        <br>
+
+                        💰 Сумма:
+                        <strong>${order.total} ₽</strong>
+
+                        <br>
+
+                        Статус:
+                        <span class="status">
+                            ${escapeHtml(order.status || "paid")}
+                        </span>
+
+                        ${
+                            order.robloxUsername
+                            ?
+                            `<br>🎮 Roblox:
+                            <strong>@${escapeHtml(order.robloxUsername)}</strong>`
+                            :
+                            ""
+                        }
+
+                        <br>
+
+                        📅 ${formatDate(order.createdAt)}
+
+                    </div>
+                `;
+
+            }).join("");
+
+    }catch(error){
+
+        box.innerHTML =
+            `<div class="message error">
+                ❌ ${escapeHtml(getFirebaseError(error))}
+            </div>`;
+    }
+}
+
+
+/* =========================
+   TOPUP
+========================= */
+
+window.openTopup = function(){
+
+    if(!currentUser){
+
+        openAuth();
+        return;
+    }
+
+    resetTopupWindow();
+
+    openModal("topupModal");
+};
+
+function resetTopupWindow(){
+
+    document.getElementById("topupContent").innerHTML = `
+
+        <div class="message">
+            Выберите сумму пополнения:
+        </div>
+
+        <div class="topup-presets">
+
+            <button class="topup-preset"
+                    onclick="selectTopupAmount(500)">
+                500 ₽
+            </button>
+
+            <button class="topup-preset"
+                    onclick="selectTopupAmount(1000)">
+                1000 ₽
+            </button>
+
+            <button class="topup-preset"
+                    onclick="selectTopupAmount(2000)">
+                2000 ₽
+            </button>
+
+        </div>
+
+        <input class="input"
+               id="topupAmount"
+               type="number"
+               min="1"
+               placeholder="Или введите свою сумму">
+
+        <button class="modal-btn"
+                onclick="showTopupRequisites()">
+            Продолжить
+        </button>
+    `;
+}
+
+window.selectTopupAmount = function(amount){
+
+    document.getElementById("topupAmount").value =
+        amount;
+};
+
+window.showTopupRequisites = function(){
+
+    const amount =
+        Number(
+            document.getElementById("topupAmount")
+            .value
+        );
+
+    if(!amount || amount <= 0){
+
+        alert("Введите сумму пополнения.");
+        return;
+    }
+
+    document.getElementById("topupContent").innerHTML = `
+
+        <div class="message">
+            💳 Сумма пополнения:
+            <strong>${amount} ₽</strong>
+        </div>
+
+        <div class="requisites">
+
+            <div>
+                🏦 Банк:
+                <strong>${REKVIZITY.bank}</strong>
+            </div>
+
+            <div>
+                👤 Получатель:
+                <strong>${REKVIZITY.name}</strong>
+            </div>
+
+            <div>
+                📱 Телефон:
+                <strong>${REKVIZITY.phone}</strong>
+            </div>
+
+            <div>
+                💬 Комментарий:
+                <strong>${REKVIZITY.comment}</strong>
+            </div>
+
+        </div>
+
+        <div class="red-warning">
+            ⚠️ Сначала переведите ровно ${amount} ₽.
+        </div>
+
+        <label class="file-label">
+
+            📷 Фото чека
+
+            <input type="file"
+                   id="topupProof"
+                   accept="image/*"
+                   style="display:block;margin-top:10px;">
+
+        </label>
+
+        <button class="modal-btn success"
+                onclick="createTopupRequest(${amount})">
+            ✅ Я ПЕРЕВЁЛ
+        </button>
+
+        <button class="modal-btn secondary"
+                onclick="resetTopupWindow()">
+            Назад
+        </button>
+
+        <div id="topupStatus"></div>
+    `;
+};
+
+
+/* =========================
+   IMAGE COMPRESSION
+========================= */
+
+async function compressImage(
+    file,
+    maxWidth=1200,
+    quality=.72
+){
+
+    if(!file){
+        return null;
+    }
+
+    if(file.size > 10*1024*1024){
+
+        throw new Error(
+            "Фото слишком большое. Максимум 10 МБ."
+        );
+    }
+
+    return new Promise((resolve,reject)=>{
+
+        const reader =
+            new FileReader();
+
+        reader.onload = ()=>{
+
+            const image =
+                new Image();
+
+            image.onload = ()=>{
+
+                let width =
+                    image.width;
+
+                let height =
+                    image.height;
+
+                if(width > maxWidth){
+
+                    const ratio =
+                        maxWidth / width;
+
+                    width =
+                        maxWidth;
+
+                    height =
+                        height * ratio;
+                }
+
+                const canvas =
+                    document.createElement("canvas");
+
+                canvas.width =
+                    width;
+
+                canvas.height =
+                    height;
+
+                const ctx =
+                    canvas.getContext("2d");
+
+                ctx.drawImage(
+                    image,
+                    0,
+                    0,
+                    width,
+                    height
+                );
+
+                canvas.toBlob(
+                    blob => {
+
+                        if(!blob){
+
+                            reject(
+                                new Error(
+                                    "Не удалось обработать фото."
+                                )
+                            );
+
+                            return;
+                        }
+
+                        resolve(blob);
+
+                    },
+                    "image/jpeg",
+                    quality
+                );
+            };
+
+            image.onerror = () =>
+                reject(
+                    new Error(
+                        "Не удалось открыть изображение."
+                    )
+                );
+
+            image.src =
+                reader.result;
+        };
+
+        reader.onerror = () =>
+            reject(
+                new Error(
+                    "Не удалось прочитать фото."
+                )
+            );
+
+        reader.readAsDataURL(file);
+    });
+}
+
+
+/* =========================
+   STORAGE UPLOAD
+========================= */
+
+function uploadImageWithProgress(
+    storageRef,
+    blob,
+    onProgress
+){
+
+    return new Promise((resolve,reject)=>{
+
+        const task =
+            uploadBytesResumable(
+                storageRef,
+                blob,
+                {
+                    contentType:"image/jpeg"
+                }
+            );
+
+        let finished = false;
+
+        const timeout =
+            setTimeout(()=>{
+
+                if(!finished){
+
+                    try{
+                        task.cancel();
+                    }catch{}
+
+                    reject(
+                        new Error(
+                            "Загрузка фото превысила 60 секунд."
+                        )
+                    );
+                }
+
+            },60000);
+
+        task.on(
+            "state_changed",
+
+            snapshot => {
+
+                const percent =
+                    Math.round(
+                        snapshot.bytesTransferred /
+                        snapshot.totalBytes *
+                        100
+                    );
+
+                if(onProgress){
+                    onProgress(percent);
+                }
+            },
+
+            error => {
+
+                if(finished){
+                    return;
+                }
+
+                finished = true;
+
+                clearTimeout(timeout);
+
+                reject(error);
+            },
+
+            async ()=>{
+
+                if(finished){
+                    return;
+                }
+
+                finished = true;
+
+                clearTimeout(timeout);
+
+                try{
+
+                    const url =
+                        await getDownloadURL(
+                            task.snapshot.ref
+                        );
+
+                    resolve({
+                        url,
+                        path:task.snapshot.ref.fullPath
+                    });
+
+                }catch(error){
+
+                    reject(error);
+                }
+            }
+        );
+    });
+}
+
+
+/* =========================
+   CREATE TOPUP
+========================= */
+
+window.createTopupRequest = async function(amount){
+
+    if(!currentUser){
+
+        openAuth();
+        return;
+    }
+
+    const file =
+        document.getElementById("topupProof").files[0];
+
+    const status =
+        document.getElementById("topupStatus");
+
+    if(!file){
+
+        status.innerHTML =
+            `<div class="message error">
+                ❌ Прикрепите фото чека.
+            </div>`;
+
+        return;
+    }
+
+    const button =
+        document.querySelector(
+            '#topupContent button.success'
+        );
+
+    if(button){
+        button.disabled = true;
+        button.textContent =
+            "⏳ Загружаем...";
+    }
+
+    try{
+
+        status.innerHTML = `
+            <div class="loading">
+
+                <div class="spinner"></div>
+
+                <div id="topupUploadText">
+                    Подготавливаем фото...
+                </div>
+
+                <div class="progress-wrap">
+                    <div class="progress-bar"
+                         id="topupProgress">
+                    </div>
+                </div>
+
+                <div id="topupPercent">
+                    0%
+                </div>
+
+            </div>
+        `;
+
+        const compressed =
+            await compressImage(file);
+
+        const requestRef =
+            doc(collection(db,"topups"));
+
+        const fileRef =
+            ref(
+                storage,
+                `topupProofs/${currentUser.uid}/${requestRef.id}.jpg`
+            );
+
+        const uploaded =
+            await uploadImageWithProgress(
+                fileRef,
+                compressed,
+                percent => {
+
+                    const bar =
+                        document.getElementById(
+                            "topupProgress"
+                        );
+
+                    const text =
+                        document.getElementById(
+                            "topupPercent"
+                        );
+
+                    if(bar){
+                        bar.style.width =
+                            percent + "%";
+                    }
+
+                    if(text){
+                        text.textContent =
+                            percent + "%";
+                    }
+
+                    const uploadText =
+                        document.getElementById(
+                            "topupUploadText"
+                        );
+
+                    if(uploadText){
+
+                        uploadText.textContent =
+                            `☁️ Загружаем фото в Firebase... ${percent}%`;
+                    }
+                }
+            );
+
+        status.innerHTML = `
+            <div class="message">
+                ☁️ Фото загружено.
+                <br>
+                Сохраняем заявку...
+            </div>
+        `;
+
+        const code =
+            generateTopupCode();
+
+        await setDoc(
+            requestRef,
+            {
+                uid:currentUser.uid,
+                email:currentUser.email,
+                amount:Number(amount),
+                code,
+                status:"pending",
+                proofUrl:uploaded.url,
+                proofPath:uploaded.path,
+                createdAt:serverTimestamp()
+            }
+        );
+
+        await createAdminNotification(
+            "💳 Новое пополнение",
+            `${currentUser.email} запросил пополнение на ${amount} ₽`
+        );
+
+        document.getElementById("topupContent").innerHTML = `
+
+            <div class="message success-text">
+                ✅ Заявка на пополнение отправлена!
+            </div>
+
+            <div class="message">
+                Сумма:
+                <strong>${amount} ₽</strong>
+            </div>
+
+            <div class="service-code">
+
+                <div>
+                    🔑 Код пополнения:
+                </div>
+
+                <div class="code-value">
+                    ${escapeHtml(code)}
+                </div>
+
+                <button class="modal-btn success"
+                        onclick="copyText('${code}')">
+                    📋 Скопировать код
+                </button>
+
+                <div style="margin-top:15px;color:#91abc5;">
+                    Ожидайте подтверждения продавца.
+                </div>
+
+            </div>
+        `;
+
+    }catch(error){
+
+        console.error(error);
+
+        status.innerHTML =
+            `<div class="message error">
+                ❌ Не удалось отправить фото.
+                <br><br>
+                <strong>${escapeHtml(getFirebaseError(error))}</strong>
+                <br><br>
+                Проверьте Firebase Storage и Storage Rules.
+            </div>`;
+
+        if(button){
+
+            button.disabled = false;
+
+            button.textContent =
+                "✅ Я ПЕРЕВЁЛ";
+        }
+    }
+};
+
+
+function generateTopupCode(){
+
+    const chars =
+        "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+
+    let code = "TOP-";
+
+    for(let i=0;i<8;i++){
+
+        code +=
+            chars.charAt(
+                Math.floor(
+                    Math.random()*chars.length
+                )
+            );
+    }
+
+    return code;
+}
+
+
+window.copyText = async function(text){
+
+    try{
+
+        await navigator.clipboard.writeText(text);
+
+        alert("✅ Скопировано!");
+
+    }catch{
+
+        const textarea =
+            document.createElement("textarea");
+
+        textarea.value = text;
+
+        document.body.appendChild(textarea);
+
+        textarea.select();
+
+        document.execCommand("copy");
+
+        textarea.remove();
+
+        alert("✅ Скопировано!");
+    }
+};
+
+
+/* =========================
+   NOTIFICATIONS
+========================= */
+
+async function createUserNotification(
+    type,
+    title,
+    message,
+    orderId=""
+){
+
+    if(!currentUser){
+        return;
+    }
+
+    await addDoc(
+        collection(db,"notifications"),
+        {
+            uid:currentUser.uid,
+            type,
+            title,
+            message,
+            orderId,
+            read:false,
+            createdAt:serverTimestamp()
+        }
+    );
+}
+
+
+async function createAdminNotification(
+    title,
+    message
+){
+
+    await addDoc(
+        collection(db,"adminNotifications"),
+        {
+            uid:ADMIN_UID,
+            title,
+            message,
+            read:false,
+            createdAt:serverTimestamp()
+        }
+    );
+}
+
+
+window.openNotifications = async function(){
+
+    if(!currentUser){
+
+        openAuth();
+        return;
+    }
+
+    openModal("notificationsModal");
+
+    await renderNotifications();
+
+    await markNotificationsRead();
+};
+
+
+async function renderNotifications(){
+
+    const box =
+        document.getElementById(
+            "notificationsList"
+        );
+
+    box.innerHTML =
+        "Загрузка...";
+
+    try{
+
+        const q =
+            query(
+                collection(db,"notifications"),
+                where("uid","==",currentUser.uid),
+                limit(50)
+            );
+
+        const snapshot =
+            await getDocs(q);
+
+        latestNotifications =
+            snapshot.docs.map(doc => ({
+                id:doc.id,
+                ...doc.data()
+            }));
+
+        latestNotifications.sort((a,b)=>{
+
+            const aa =
+                a.createdAt?.seconds || 0;
+
+            const bb =
+                b.createdAt?.seconds || 0;
+
+            return bb-aa;
+        });
+
+        if(latestNotifications.length === 0){
+
+            box.innerHTML =
+                `<div class="message">
+                    🔔 Уведомлений пока нет.
+                </div>`;
+
+            return;
+        }
+
+        box.innerHTML =
+            latestNotifications.map(item => `
+
+                <div class="notification-card
+                    ${item.read ? "" : "unread"}">
+
+                    <div class="notification-title">
+                        ${escapeHtml(item.title)}
+                    </div>
+
+                    <div>
+                        ${escapeHtml(item.message)}
+                    </div>
+
+                    <div class="notification-date">
+                        ${formatDate(item.createdAt)}
+                    </div>
+
+                </div>
+
+            `).join("");
+
+    }catch(error){
+
+        box.innerHTML =
+            `<div class="message error">
+                ❌ ${escapeHtml(getFirebaseError(error))}
+            </div>`;
+    }
+}
+
+
+async function markNotificationsRead(){
+
+    if(!currentUser){
+        return;
+    }
+
+    const unread =
+        latestNotifications.filter(
+            item => !item.read
+        );
+
+    for(const item of unread){
+
+        try{
+
+            await updateDoc(
+                doc(db,"notifications",item.id),
+                {
+                    read:true
+                }
+            );
+
+        }catch{}
+    }
+}
+
+
+function startUserNotificationListener(){
+
+    if(!currentUser){
+        return;
+    }
+
+    if(userNotificationsUnsubscribe){
+        userNotificationsUnsubscribe();
+    }
+
+    const q =
+        query(
+            collection(db,"notifications"),
+            where("uid","==",currentUser.uid),
+            limit(50)
+        );
+
+    userNotificationsUnsubscribe =
+        onSnapshot(
+            q,
+            snapshot => {
+
+                const unread =
+                    snapshot.docs.filter(
+                        item =>
+                            item.data().read !== true
+                    ).length;
+
+                document.getElementById(
+                    "notificationBadge"
+                ).textContent =
+                    unread;
+            },
+            error => {
+
+                console.error(
+                    "Notifications:",
+                    error
+                );
+            }
+        );
+}
+
+
+/* =========================
+   SUPPORT
+========================= */
+
+window.openSupport = function(){
+
+    if(!currentUser){
+
+        openAuth();
+        return;
+    }
+
+    document.getElementById(
+        "supportProblem"
+    ).value = "";
+
+    document.getElementById(
+        "supportPhoto"
+    ).value = "";
+
+    document.getElementById(
+        "supportMessage"
+    ).innerHTML = "";
+
+    openModal("supportModal");
+};
+
+
+window.createSupportTicket = async function(){
+
+    if(!currentUser){
+
+        openAuth();
+        return;
+    }
+
+    const problem =
+        document.getElementById(
+            "supportProblem"
+        ).value.trim();
+
+    const photo =
+        document.getElementById(
+            "supportPhoto"
+        ).files[0];
+
+    const message =
+        document.getElementById(
+            "supportMessage"
+        );
+
+    if(!problem){
+
+        message.innerHTML =
+            `<div class="message error">
+                ❌ Опишите проблему.
+            </div>`;
+
+        return;
+    }
+
+    try{
+
+        message.innerHTML =
+            `<div class="message">
+                ⏳ Отправляем обращение...
+            </div>`;
+
+        let photoUrl = "";
+        let photoPath = "";
+
+        /*
+         * Фото НЕ обязательно.
+         * Если пользователь его не выбрал,
+         * Storage вообще не используется.
+         */
+
+        if(photo){
+
+            const compressed =
+                await compressImage(photo);
+
+            const ticketRef =
+                doc(collection(db,"supportTickets"));
+
+            const fileRef =
+                ref(
+                    storage,
+                    `supportProofs/${currentUser.uid}/${ticketRef.id}.jpg`
+                );
+
+            const uploaded =
+                await uploadImageWithProgress(
+                    fileRef,
+                    compressed
+                );
+
+            photoUrl =
+                uploaded.url;
+
+            photoPath =
+                uploaded.path;
+
+            await setDoc(
+                ticketRef,
+                {
+                    uid:currentUser.uid,
+                    email:currentUser.email,
+                    problem,
+                    photoUrl,
+                    photoPath,
+                    status:"open",
+                    createdAt:serverTimestamp(),
+                    updatedAt:serverTimestamp(),
+                    lastReply:"",
+                    lastReplyAt:null
+                }
+            );
+
+        }else{
+
+            await addDoc(
+                collection(db,"supportTickets"),
+                {
+                    uid:currentUser.uid,
+                    email:currentUser.email,
+                    problem,
+                    photoUrl:"",
+                    photoPath:"",
+                    status:"open",
+                    createdAt:serverTimestamp(),
+                    updatedAt:serverTimestamp(),
+                    lastReply:"",
+                    lastReplyAt:null
+                }
+            );
+        }
+
+        await createAdminNotification(
+            "💬 Новое обращение в поддержку",
+            currentUser.email
+        );
+
+        message.innerHTML =
+            `<div class="message success-text">
+                ✅ Обращение отправлено!
+                <br><br>
+                Ожидайте ответа продавца.
+                Ответ появится в разделе «Уведомления».
+            </div>`;
+
+        document.getElementById(
+            "supportProblem"
+        ).value = "";
+
+        document.getElementById(
+            "supportPhoto"
+        ).value = "";
+
+    }catch(error){
+
+        console.error(error);
+
+        message.innerHTML =
+            `<div class="message error">
+                ❌ ${escapeHtml(getFirebaseError(error))}
+            </div>`;
+    }
+};
+
+
+/* =========================
+   ADMIN
+========================= */
+
+window.openAdmin = async function(){
+
+    if(!isAdmin()){
+
+        alert("❌ Доступ запрещён.");
+        return;
+    }
+
+    openModal("adminModal");
+
+    await loadAdminPanel();
+};
+
+
+async function loadAdminPanel(){
+
+    renderAdminTopups();
+    renderAdminOrders();
+    renderAdminSupport();
+
+    startAdminTopupListener();
+    startAdminOrderListener();
+    startAdminSupportListener();
+}
+
+
+/* =========================
+   ADMIN TOPUPS
+========================= */
+
+function startAdminTopupListener(){
+
+    if(!isAdmin()){
+        return;
+    }
+
+    if(adminTopupsUnsubscribe){
+        adminTopupsUnsubscribe();
+    }
+
+    const q =
+        query(
+            collection(db,"topups"),
+            limit(100)
+        );
+
+    adminTopupsUnsubscribe =
+        onSnapshot(
+            q,
+            snapshot => {
+
+                latestAdminTopups =
+                    snapshot.docs.map(doc => ({
+                        id:doc.id,
+                        ...doc.data()
+                    }));
+
+                latestAdminTopups.sort((a,b)=>{
+
+                    const aa =
+                        a.createdAt?.seconds || 0;
+
+                    const bb =
+                        b.createdAt?.seconds || 0;
+
+                    return bb-aa;
+                });
+
+                renderAdminTopups();
+                updateAdminBadge();
+            }
+        );
+}
+
+
+function renderAdminTopups(){
+
+    const box =
+        document.getElementById(
+            "adminTopups"
+        );
+
+    if(!box){
+        return;
+    }
+
+    if(latestAdminTopups.length === 0){
+
+        box.innerHTML =
+            `<div class="message">
+                Пополнений пока нет.
+            </div>`;
+
+        return;
+    }
+
+    box.innerHTML =
+        latestAdminTopups.map(item => `
+
+            <div class="admin-card">
+
+                <strong>
+                    💳 ${item.amount} ₽
+                </strong>
+
+                <br>
+
+                👤 ${escapeHtml(item.email || "")}
+
+                <br>
+
+                🔑 Код:
+                <strong>${escapeHtml(item.code || "")}</strong>
+
+                <br>
+
+                Статус:
+                <span class="status">
+                    ${escapeHtml(item.status || "")}
+                </span>
+
+                <br>
+
+                📅 ${formatDate(item.createdAt)}
+
+                ${
+                    item.proofUrl
+                    ?
+                    `<br><br>
+                    <a href="${escapeHtml(item.proofUrl)}"
+                       target="_blank"
+                       style="color:#00dfff;">
+                        📷 Открыть фото чека
+                    </a>`
+                    :
+                    ""
+                }
+
+                ${
+                    item.status === "pending"
+                    ?
+                    `
+                    <br>
+
+                    <button
+                        style="background:#008c5d;"
+                        onclick="approveTopup('${item.id}')">
+                        ✅ Подтвердить
+                    </button>
+
+                    <button
+                        style="background:#b71c3b;"
+                        onclick="rejectTopup('${item.id}')">
+                        ❌ Отклонить
+                    </button>
+                    `
+                    :
+                    ""
+                }
+
+            </div>
+
+        `).join("");
+}
+
+
+window.approveTopup = async function(id){
+
+    if(!isAdmin()){
+        return;
+    }
+
+    const topup =
+        latestAdminTopups.find(
+            item => item.id === id
+        );
+
+    if(!topup){
+        return;
+    }
+
+    try{
+
+        await runTransaction(
+            db,
+            async transaction => {
+
+                const topupRef =
+                    doc(db,"topups",id);
+
+                const userRef =
+                    doc(db,"users",topup.uid);
+
+                const topupSnapshot =
+                    await transaction.get(topupRef);
+
+                const userSnapshot =
+                    await transaction.get(userRef);
+
+                if(!topupSnapshot.exists()){
+                    throw new Error(
+                        "Пополнение не найдено."
+                    );
+                }
+
+                const topupData =
+                    topupSnapshot.data();
+
+                if(topupData.status !== "pending"){
+                    throw new Error(
+                        "Это пополнение уже обработано."
+                    );
+                }
+
+                if(!userSnapshot.exists()){
+                    throw new Error(
+                        "Пользователь не найден."
+                    );
+                }
+
+                const balance =
+                    Number(
+                        userSnapshot.data().balance || 0
+                    );
+
+                transaction.update(
+                    userRef,
+                    {
+                        balance:
+                            balance +
+                            Number(topupData.amount),
+                        updatedAt:serverTimestamp()
+                    }
+                );
+
+                transaction.update(
+                    topupRef,
+                    {
+                        status:"approved",
+                        approvedAt:serverTimestamp(),
+                        approvedBy:currentUser.uid
+                    }
+                );
+            }
+        );
+
+        await addDoc(
+            collection(db,"notifications"),
+            {
+                uid:topup.uid,
+                type:"topup_approved",
+                title:"💰 Баланс пополнен",
+                message:
+                    `Пополнение на ${topup.amount} ₽ подтверждено.`,
+                read:false,
+                createdAt:serverTimestamp()
+            }
+        );
+
+        alert("✅ Пополнение подтверждено.");
+
+    }catch(error){
+
+        alert(
+            "❌ " +
+            getFirebaseError(error)
+        );
+    }
+};
+
+
+window.rejectTopup = async function(id){
+
+    if(!isAdmin()){
+        return;
+    }
+
+    const topup =
+        latestAdminTopups.find(
+            item => item.id === id
+        );
+
+    if(!topup){
+        return;
+    }
+
+    try{
+
+        await updateDoc(
+            doc(db,"topups",id),
+            {
+                status:"rejected",
+                rejectedAt:serverTimestamp(),
+                rejectedBy:currentUser.uid
+            }
+        );
+
+        await addDoc(
+            collection(db,"notifications"),
+            {
+                uid:topup.uid,
+                type:"topup_rejected",
+                title:"❌ Пополнение отклонено",
+                message:
+                    `Пополнение на ${topup.amount} ₽ отклонено.`,
+                read:false,
+                createdAt:serverTimestamp()
+            }
+        );
+
+        alert("Пополнение отклонено.");
+
+    }catch(error){
+
+        alert(
+            "❌ " +
+            getFirebaseError(error)
+        );
+    }
+};
+
+
+/* =========================
+   ADMIN ORDERS
+========================= */
+
+function startAdminOrderListener(){
+
+    if(!isAdmin()){
+        return;
+    }
+
+    if(adminOrdersUnsubscribe){
+        adminOrdersUnsubscribe();
+    }
+
+    const q =
+        query(
+            collection(db,"orders"),
+            limit(100)
+        );
+
+    adminOrdersUnsubscribe =
+        onSnapshot(
+            q,
+            snapshot => {
+
+                latestAdminOrders =
+                    snapshot.docs.map(doc => ({
+                        id:doc.id,
+                        ...doc.data()
+                    }));
+
+                latestAdminOrders.sort((a,b)=>{
+
+                    const aa =
+                        a.createdAt?.seconds || 0;
+
+                    const bb =
+                        b.createdAt?.seconds || 0;
+
+                    return bb-aa;
+                });
+
+                renderAdminOrders();
+                updateAdminBadge();
+            }
+        );
+}
+
+
+function renderAdminOrders(){
+
+    const box =
+        document.getElementById(
+            "adminOrders"
+        );
+
+    if(!box){
+        return;
+    }
+
+    if(latestAdminOrders.length === 0){
+
+        box.innerHTML =
+            `<div class="message">
+                Заказов пока нет.
+            </div>`;
+
+        return;
+    }
+
+    box.innerHTML =
+        latestAdminOrders.map(order => {
+
+            const items =
+                (order.items || [])
+                .map(item =>
+                    `${escapeHtml(item.name)} × ${item.quantity || 1}`
+                )
+                .join("<br>");
+
+            const codes =
+                (order.serviceCodes || [])
+                .map(item =>
+                    `<br>🔑 Код:
+                    <strong>${escapeHtml(item.code)}</strong>`
+                )
+                .join("");
+
+            return `
+
+                <div class="admin-card">
+
+                    <strong>
+                        📦 Заказ #${escapeHtml(order.id)}
+                    </strong>
+
+                    <br><br>
+
+                    👤 ${escapeHtml(order.email || "")}
+
+                    <br>
+
+                    ${items}
+
+                    <br>
+
+                    💰 Сумма:
+                    <strong>${order.total} ₽</strong>
+
+                    ${
+                        order.robloxUsername
+                        ?
+                        `
+                        <br><br>
+
+                        🎮 Roblox:
+                        <strong>
+                            @${escapeHtml(order.robloxUsername)}
+                        </strong>
+
+                        <br>
+
+                        ℹ️ Ник указан покупателем
+                        `
+                        :
+                        ""
+                    }
+
+                    ${codes}
+
+                    <br><br>
+
+                    📅 ${formatDate(order.createdAt)}
+
+                    <br>
+
+                    Статус:
+                    <span class="status">
+                        ${escapeHtml(order.status || "")}
+                    </span>
+
+                </div>
+            `;
+
+        }).join("");
+}
+
+
+/* =========================
+   ADMIN SUPPORT
+========================= */
+
+function startAdminSupportListener(){
+
+    if(!isAdmin()){
+        return;
+    }
+
+    if(adminSupportUnsubscribe){
+        adminSupportUnsubscribe();
+    }
+
+    const q =
+        query(
+            collection(db,"supportTickets"),
+            limit(100)
+        );
+
+    adminSupportUnsubscribe =
+        onSnapshot(
+            q,
+            snapshot => {
+
+                latestAdminSupport =
+                    snapshot.docs.map(doc => ({
+                        id:doc.id,
+                        ...doc.data()
+                    }));
+
+                latestAdminSupport.sort((a,b)=>{
+
+                    const aa =
+                        a.updatedAt?.seconds ||
+                        a.createdAt?.seconds ||
+                        0;
+
+                    const bb =
+                        b.updatedAt?.seconds ||
+                        b.createdAt?.seconds ||
+                        0;
+
+                    return bb-aa;
+                });
+
+                renderAdminSupport();
+                updateAdminBadge();
+            }
+        );
+}
+
+
+function renderAdminSupport(){
+
+    const box =
+        document.getElementById(
+            "adminSupport"
+        );
+
+    if(!box){
+        return;
+    }
+
+    if(latestAdminSupport.length === 0){
+
+        box.innerHTML =
+            `<div class="message">
+                Обращений пока нет.
+            </div>`;
+
+        return;
+    }
+
+    box.innerHTML =
+        latestAdminSupport.map(ticket => `
+
+            <div class="admin-card">
+
+                <strong>
+                    💬 Обращение #${escapeHtml(ticket.id)}
+                </strong>
+
+                <br>
+
+                👤 ${escapeHtml(ticket.email || "")}
+
+                <br><br>
+
+                <div>
+                    ${escapeHtml(ticket.problem || "")}
+                </div>
+
+                ${
+                    ticket.photoUrl
+                    ?
+                    `
+                    <br>
+                    <a href="${escapeHtml(ticket.photoUrl)}"
+                       target="_blank"
+                       style="color:#00dfff;">
+                        📷 Открыть фото
+                    </a>
+                    `
+                    :
+                    `
+                    <br>
+                    <span class="admin-small">
+                        📷 Фото не прикреплено
+                    </span>
+                    `
+                }
+
+                <br><br>
+
+                Статус:
+                <span class="status ${ticket.status}">
+                    ${escapeHtml(ticket.status || "")}
+                </span>
+
+                ${
+                    ticket.status !== "closed"
+                    ?
+                    `
+                    <textarea
+                        id="reply-${ticket.id}"
+                        placeholder="Введите ответ пользователю..."
+                        style="margin-top:10px;">
+                    </textarea>
+
+                    <button
+                        style="background:#008c5d;"
+                        onclick="replyToTicket('${ticket.id}')">
+                        💬 Ответить
+                    </button>
+
+                    <button
+                        style="background:#7435aa;"
+                        onclick="closeTicket('${ticket.id}')">
+                        🔒 Закрыть
+                    </button>
+                    `
+                    :
+                    ""
+                }
+
+            </div>
+
+        `).join("");
+}
+
+
+window.replyToTicket = async function(ticketId){
+
+    if(!isAdmin()){
+        return;
+    }
+
+    const textarea =
+        document.getElementById(
+            "reply-" + ticketId
+        );
+
+    if(!textarea){
+        return;
+    }
+
+    const reply =
+        textarea.value.trim();
+
+    if(!reply){
+
+        alert("Введите ответ.");
+        return;
+    }
+
+    try{
+
+        const ticket =
+            latestAdminSupport.find(
+                item => item.id === ticketId
+            );
+
+        if(!ticket){
+            return;
+        }
+
+        await updateDoc(
+            doc(db,"supportTickets",ticketId),
+            {
+                status:"answered",
+                updatedAt:serverTimestamp(),
+                lastReply:reply,
+                lastReplyAt:serverTimestamp()
+            }
+        );
+
+        await addDoc(
+            collection(db,"notifications"),
+            {
+                uid:ticket.uid,
+                type:"support_reply",
+                title:"💬 Ответ продавца",
+                message:reply,
+                ticketId,
+                read:false,
+                createdAt:serverTimestamp()
+            }
+        );
+
+        textarea.value = "";
+
+        alert("✅ Ответ отправлен.");
+
+    }catch(error){
+
+        alert(
+            "❌ " +
+            getFirebaseError(error)
+        );
+    }
+};
+
+
+window.closeTicket = async function(ticketId){
+
+    if(!isAdmin()){
+        return;
+    }
+
+    try{
+
+        const ticket =
+            latestAdminSupport.find(
+                item => item.id === ticketId
+            );
+
+        await updateDoc(
+            doc(db,"supportTickets",ticketId),
+            {
+                status:"closed",
+                updatedAt:serverTimestamp()
+            }
+        );
+
+        if(ticket){
+
+            await addDoc(
+                collection(db,"notifications"),
+                {
+                    uid:ticket.uid,
+                    type:"support_closed",
+                    title:"🔒 Обращение закрыто",
+                    message:
+                        "Ваше обращение в поддержку было закрыто.",
+                    ticketId,
+                    read:false,
+                    createdAt:serverTimestamp()
+                }
+            );
+        }
+
+        alert("Обращение закрыто.");
+
+    }catch(error){
+
+        alert(
+            "❌ " +
+            getFirebaseError(error)
+        );
+    }
+};
+
+
+/* =========================
+   ADMIN BALANCE
+========================= */
+
+window.giveBalance = async function(){
+
+    if(!isAdmin()){
+
+        alert("Доступ запрещён.");
+        return;
+    }
+
+    const uid =
+        document.getElementById(
+            "giveUID"
+        ).value.trim();
+
+    const amount =
+        Number(
+            document.getElementById(
+                "giveAmount"
+            ).value
+        );
+
+    if(!uid || !amount || amount <= 0){
+
+        alert(
+            "Введите UID и сумму."
+        );
+
+        return;
+    }
+
+    try{
+
+        const userRef =
+            doc(db,"users",uid);
+
+        const snapshot =
+            await getDoc(userRef);
+
+        if(!snapshot.exists()){
+
+            alert(
+                "Пользователь не найден."
+            );
+
+            return;
+        }
+
+        const balance =
+            Number(
+                snapshot.data().balance || 0
+            );
+
+        await updateDoc(
+            userRef,
+            {
+                balance:balance+amount,
+                updatedAt:serverTimestamp()
+            }
+        );
+
+        await addDoc(
+            collection(db,"notifications"),
+            {
+                uid,
+                type:"balance_given",
+                title:"💰 Баланс пополнен",
+                message:
+                    `Администратор начислил вам ${amount} ₽.`,
+                read:false,
+                createdAt:serverTimestamp()
+            }
+        );
+
+        alert(
+            `✅ Начислено ${amount} ₽`
+        );
+
+    }catch(error){
+
+        alert(
+            "❌ " +
+            getFirebaseError(error)
+        );
+    }
+};
+
+
+window.resetBalanceByUID = async function(){
+
+    if(!isAdmin()){
+        return;
+    }
+
+    const uid =
+        document.getElementById(
+            "resetUID"
+        ).value.trim();
+
+    if(!uid){
+
+        alert("Введите UID.");
+        return;
+    }
+
+    try{
+
+        await updateDoc(
+            doc(db,"users",uid),
+            {
+                balance:0,
+                updatedAt:serverTimestamp()
+            }
+        );
+
+        alert("✅ Баланс обнулён.");
+
+    }catch(error){
+
+        alert(
+            "❌ " +
+            getFirebaseError(error)
+        );
+    }
+};
+
+
+/* =========================
+   ADMIN BADGE
+========================= */
+
+function updateAdminBadge(){
+
+    if(!isAdmin()){
+        return;
+    }
+
+    const pendingTopups =
+        latestAdminTopups.filter(
+            item => item.status === "pending"
+        ).length;
+
+    const openSupport =
+        latestAdminSupport.filter(
+            item => item.status === "open"
+        ).length;
+
+    const count =
+        pendingTopups +
+        openSupport;
+
+    document.getElementById(
+        "adminBadge"
+    ).textContent =
+        count;
+}
+
+
+/* =========================
+   AUTH STATE
+========================= */
+
+onAuthStateChanged(
+    auth,
+    async user => {
+
+        currentUser = user;
+
+        if(user){
+
+            await loadUserProfile();
+
+            startUserNotificationListener();
+
+            if(isAdmin()){
+
+                startAdminTopupListener();
+                startAdminOrderListener();
+                startAdminSupportListener();
+
+            }
+
+        }else{
+
+            currentBalance = 0;
+
+            if(userNotificationsUnsubscribe){
+                userNotificationsUnsubscribe();
+                userNotificationsUnsubscribe = null;
+            }
+
+            if(adminTopupsUnsubscribe){
+                adminTopupsUnsubscribe();
+                adminTopupsUnsubscribe = null;
+            }
+
+            if(adminOrdersUnsubscribe){
+                adminOrdersUnsubscribe();
+                adminOrdersUnsubscribe = null;
+            }
+
+            if(adminSupportUnsubscribe){
+                adminSupportUnsubscribe();
+                adminSupportUnsubscribe = null;
+            }
+        }
+
+        updateUserUI();
+    }
+);
+
+
+/* =========================
+   INITIAL
+========================= */
+
+updateCartBadge();
+
+</script>
+
+</body>
+</html>
