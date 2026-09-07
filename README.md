@@ -891,14 +891,14 @@
 
     <div class="product items mm2">
 
-      <h2>🔪 Chroma Godly</h2>
+      <h2>Bat-Бита</h2>
 
       <div class="description">
         Предмет для Murder Mystery 2
       </div>
 
       <div class="price">
-        500 ₽
+        510 ₽
       </div>
 
       <button
@@ -912,14 +912,14 @@
 
     <div class="product items mm2">
 
-      <h2>⚔️ Godly Weapon</h2>
+      <h2>Пляжный пистолет</h2>
 
       <div class="description">
         Godly оружие для Murder Mystery 2
       </div>
 
       <div class="price">
-        300 ₽
+        400 ₽
       </div>
 
       <button
@@ -933,14 +933,14 @@
 
     <div class="product items mm2">
 
-      <h2>🔪 Rare Knife</h2>
+      <h2>Harvester</h2>
 
       <div class="description">
-        Редкий нож для Murder Mystery 2
+        Дорогой пистолет в игре
       </div>
 
       <div class="price">
-        150 ₽
+        611 ₽
       </div>
 
       <button
@@ -958,14 +958,14 @@
 
     <div class="product items brainrot">
 
-      <h2>🧠 Secret Brainrot</h2>
+      <h2>🧠 Soon</h2>
 
       <div class="description">
-        Секретный предмет для Steal a Brainrot
+        Soon
       </div>
 
       <div class="price">
-        500 ₽
+        Soon
       </div>
 
       <button
@@ -979,14 +979,14 @@
 
     <div class="product items brainrot">
 
-      <h2>🧠 Mythic Brainrot</h2>
+      <h2>🧠Soon</h2>
 
       <div class="description">
-        Мифический предмет для Steal a Brainrot
+        Soon
       </div>
 
       <div class="price">
-        300 ₽
+        Soon
       </div>
 
       <button
@@ -1000,14 +1000,14 @@
 
     <div class="product items brainrot">
 
-      <h2>🧠 Rare Brainrot</h2>
+      <h2>🧠 Soon</h2>
 
       <div class="description">
-        Редкий предмет для Steal a Brainrot
+        Soon
       </div>
 
       <div class="price">
-        150 ₽
+        Soon
       </div>
 
       <button
