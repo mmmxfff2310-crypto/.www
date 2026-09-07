@@ -7,6 +7,7 @@
 <title>MaxFlomShop</title>
 
 <style>
+
 *{
     box-sizing:border-box;
     margin:0;
@@ -40,25 +41,44 @@ header{
     font-size:48px;
     font-weight:900;
     color:#00d9ff;
+
     text-shadow:
         0 0 5px #00d9ff,
         0 0 15px #00d9ff,
         0 0 35px #008cff;
-    animation:neon 2s infinite alternate;
+
+    animation:
+        neon 2s infinite alternate,
+        logoFloat 3s ease-in-out infinite;
 }
 
 @keyframes neon{
+
     from{
         text-shadow:
         0 0 5px #00d9ff,
         0 0 15px #00d9ff;
     }
+
     to{
         text-shadow:
         0 0 10px #00d9ff,
         0 0 30px #00d9ff,
         0 0 60px #008cff;
     }
+
+}
+
+@keyframes logoFloat{
+
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-5px);
+    }
+
 }
 
 .subtitle{
@@ -84,26 +104,40 @@ button{
 .top-btn{
     padding:12px 18px;
     border-radius:12px;
-    background:linear-gradient(135deg,#007bff,#00c6ff);
-    box-shadow:0 0 15px rgba(0,180,255,.35);
+
+    background:
+        linear-gradient(135deg,#007bff,#00c6ff);
+
+    box-shadow:
+        0 0 15px rgba(0,180,255,.35);
+
     transition:.2s;
 }
 
 .top-btn:hover{
     transform:translateY(-2px) scale(1.03);
-    box-shadow:0 0 25px rgba(0,200,255,.7);
+
+    box-shadow:
+        0 0 25px rgba(0,200,255,.7);
 }
 
 .user-info{
     display:none;
     text-align:center;
+
     margin:10px auto 20px;
+
     max-width:600px;
+
     padding:15px;
+
     border:1px solid #00c6ff;
     border-radius:15px;
+
     background:rgba(0,30,80,.75);
-    box-shadow:0 0 20px rgba(0,160,255,.25);
+
+    box-shadow:
+        0 0 20px rgba(0,160,255,.25);
 }
 
 .balance{
@@ -118,134 +152,416 @@ button{
     justify-content:center;
     flex-wrap:wrap;
     gap:12px;
+
     padding:10px 15px 25px;
 }
 
 .category{
     padding:13px 22px;
+
     border-radius:14px;
+
     background:#062b63;
+
     border:1px solid #008cff;
-    transition:.2s;
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        background .25s ease;
 }
 
 .category:hover,
 .category.active{
-    background:linear-gradient(135deg,#006eff,#00cfff);
-    box-shadow:0 0 20px #008cff;
-    transform:translateY(-2px);
+
+    background:
+        linear-gradient(135deg,#006eff,#00cfff);
+
+    box-shadow:
+        0 0 20px #008cff;
+
+    transform:
+        translateY(-5px)
+        scale(1.05);
 }
 
 .products{
     width:min(1100px,94%);
+
     margin:auto;
+
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(230px,1fr));
+
     gap:20px;
+
     padding-bottom:50px;
 }
 
 .product{
+
+    position:relative;
+
+    overflow:hidden;
+
+    transform-style:preserve-3d;
+
+    will-change:transform;
+
     background:
-        linear-gradient(145deg,rgba(7,55,120,.9),rgba(2,17,40,.95));
+        linear-gradient(
+            145deg,
+            rgba(7,55,120,.9),
+            rgba(2,17,40,.95)
+        );
+
     border:1px solid rgba(0,174,255,.5);
+
     border-radius:20px;
+
     padding:22px;
-    box-shadow:0 0 20px rgba(0,130,255,.15);
+
+    box-shadow:
+        0 0 20px rgba(0,130,255,.15);
+
     transition:.25s;
+
+    animation:
+        cardAppear .6s ease both;
+}
+
+@keyframes cardAppear{
+
+    from{
+        opacity:0;
+        transform:
+            translateY(25px)
+            scale(.96);
+    }
+
+    to{
+        opacity:1;
+        transform:
+            translateY(0)
+            scale(1);
+    }
+
 }
 
 .product:hover{
-    transform:translateY(-6px);
-    box-shadow:0 0 30px rgba(0,180,255,.45);
+
+    transform:
+        translateY(-6px);
+
+    box-shadow:
+        0 0 30px rgba(0,180,255,.45);
+}
+
+.product::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:180px;
+    height:180px;
+
+    left:var(--mouse-x,50%);
+    top:var(--mouse-y,50%);
+
+    transform:
+        translate(-50%,-50%);
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(0,217,255,.35),
+            transparent 65%
+        );
+
+    opacity:0;
+
+    pointer-events:none;
+
+    transition:opacity .2s;
+}
+
+.product:hover::before{
+    opacity:1;
+}
+
+.product::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    border-radius:20px;
+
+    padding:1px;
+
+    background:
+        linear-gradient(
+            120deg,
+            transparent,
+            rgba(0,217,255,.9),
+            transparent
+        );
+
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+
+    -webkit-mask-composite:xor;
+
+    mask-composite:exclude;
+
+    opacity:0;
+
+    transition:.3s;
+
+    pointer-events:none;
+}
+
+.product:hover::after{
+    opacity:1;
 }
 
 .product h3{
+    position:relative;
     margin-bottom:10px;
     color:#00d9ff;
 }
 
+.product h3::after{
+
+    content:"";
+
+    display:block;
+
+    width:0;
+
+    height:2px;
+
+    margin-top:7px;
+
+    background:#00d9ff;
+
+    box-shadow:
+        0 0 10px #00d9ff;
+
+    transition:.35s;
+}
+
+.product:hover h3::after{
+    width:70%;
+}
+
 .price{
+
     font-size:24px;
+
     font-weight:bold;
+
     margin:15px 0;
 }
 
 .buy{
+
     width:100%;
+
     padding:13px;
+
     border-radius:12px;
-    background:linear-gradient(135deg,#007bff,#00d9ff);
+
+    background:
+        linear-gradient(
+            135deg,
+            #007bff,
+            #00d9ff
+        );
+
     transition:.2s;
 }
 
 .buy:hover{
+
     transform:scale(1.03);
-    box-shadow:0 0 20px #00bfff;
+
+    box-shadow:
+        0 0 10px #00d9ff,
+        0 0 25px #00d9ff,
+        0 0 45px rgba(0,217,255,.6);
 }
 
 .cart{
+
     position:fixed;
+
     right:20px;
     bottom:20px;
+
     z-index:50;
+
     padding:16px 20px;
+
     border-radius:50px;
-    background:linear-gradient(135deg,#006eff,#00d9ff);
-    box-shadow:0 0 25px rgba(0,180,255,.7);
+
+    background:
+        linear-gradient(
+            135deg,
+            #006eff,
+            #00d9ff
+        );
+
+    box-shadow:
+        0 0 25px rgba(0,180,255,.7);
+
+    animation:
+        cartPulse 2s infinite;
+}
+
+@keyframes cartPulse{
+
+    0%,100%{
+        box-shadow:
+            0 0 15px rgba(0,180,255,.5);
+    }
+
+    50%{
+        box-shadow:
+            0 0 35px rgba(0,217,255,.9),
+            0 0 60px rgba(0,120,255,.5);
+    }
+
 }
 
 .overlay{
+
     position:fixed;
+
     inset:0;
+
     z-index:100;
-    background:rgba(0,5,20,.82);
+
+    background:
+        rgba(0,5,20,.82);
+
     backdrop-filter:blur(8px);
+
     display:none;
+
     align-items:center;
     justify-content:center;
+
     padding:15px;
+
 }
 
 .modal{
+
     width:min(500px,100%);
+
     max-height:90vh;
+
     overflow:auto;
-    background:linear-gradient(145deg,#062b63,#020d20);
+
+    background:
+        linear-gradient(
+            145deg,
+            #062b63,
+            #020d20
+        );
+
     border:1px solid #00cfff;
+
     border-radius:22px;
+
     padding:25px;
-    box-shadow:0 0 40px rgba(0,190,255,.45);
+
+    box-shadow:
+        0 0 40px rgba(0,190,255,.45);
+
+    animation:
+        modalIn .35s cubic-bezier(.2,.8,.2,1);
+}
+
+@keyframes modalIn{
+
+    from{
+        opacity:0;
+
+        transform:
+            translateY(30px)
+            scale(.9);
+    }
+
+    to{
+        opacity:1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+
 }
 
 .modal h2{
+
     color:#00d9ff;
+
     margin-bottom:18px;
+
     text-align:center;
 }
 
 .input{
+
     width:100%;
+
     padding:13px;
+
     margin:7px 0;
+
     border-radius:10px;
+
     border:1px solid #087bd1;
+
     background:#020d20;
+
     color:white;
+
     outline:none;
 }
 
 .input:focus{
+
     border-color:#00d9ff;
-    box-shadow:0 0 10px rgba(0,210,255,.3);
+
+    box-shadow:
+        0 0 10px rgba(0,210,255,.3);
 }
 
 .modal-btn{
+
     width:100%;
+
     padding:13px;
+
     margin-top:10px;
+
     border-radius:11px;
-    background:linear-gradient(135deg,#007bff,#00cfff);
+
+    background:
+        linear-gradient(
+            135deg,
+            #007bff,
+            #00cfff
+        );
 }
 
 .close-btn{
@@ -253,40 +569,64 @@ button{
 }
 
 .error{
+
     color:#ff6b6b;
+
     margin-top:10px;
+
     text-align:center;
 }
 
 .success{
+
     color:#5dff9a;
+
     margin-top:10px;
+
     text-align:center;
 }
 
 .code-box{
+
     margin:18px 0;
+
     padding:20px;
+
     text-align:center;
+
     border:2px dashed #00d9ff;
+
     border-radius:15px;
-    background:rgba(0,100,180,.18);
+
+    background:
+        rgba(0,100,180,.18);
 }
 
 .confirm-code{
+
     display:block;
+
     font-size:30px;
+
     font-weight:900;
+
     color:#00eaff;
+
     letter-spacing:3px;
+
     margin-top:10px;
 }
 
 .requisites{
+
     padding:15px;
+
     border-radius:15px;
+
     background:#031a39;
+
     border:1px solid #008cff;
+
     margin:15px 0;
 }
 
@@ -295,27 +635,44 @@ button{
 }
 
 .admin-section{
+
     margin-top:20px;
+
     padding:15px;
+
     border:1px solid #00cfff;
+
     border-radius:15px;
-    background:rgba(0,80,160,.12);
+
+    background:
+        rgba(0,80,160,.12);
 }
 
 .admin-user{
+
     display:flex;
+
     justify-content:space-between;
+
     align-items:center;
+
     gap:10px;
+
     padding:10px;
+
     margin:8px 0;
+
     border-radius:10px;
+
     background:#031a39;
 }
 
 .small-btn{
+
     padding:8px 12px;
+
     border-radius:8px;
+
     background:#007bff;
 }
 
@@ -324,37 +681,113 @@ button{
 }
 
 .cart-item{
+
     padding:12px 0;
-    border-bottom:1px solid rgba(255,255,255,.1);
+
+    border-bottom:
+        1px solid rgba(255,255,255,.1);
 }
 
 .cart-total{
+
     font-size:23px;
+
     margin:18px 0;
+
     color:#00eaff;
+
     font-weight:bold;
 }
 
 .empty{
+
     text-align:center;
+
     color:#aaa;
+
     padding:20px;
 }
 
 .support-btn{
+
     margin-top:10px;
+
     width:100%;
+
     padding:12px;
+
     border-radius:10px;
+
     background:#12b981;
 }
 
 .history-item{
+
     padding:12px;
+
     margin-top:10px;
+
     background:#031a39;
+
     border-radius:10px;
-    border:1px solid rgba(0,200,255,.25);
+
+    border:
+        1px solid rgba(0,200,255,.25);
+}
+
+.buy::before,
+.top-btn::before,
+.category::before,
+.cart::before,
+.modal-btn::before,
+.support-btn::before,
+.small-btn::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:-100%;
+    left:-120%;
+
+    width:60%;
+    height:300%;
+
+    background:
+        rgba(255,255,255,.25);
+
+    transform:
+        rotate(25deg);
+
+    transition:.6s;
+}
+
+.buy,
+.top-btn,
+.category,
+.cart,
+.modal-btn,
+.support-btn,
+.small-btn{
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+.buy:hover::before,
+.top-btn:hover::before,
+.category:hover::before,
+.cart:hover::before,
+.modal-btn:hover::before,
+.support-btn:hover::before,
+.small-btn:hover::before{
+
+    left:140%;
+}
+
+button:active{
+    transform:scale(.94)!important;
 }
 
 @media(max-width:600px){
@@ -368,10 +801,14 @@ button{
     }
 
     .admin-user{
+
         flex-direction:column;
+
         align-items:stretch;
     }
+
 }
+
 </style>
 </head>
 
@@ -379,116 +816,118 @@ button{
 
 <header>
 
-    <div class="logo">
-        MaxFlomShop
-    </div>
+<div class="logo">
+MaxFlomShop
+</div>
 
-    <div class="subtitle">
-        Roblox • Услуги • Аккаунты • Предметы
-    </div>
+<div class="subtitle">
+Roblox • Услуги • Аккаунты • Предметы
+</div>
 
 </header>
 
 
 <div class="topbar">
 
-    <button
-        class="top-btn"
-        id="authBtn"
-        onclick="openAuth()">
+<button
+class="top-btn"
+id="authBtn"
+onclick="openAuth()">
 
-        👤 Войти / Регистрация
+👤 Войти / Регистрация
 
-    </button>
-
-
-    <button
-        class="top-btn hidden"
-        id="accountBtn"
-        onclick="openAccount()">
-
-        💰 Личный кабинет
-
-    </button>
+</button>
 
 
-    <button
-        class="top-btn hidden"
-        id="adminBtn"
-        onclick="openAdmin()">
+<button
+class="top-btn hidden"
+id="accountBtn"
+onclick="openAccount()">
 
-        ⚙️ Админ-панель
+💰 Личный кабинет
 
-    </button>
+</button>
 
 
-    <button
-        class="top-btn hidden"
-        id="logoutBtn"
-        onclick="logout()">
+<button
+class="top-btn hidden"
+id="adminBtn"
+onclick="openAdmin()">
 
-        🚪 Выйти
+⚙️ Админ-панель
 
-    </button>
+</button>
+
+
+<button
+class="top-btn hidden"
+id="logoutBtn"
+onclick="logout()">
+
+🚪 Выйти
+
+</button>
 
 </div>
 
 
 <div
-    class="user-info"
-    id="userInfo">
+class="user-info"
+id="userInfo">
 
-    <div id="userEmail"></div>
+<div id="userEmail"></div>
 
-    <div class="balance">
-        Баланс:
-        <span id="balance">0</span> ₽
-    </div>
+<div class="balance">
+
+Баланс:
+<span id="balance">0</span> ₽
+
+</div>
 
 </div>
 
 
 <div class="categories">
 
-    <button
-        class="category active"
-        onclick="showCategory('robux',this)">
+<button
+class="category active"
+onclick="showCategory('robux',this)">
 
-        💎 Робуксы
+💎 Робуксы
 
-    </button>
+</button>
 
-    <button
-        class="category"
-        onclick="showCategory('services',this)">
+<button
+class="category"
+onclick="showCategory('services',this)">
 
-        🛠 Услуги
+🛠 Услуги
 
-    </button>
+</button>
 
-    <button
-        class="category"
-        onclick="showCategory('accounts',this)">
+<button
+class="category"
+onclick="showCategory('accounts',this)">
 
-        👤 Аккаунты
+👤 Аккаунты
 
-    </button>
+</button>
 
-    <button
-        class="category"
-        onclick="showCategory('mm2',this)">
+<button
+class="category"
+onclick="showCategory('mm2',this)">
 
-        🔪 MM2
+🔪 MM2
 
-    </button>
+</button>
 
-    <button
-        class="category"
-        onclick="showCategory('brainrot',this)">
+<button
+class="category"
+onclick="showCategory('brainrot',this)">
 
-        🧠 Brainrot
+🧠 Brainrot
 
-    </button>
+</button>
 
 </div>
 
@@ -500,105 +939,105 @@ button{
 
 <div class="product category-robux">
 
-    <h3>100 Робуксов</h3>
+<h3>100 Робуксов</h3>
 
-    <p>Пополнение Robux</p>
+<p>Пополнение Robux</p>
 
-    <div class="price">
-        150 ₽
-    </div>
+<div class="price">
+150 ₽
+</div>
 
-    <button
-        class="buy"
-        onclick="addToCart('100 Робуксов',150)">
+<button
+class="buy"
+onclick="addToCart('100 Робуксов',150)">
 
-        Купить
+Купить
 
-    </button>
+</button>
 
 </div>
 
 
 <div class="product category-robux">
 
-    <h3>200 Робуксов</h3>
+<h3>200 Робуксов</h3>
 
-    <p>Пополнение Robux</p>
+<p>Пополнение Robux</p>
 
-    <div class="price">
-        250 ₽
-    </div>
+<div class="price">
+250 ₽
+</div>
 
-    <button
-        class="buy"
-        onclick="addToCart('200 Робуксов',250)">
+<button
+class="buy"
+onclick="addToCart('200 Робуксов',250)">
 
-        Купить
+Купить
 
-    </button>
+</button>
 
 </div>
 
 
 <div class="product category-robux">
 
-    <h3>500 Робуксов</h3>
+<h3>500 Робуксов</h3>
 
-    <p>Пополнение Robux</p>
+<p>Пополнение Robux</p>
 
-    <div class="price">
-        569 ₽
-    </div>
+<div class="price">
+569 ₽
+</div>
 
-    <button
-        class="buy"
-        onclick="addToCart('500 Робуксов',569)">
+<button
+class="buy"
+onclick="addToCart('500 Робуксов',569)">
 
-        Купить
+Купить
 
-    </button>
+</button>
 
 </div>
 
 
 <div class="product category-robux">
 
-    <h3>1000 Робуксов</h3>
+<h3>1000 Робуксов</h3>
 
-    <p>Пополнение Robux</p>
+<p>Пополнение Robux</p>
 
-    <div class="price">
-        1210 ₽
-    </div>
+<div class="price">
+1210 ₽
+</div>
 
-    <button
-        class="buy"
-        onclick="addToCart('1000 Робуксов',1210)">
+<button
+class="buy"
+onclick="addToCart('1000 Робуксов',1210)">
 
-        Купить
+Купить
 
-    </button>
+</button>
 
 </div>
 
 
 <div class="product category-robux">
 
-    <h3>2000 Робуксов</h3>
+<h3>2000 Робуксов</h3>
 
-    <p>Пополнение Robux</p>
+<p>Пополнение Robux</p>
 
-    <div class="price">
-        2199 ₽
-    </div>
+<div class="price">
+2199 ₽
+</div>
 
-    <button
-        class="buy"
-        onclick="addToCart('2000 Робуксов',2199)">
+<button
+class="buy"
+onclick="addToCart('2000 Робуксов',2199)">
 
-        Купить
+Купить
 
-    </button>
+</button>
 
 </div>
 
@@ -607,95 +1046,95 @@ button{
 
 <div class="product category-services hidden">
 
-    <h3>Лучшие читы!</h3>
+<h3>Лучшие читы!</h3>
 
-    <div class="price">
-        110 ₽
-    </div>
+<div class="price">
+110 ₽
+</div>
 
-    <button
-        class="buy"
-        onclick="addToCart('Лучшие читы!',110)">
+<button
+class="buy"
+onclick="addToCart('Лучшие читы!',110)">
 
-        Купить
+Купить
 
-    </button>
+</button>
 
 </div>
 
 
 <div class="product category-services hidden">
 
-    <h3>Пиар</h3>
+<h3>Пиар</h3>
 
-    <div class="price">
-        100 ₽
-    </div>
+<div class="price">
+100 ₽
+</div>
 
-    <button
-        class="buy"
-        onclick="addToCart('Пиар',100)">
+<button
+class="buy"
+onclick="addToCart('Пиар',100)">
 
-        Купить
+Купить
 
-    </button>
+</button>
 
 </div>
 
 
 <div class="product category-services hidden">
 
-    <h3>Помощь с Roblox</h3>
+<h3>Помощь с Roblox</h3>
 
-    <div class="price">
-        50 ₽
-    </div>
+<div class="price">
+50 ₽
+</div>
 
-    <button
-        class="buy"
-        onclick="addToCart('Помощь с Roblox',50)">
+<button
+class="buy"
+onclick="addToCart('Помощь с Roblox',50)">
 
-        Купить
+Купить
 
-    </button>
+</button>
 
 </div>
 
 
 <div class="product category-services hidden">
 
-    <h3>Помогу развиться в Steal a Brainrot</h3>
+<h3>Помогу развиться в Steal a Brainrot</h3>
 
-    <div class="price">
-        20 ₽
-    </div>
+<div class="price">
+20 ₽
+</div>
 
-    <button
-        class="buy"
-        onclick="addToCart('Помогу развиться в Steal a Brainrot',20)">
+<button
+class="buy"
+onclick="addToCart('Помогу развиться в Steal a Brainrot',20)">
 
-        Купить
+Купить
 
-    </button>
+</button>
 
 </div>
 
 
 <div class="product category-services hidden">
 
-    <h3>Помогу создать сайт</h3>
+<h3>Помогу создать сайт</h3>
 
-    <div class="price">
-        1400 ₽
-    </div>
+<div class="price">
+1400 ₽
+</div>
 
-    <button
-        class="buy"
-        onclick="addToCart('Помогу создать сайт',1400)">
+<button
+class="buy"
+onclick="addToCart('Помогу создать сайт',1400)">
 
-        Купить
+Купить
 
-    </button>
+</button>
 
 </div>
 
@@ -704,95 +1143,95 @@ button{
 
 <div class="product category-accounts hidden">
 
-    <h3>Донат 200 Robux</h3>
+<h3>Донат 200 Robux</h3>
 
-    <div class="price">
-        100 ₽
-    </div>
+<div class="price">
+100 ₽
+</div>
 
-    <button
-        class="buy"
-        onclick="addToCart('Донат 200 Robux',100)">
+<button
+class="buy"
+onclick="addToCart('Донат 200 Robux',100)">
 
-        Купить
+Купить
 
-    </button>
+</button>
 
 </div>
 
 
 <div class="product category-accounts hidden">
 
-    <h3>Донат 1000 Robux</h3>
+<h3>Донат 1000 Robux</h3>
 
-    <div class="price">
-        699 ₽
-    </div>
+<div class="price">
+699 ₽
+</div>
 
-    <button
-        class="buy"
-        onclick="addToCart('Донат 1000 Robux',699)">
+<button
+class="buy"
+onclick="addToCart('Донат 1000 Robux',699)">
 
-        Купить
+Купить
 
-    </button>
+</button>
 
 </div>
 
 
 <div class="product category-accounts hidden">
 
-    <h3>Донат 2000 Robux</h3>
+<h3>Донат 2000 Robux</h3>
 
-    <div class="price">
-        1200 ₽
-    </div>
+<div class="price">
+1200 ₽
+</div>
 
-    <button
-        class="buy"
-        onclick="addToCart('Донат 2000 Robux',1200)">
+<button
+class="buy"
+onclick="addToCart('Донат 2000 Robux',1200)">
 
-        Купить
+Купить
 
-    </button>
+</button>
 
 </div>
 
 
 <div class="product category-accounts hidden">
 
-    <h3>Рандом аккаунт</h3>
+<h3>Рандом аккаунт</h3>
 
-    <div class="price">
-        99 ₽
-    </div>
+<div class="price">
+99 ₽
+</div>
 
-    <button
-        class="buy"
-        onclick="addToCart('Рандом аккаунт',99)">
+<button
+class="buy"
+onclick="addToCart('Рандом аккаунт',99)">
 
-        Купить
+Купить
 
-    </button>
+</button>
 
 </div>
 
 
 <div class="product category-accounts hidden">
 
-    <h3>Донат 12K+ Robux</h3>
+<h3>Донат 12K+ Robux</h3>
 
-    <div class="price">
-        9898 ₽
-    </div>
+<div class="price">
+9898 ₽
+</div>
 
-    <button
-        class="buy"
-        onclick="addToCart('Донат 12K+ Robux',9898)">
+<button
+class="buy"
+onclick="addToCart('Донат 12K+ Robux',9898)">
 
-        Купить
+Купить
 
-    </button>
+</button>
 
 </div>
 
@@ -801,57 +1240,57 @@ button{
 
 <div class="product category-mm2 hidden">
 
-    <h3>Bat</h3>
+<h3>Bat</h3>
 
-    <div class="price">
-        510 ₽
-    </div>
+<div class="price">
+510 ₽
+</div>
 
-    <button
-        class="buy"
-        onclick="addToCart('MM2 Bat',510)">
+<button
+class="buy"
+onclick="addToCart('MM2 Bat',510)">
 
-        Купить
+Купить
 
-    </button>
+</button>
 
 </div>
 
 
 <div class="product category-mm2 hidden">
 
-    <h3>Beach Gun</h3>
+<h3>Beach Gun</h3>
 
-    <div class="price">
-        400 ₽
-    </div>
+<div class="price">
+400 ₽
+</div>
 
-    <button
-        class="buy"
-        onclick="addToCart('MM2 Beach Gun',400)">
+<button
+class="buy"
+onclick="addToCart('MM2 Beach Gun',400)">
 
-        Купить
+Купить
 
-    </button>
+</button>
 
 </div>
 
 
 <div class="product category-mm2 hidden">
 
-    <h3>Harvester</h3>
+<h3>Harvester</h3>
 
-    <div class="price">
-        611 ₽
-    </div>
+<div class="price">
+611 ₽
+</div>
 
-    <button
-        class="buy"
-        onclick="addToCart('MM2 Harvester',611)">
+<button
+class="buy"
+onclick="addToCart('MM2 Harvester',611)">
 
-        Купить
+Купить
 
-    </button>
+</button>
 
 </div>
 
@@ -860,57 +1299,57 @@ button{
 
 <div class="product category-brainrot hidden">
 
-    <h3>Brainrot #1</h3>
+<h3>Brainrot #1</h3>
 
-    <div class="price">
-        100 ₽
-    </div>
+<div class="price">
+100 ₽
+</div>
 
-    <button
-        class="buy"
-        onclick="addToCart('Brainrot #1',100)">
+<button
+class="buy"
+onclick="addToCart('Brainrot #1',100)">
 
-        Купить
+Купить
 
-    </button>
+</button>
 
 </div>
 
 
 <div class="product category-brainrot hidden">
 
-    <h3>Brainrot #2</h3>
+<h3>Brainrot #2</h3>
 
-    <div class="price">
-        200 ₽
-    </div>
+<div class="price">
+200 ₽
+</div>
 
-    <button
-        class="buy"
-        onclick="addToCart('Brainrot #2',200)">
+<button
+class="buy"
+onclick="addToCart('Brainrot #2',200)">
 
-        Купить
+Купить
 
-    </button>
+</button>
 
 </div>
 
 
 <div class="product category-brainrot hidden">
 
-    <h3>Brainrot #3</h3>
+<h3>Brainrot #3</h3>
 
-    <div class="price">
-        300 ₽
-    </div>
+<div class="price">
+300 ₽
+</div>
 
-    <button
-        class="buy"
-        onclick="addToCart('Brainrot #3',300)">
+<button
+class="buy"
+onclick="addToCart('Brainrot #3',300)">
 
-        Купить
+Купить
 
-    </button>
+</button>
 
 </div>
 
@@ -918,11 +1357,11 @@ button{
 
 
 <button
-    class="cart"
-    onclick="openCart()">
+class="cart"
+onclick="openCart()">
 
-    🛒 Корзина
-    <span id="cartCount">0</span>
+🛒 Корзина
+<span id="cartCount">0</span>
 
 </button>
 
@@ -930,59 +1369,54 @@ button{
 <!-- AUTH -->
 
 <div
-    class="overlay"
-    id="authOverlay">
+class="overlay"
+id="authOverlay">
 
-    <div class="modal">
+<div class="modal">
 
-        <h2>
-            👤 MaxFlomShop
-        </h2>
+<h2>
+👤 MaxFlomShop
+</h2>
 
-        <input
-            class="input"
-            id="authEmail"
-            type="email"
-            placeholder="Email">
+<input
+class="input"
+id="authEmail"
+type="email"
+placeholder="Email">
 
+<input
+class="input"
+id="authPassword"
+type="password"
+placeholder="Пароль">
 
-        <input
-            class="input"
-            id="authPassword"
-            type="password"
-            placeholder="Пароль">
+<button
+class="modal-btn"
+onclick="register()">
 
+Создать аккаунт
 
-        <button
-            class="modal-btn"
-            onclick="register()">
+</button>
 
-            Создать аккаунт
+<button
+class="modal-btn"
+onclick="login()">
 
-        </button>
+Войти
 
+</button>
 
-        <button
-            class="modal-btn"
-            onclick="login()">
+<button
+class="modal-btn close-btn"
+onclick="closeModal('authOverlay')">
 
-            Войти
+Закрыть
 
-        </button>
+</button>
 
+<div id="authMessage"></div>
 
-        <button
-            class="modal-btn close-btn"
-            onclick="closeModal('authOverlay')">
-
-            Закрыть
-
-        </button>
-
-
-        <div id="authMessage"></div>
-
-    </div>
+</div>
 
 </div>
 
@@ -990,61 +1424,55 @@ button{
 <!-- ACCOUNT -->
 
 <div
-    class="overlay"
-    id="accountOverlay">
+class="overlay"
+id="accountOverlay">
 
-    <div class="modal">
+<div class="modal">
 
-        <h2>
-            💰 Личный кабинет
-        </h2>
+<h2>
+💰 Личный кабинет
+</h2>
 
+<p>
+Email:
+</p>
 
-        <p>
-            Email:
-        </p>
+<p id="accountEmail"></p>
 
-        <p id="accountEmail"></p>
+<div class="balance">
 
+Баланс:
+<span id="accountBalance">0</span> ₽
 
-        <div class="balance">
+</div>
 
-            Баланс:
-            <span id="accountBalance">0</span> ₽
+<button
+class="modal-btn"
+onclick="loadAccount()">
 
-        </div>
+🔄 Обновить баланс
 
+</button>
 
-        <button
-            class="modal-btn"
-            onclick="loadAccount()">
+<button
+class="modal-btn"
+onclick="loadHistory()">
 
-            🔄 Обновить баланс
+📜 История покупок
 
-        </button>
+</button>
 
+<div id="purchaseHistory"></div>
 
-        <button
-            class="modal-btn"
-            onclick="loadHistory()">
+<button
+class="modal-btn close-btn"
+onclick="closeModal('accountOverlay')">
 
-            📜 История покупок
+Закрыть
 
-        </button>
+</button>
 
-
-        <div id="purchaseHistory"></div>
-
-
-        <button
-            class="modal-btn close-btn"
-            onclick="closeModal('accountOverlay')">
-
-            Закрыть
-
-        </button>
-
-    </div>
+</div>
 
 </div>
 
@@ -1052,45 +1480,41 @@ button{
 <!-- CART -->
 
 <div
-    class="overlay"
-    id="cartOverlay">
+class="overlay"
+id="cartOverlay">
 
-    <div class="modal">
+<div class="modal">
 
-        <h2>
-            🛒 Корзина
-        </h2>
+<h2>
+🛒 Корзина
+</h2>
 
+<div id="cartItems"></div>
 
-        <div id="cartItems"></div>
+<div class="cart-total">
 
+Итого:
+<span id="cartTotal">0</span> ₽
 
-        <div class="cart-total">
+</div>
 
-            Итого:
-            <span id="cartTotal">0</span> ₽
+<button
+class="modal-btn"
+onclick="checkout()">
 
-        </div>
+Перейти к оплате
 
+</button>
 
-        <button
-            class="modal-btn"
-            onclick="checkout()">
+<button
+class="modal-btn close-btn"
+onclick="closeModal('cartOverlay')">
 
-            Перейти к оплате
+Закрыть
 
-        </button>
+</button>
 
-
-        <button
-            class="modal-btn close-btn"
-            onclick="closeModal('cartOverlay')">
-
-            Закрыть
-
-        </button>
-
-    </div>
+</div>
 
 </div>
 
@@ -1098,14 +1522,14 @@ button{
 <!-- PAYMENT -->
 
 <div
-    class="overlay"
-    id="paymentOverlay">
+class="overlay"
+id="paymentOverlay">
 
-    <div class="modal">
+<div class="modal">
 
-        <div id="paymentContent"></div>
+<div id="paymentContent"></div>
 
-    </div>
+</div>
 
 </div>
 
@@ -1113,30 +1537,28 @@ button{
 <!-- ADMIN -->
 
 <div
-    class="overlay"
-    id="adminOverlay">
+class="overlay"
+id="adminOverlay">
 
-    <div class="modal">
+<div class="modal">
 
-        <h2>
-            ⚙️ Админ-панель
-        </h2>
+<h2>
+⚙️ Админ-панель
+</h2>
 
+<div id="adminContent">
+Загрузка...
+</div>
 
-        <div id="adminContent">
-            Загрузка...
-        </div>
+<button
+class="modal-btn close-btn"
+onclick="closeModal('adminOverlay')">
 
+Закрыть
 
-        <button
-            class="modal-btn close-btn"
-            onclick="closeModal('adminOverlay')">
+</button>
 
-            Закрыть
-
-        </button>
-
-    </div>
+</div>
 
 </div>
 
@@ -1144,8 +1566,8 @@ button{
 <script type="module">
 
 /* =========================================================
-   FIREBASE
-   ========================================================= */
+   FIREBASE IMPORTS
+========================================================= */
 
 import {
     initializeApp
@@ -1181,34 +1603,41 @@ from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 
 
 /* =========================================================
-   ВАЖНО:
-   ВСТАВЬ СЮДА СВОЙ FIREBASE CONFIG
-   ========================================================= */
+   FIREBASE CONFIG
+========================================================= */
 
 const firebaseConfig = {
 
-    apiKey: "AIzaSyA7hFpXtYghLXqipjaaQRItzmfDo_FHeq0",
-   
-    authDomain: "coffee-spark-ai-barista-344ce.firebaseapp.com",
-   
-    projectId: "coffee-spark-ai-barista-344ce",
-   
-    storageBucket: "coffee-spark-ai-barista-344ce.firebasestorage.app",
-   
-    messagingSenderId: "1064082579547",
-   
-    appId: "1:1064082579547:web:c3d2b7e53c6455c8149f7e"
+    apiKey:
+        "AIzaSyA7hFpXtYghLXqipjaaQRItzmfDo_FHeq0",
+
+    authDomain:
+        "coffee-spark-ai-barista-344ce.firebaseapp.com",
+
+    projectId:
+        "coffee-spark-ai-barista-344ce",
+
+    storageBucket:
+        "coffee-spark-ai-barista-344ce.firebasestorage.app",
+
+    messagingSenderId:
+        "1064082579547",
+
+    appId:
+        "1:1064082579547:web:c3d2b7e53c6455c8149f7e"
+
 };
 
-/* ========================================================= */
+
+/* =========================================================
+   FIREBASE
+========================================================= */
 
 const app =
     initializeApp(firebaseConfig);
 
-
 const auth =
     getAuth(app);
-
 
 const db =
     getFirestore(app);
@@ -1216,23 +1645,34 @@ const db =
 
 /* =========================================================
    ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ
-   ========================================================= */
+========================================================= */
 
 let currentUser = null;
 
 let currentProfile = null;
 
-const ADMIN_UID = "uGqo5MfkbPg3aeeYkcW8KkYMqhq1"  
+
+/*
+ * UID ЕДИНСТВЕННОГО АДМИНА
+ *
+ * Это твой UID.
+ */
+
+const ADMIN_UID =
+    "uGqo5MfkbPg3aeeYkcW8KkYMqhq1";
+
 
 let cart =
     JSON.parse(
-        localStorage.getItem("maxflom_cart") || "[]"
+        localStorage.getItem(
+            "maxflom_cart"
+        ) || "[]"
     );
 
 
 /* =========================================================
    КОРЗИНА
-   ========================================================= */
+========================================================= */
 
 function saveCart(){
 
@@ -1242,13 +1682,16 @@ function saveCart(){
     );
 
     updateCartCount();
+
 }
 
 
 function updateCartCount(){
 
-    document.getElementById("cartCount")
+    document
+        .getElementById("cartCount")
         .textContent = cart.length;
+
 }
 
 
@@ -1268,6 +1711,7 @@ function(name,price){
     alert(
         "Товар добавлен в корзину!"
     );
+
 };
 
 
@@ -1279,16 +1723,21 @@ function(){
     document
         .getElementById("cartOverlay")
         .style.display = "flex";
+
 };
 
 
 function renderCart(){
 
     const box =
-        document.getElementById("cartItems");
+        document.getElementById(
+            "cartItems"
+        );
 
     const total =
-        document.getElementById("cartTotal");
+        document.getElementById(
+            "cartTotal"
+        );
 
 
     if(cart.length === 0){
@@ -1299,6 +1748,7 @@ function renderCart(){
         total.textContent = "0";
 
         return;
+
     }
 
 
@@ -1318,11 +1768,15 @@ function renderCart(){
                 <div class="cart-item">
 
                     <strong>
-                        ${escapeHtml(item.name)}
+                        ${escapeHtml(
+                            item.name
+                        )}
                     </strong>
 
                     <div>
-                        ${Number(item.price)} ₽
+                        ${Number(
+                            item.price
+                        )} ₽
                     </div>
 
                     <button
@@ -1344,6 +1798,7 @@ function renderCart(){
     box.innerHTML = html;
 
     total.textContent = sum;
+
 }
 
 
@@ -1355,6 +1810,7 @@ function(index){
     saveCart();
 
     renderCart();
+
 };
 
 
@@ -1365,12 +1821,13 @@ function getCartTotal(){
             sum + Number(item.price),
         0
     );
+
 }
 
 
 /* =========================================================
    AUTH
-   ========================================================= */
+========================================================= */
 
 window.openAuth =
 function(){
@@ -1378,6 +1835,7 @@ function(){
     document
         .getElementById("authOverlay")
         .style.display = "flex";
+
 };
 
 
@@ -1408,6 +1866,7 @@ async function(){
             '<div class="error">Введите email.</div>';
 
         return;
+
     }
 
 
@@ -1417,6 +1876,7 @@ async function(){
             '<div class="error">Пароль должен содержать минимум 6 символов.</div>';
 
         return;
+
     }
 
 
@@ -1442,9 +1902,11 @@ async function(){
 
                 balance:0,
 
-                isAdmin:false,
+                isAdmin:
+                    result.user.uid === ADMIN_UID,
 
-                createdAt:serverTimestamp()
+                createdAt:
+                    serverTimestamp()
 
             }
         );
@@ -1458,7 +1920,9 @@ async function(){
 
         message.innerHTML =
             '<div class="error">' +
-            escapeHtml(getFirebaseError(error)) +
+            escapeHtml(
+                getFirebaseError(error)
+            ) +
             '</div>';
 
     }
@@ -1496,14 +1960,18 @@ async function(){
         );
 
 
-        closeModal("authOverlay");
+        closeModal(
+            "authOverlay"
+        );
 
 
     }catch(error){
 
         message.innerHTML =
             '<div class="error">' +
-            escapeHtml(getFirebaseError(error)) +
+            escapeHtml(
+                getFirebaseError(error)
+            ) +
             '</div>';
 
     }
@@ -1521,7 +1989,7 @@ async function(){
 
 /* =========================================================
    AUTH STATE
-   ========================================================= */
+========================================================= */
 
 onAuthStateChanged(
     auth,
@@ -1536,57 +2004,93 @@ onAuthStateChanged(
 
 
             document
-                .getElementById("userInfo")
+                .getElementById(
+                    "userInfo"
+                )
                 .style.display = "none";
 
 
             document
-                .getElementById("authBtn")
-                .classList.remove("hidden");
+                .getElementById(
+                    "authBtn"
+                )
+                .classList.remove(
+                    "hidden"
+                );
 
 
             document
-                .getElementById("accountBtn")
-                .classList.add("hidden");
+                .getElementById(
+                    "accountBtn"
+                )
+                .classList.add(
+                    "hidden"
+                );
 
 
             document
-                .getElementById("adminBtn")
-                .classList.add("hidden");
+                .getElementById(
+                    "adminBtn"
+                )
+                .classList.add(
+                    "hidden"
+                );
 
 
             document
-                .getElementById("logoutBtn")
-                .classList.add("hidden");
+                .getElementById(
+                    "logoutBtn"
+                )
+                .classList.add(
+                    "hidden"
+                );
 
 
             return;
+
         }
 
 
         document
-            .getElementById("userInfo")
+            .getElementById(
+                "userInfo"
+            )
             .style.display = "block";
 
 
         document
-            .getElementById("authBtn")
-            .classList.add("hidden");
+            .getElementById(
+                "authBtn"
+            )
+            .classList.add(
+                "hidden"
+            );
 
 
         document
-            .getElementById("accountBtn")
-            .classList.remove("hidden");
+            .getElementById(
+                "accountBtn"
+            )
+            .classList.remove(
+                "hidden"
+            );
 
 
         document
-            .getElementById("logoutBtn")
-            .classList.remove("hidden");
+            .getElementById(
+                "logoutBtn"
+            )
+            .classList.remove(
+                "hidden"
+            );
 
 
         document
-            .getElementById("userEmail")
-            .textContent = user.email;
+            .getElementById(
+                "userEmail"
+            )
+            .textContent =
+            user.email;
 
 
         await loadProfile();
@@ -1597,7 +2101,7 @@ onAuthStateChanged(
 
 /* =========================================================
    PROFILE
-   ========================================================= */
+========================================================= */
 
 async function loadProfile(){
 
@@ -1614,7 +2118,9 @@ async function loadProfile(){
 
 
     const snap =
-        await getDoc(profileRef);
+        await getDoc(
+            profileRef
+        );
 
 
     if(!snap.exists()){
@@ -1623,13 +2129,16 @@ async function loadProfile(){
             profileRef,
             {
 
-                email:currentUser.email,
+                email:
+                    currentUser.email,
 
                 balance:0,
 
-                isAdmin:false,
+                isAdmin:
+                    currentUser.uid === ADMIN_UID,
 
-                createdAt:serverTimestamp()
+                createdAt:
+                    serverTimestamp()
 
             }
         );
@@ -1637,11 +2146,13 @@ async function loadProfile(){
 
         currentProfile = {
 
-            email:currentUser.email,
+            email:
+                currentUser.email,
 
             balance:0,
 
-            isAdmin:false
+            isAdmin:
+                currentUser.uid === ADMIN_UID
 
         };
 
@@ -1656,17 +2167,33 @@ async function loadProfile(){
     updateBalanceUI();
 
 
-    if(current && currentUser.uid === uGqo5MfkbPg3aeeYkcW8KkYMqhq1){
+    /*
+     * ПОКАЗЫВАЕМ АДМИНКУ
+     * ТОЛЬКО ЕСЛИ UID СОВПАДАЕТ
+     */
+
+    if(
+        currentUser &&
+        currentUser.uid === ADMIN_UID
+    ){
 
         document
-            .getElementById("adminBtn")
-            .classList.remove("hidden");
+            .getElementById(
+                "adminBtn"
+            )
+            .classList.remove(
+                "hidden"
+            );
 
     }else{
 
         document
-            .getElementById("adminBtn")
-            .classList.add("hidden");
+            .getElementById(
+                "adminBtn"
+            )
+            .classList.add(
+                "hidden"
+            );
 
     }
 
@@ -1682,13 +2209,17 @@ function updateBalanceUI(){
 
 
     document
-        .getElementById("balance")
+        .getElementById(
+            "balance"
+        )
         .textContent =
         balance.toFixed(2);
 
 
     document
-        .getElementById("accountBalance")
+        .getElementById(
+            "accountBalance"
+        )
         .textContent =
         balance.toFixed(2);
 
@@ -1703,11 +2234,14 @@ function(){
         openAuth();
 
         return;
+
     }
 
 
     document
-        .getElementById("accountOverlay")
+        .getElementById(
+            "accountOverlay"
+        )
         .style.display = "flex";
 
 
@@ -1719,24 +2253,31 @@ function(){
 window.loadAccount =
 async function(){
 
+    if(!currentUser){
+
+        openAuth();
+
+        return;
+
+    }
+
+
     await loadProfile();
 
 
-    if(currentUser){
-
-        document
-            .getElementById("accountEmail")
-            .textContent =
-            currentUser.email;
-
-    }
+    document
+        .getElementById(
+            "accountEmail"
+        )
+        .textContent =
+        currentUser.email;
 
 };
 
 
 /* =========================================================
    ОПЛАТА
-   ========================================================= */
+========================================================= */
 
 window.checkout =
 function(){
@@ -1748,20 +2289,26 @@ function(){
         );
 
         return;
+
     }
 
 
     if(!currentUser){
 
-        closeModal("cartOverlay");
+        closeModal(
+            "cartOverlay"
+        );
 
         openAuth();
 
         return;
+
     }
 
 
-    closeModal("cartOverlay");
+    closeModal(
+        "cartOverlay"
+    );
 
     showPayment();
 
@@ -1782,7 +2329,9 @@ function showPayment(){
 
     const content =
         document
-        .getElementById("paymentContent");
+        .getElementById(
+            "paymentContent"
+        );
 
 
     content.innerHTML = `
@@ -1790,7 +2339,6 @@ function showPayment(){
         <h2>
             💳 Оплата
         </h2>
-
 
         <div class="requisites">
 
@@ -1802,7 +2350,6 @@ function showPayment(){
                 ${total} ₽
             </div>
 
-
             <div>
                 <strong>
                     Ваш баланс:
@@ -1810,7 +2357,6 @@ function showPayment(){
 
                 ${userBalance.toFixed(2)} ₽
             </div>
-
 
             <div>
                 <strong>
@@ -1825,7 +2371,6 @@ function showPayment(){
 
         </div>
 
-
         <button
             class="modal-btn"
             onclick="payWithBalance()">
@@ -1833,7 +2378,6 @@ function showPayment(){
             💰 Оплатить с баланса
 
         </button>
-
 
         <div class="requisites">
 
@@ -1858,14 +2402,12 @@ function showPayment(){
 
         </div>
 
-
         <p style="text-align:center">
 
             После перевода отправьте
             подтверждение в чат поддержки.
 
         </p>
-
 
         <button
             class="support-btn"
@@ -1874,7 +2416,6 @@ function showPayment(){
             💬 Открыть чат поддержки
 
         </button>
-
 
         <button
             class="modal-btn close-btn"
@@ -1888,15 +2429,17 @@ function showPayment(){
 
 
     document
-        .getElementById("paymentOverlay")
+        .getElementById(
+            "paymentOverlay"
+        )
         .style.display = "flex";
 
 }
 
 
 /* =========================================================
-   ПОКУПКА С БАЛАНСА
-   ========================================================= */
+   ОПЛАТА С БАЛАНСА
+========================================================= */
 
 window.payWithBalance =
 async function(){
@@ -1908,6 +2451,7 @@ async function(){
         );
 
         return;
+
     }
 
 
@@ -1918,6 +2462,7 @@ async function(){
         );
 
         return;
+
     }
 
 
@@ -1936,7 +2481,9 @@ async function(){
 
 
         const snap =
-            await getDoc(userRef);
+            await getDoc(
+                userRef
+            );
 
 
         if(!snap.exists()){
@@ -1946,6 +2493,7 @@ async function(){
             );
 
             return;
+
         }
 
 
@@ -1966,13 +2514,14 @@ async function(){
 
 
             document
-                .getElementById("paymentContent")
+                .getElementById(
+                    "paymentContent"
+                )
                 .innerHTML = `
 
                     <h2>
                         ❌ Недостаточно средств
                     </h2>
-
 
                     <div class="requisites">
 
@@ -1983,14 +2532,12 @@ async function(){
                             </strong>
                         </div>
 
-
                         <div>
                             Баланс:
                             <strong>
                                 ${balance.toFixed(2)} ₽
                             </strong>
                         </div>
-
 
                         <div>
                             Не хватает:
@@ -2001,11 +2548,17 @@ async function(){
 
                     </div>
 
-
                     <p style="text-align:center">
                         Пополните баланс через администратора.
                     </p>
 
+                    <button
+                        class="support-btn"
+                        onclick="openSupport()">
+
+                        💬 Написать администратору
+
+                    </button>
 
                     <button
                         class="modal-btn close-btn"
@@ -2018,6 +2571,7 @@ async function(){
                 `;
 
             return;
+
         }
 
 
@@ -2031,12 +2585,15 @@ async function(){
 
 
         /*
-         * Создаём заказ.
+         * СОЗДАЁМ ЗАКАЗ
          */
 
         const orderRef =
             doc(
-                collection(db,"orders")
+                collection(
+                    db,
+                    "orders"
+                )
             );
 
 
@@ -2044,51 +2601,60 @@ async function(){
             orderRef,
             {
 
-                uid:currentUser.uid,
+                uid:
+                    currentUser.uid,
 
-                email:currentUser.email,
+                email:
+                    currentUser.email,
 
-                items:cart,
+                items:
+                    cart,
 
-                total:total,
+                total:
+                    total,
 
-                confirmationCode:code,
+                confirmationCode:
+                    code,
 
-                paymentMethod:"balance",
+                paymentMethod:
+                    "balance",
 
-                status:"paid",
+                status:
+                    "paid",
 
-                createdAt:serverTimestamp()
+                createdAt:
+                    serverTimestamp()
 
             }
         );
 
 
         /*
-         * Списываем баланс.
+         * СПИСЫВАЕМ БАЛАНС
          */
 
         await updateDoc(
             userRef,
             {
 
-                balance:newBalance
+                balance:
+                    newBalance
 
             }
         );
 
 
         /*
-         * Очищаем корзину.
+         * ОЧИЩАЕМ КОРЗИНУ
          */
 
-        cart=[];
+        cart = [];
 
         saveCart();
 
 
         /*
-         * Обновляем локальный профиль.
+         * ОБНОВЛЯЕМ ПРОФИЛЬ
          */
 
         currentProfile.balance =
@@ -2099,22 +2665,22 @@ async function(){
 
 
         /*
-         * Показываем код.
+         * ПОКАЗЫВАЕМ УСПЕШНУЮ ОПЛАТУ
          */
 
         document
-            .getElementById("paymentContent")
+            .getElementById(
+                "paymentContent"
+            )
             .innerHTML = `
 
                 <h2>
                     ✅ Оплата успешна
                 </h2>
 
-
                 <p style="text-align:center">
                     Заказ успешно создан.
                 </p>
-
 
                 <div class="code-box">
 
@@ -2126,14 +2692,12 @@ async function(){
 
                 </div>
 
-
                 <p style="text-align:center">
 
                     📸 Сделайте скриншот этого окна
                     и отправьте код в чат поддержки.
 
                 </p>
-
 
                 <button
                     class="support-btn"
@@ -2142,7 +2706,6 @@ async function(){
                     💬 Открыть чат поддержки
 
                 </button>
-
 
                 <button
                     class="modal-btn close-btn"
@@ -2161,13 +2724,14 @@ async function(){
 
 
         document
-            .getElementById("paymentContent")
+            .getElementById(
+                "paymentContent"
+            )
             .innerHTML = `
 
                 <h2>
                     ❌ Ошибка
                 </h2>
-
 
                 <p class="error">
 
@@ -2176,7 +2740,6 @@ async function(){
                     )}
 
                 </p>
-
 
                 <button
                     class="modal-btn close-btn"
@@ -2194,8 +2757,8 @@ async function(){
 
 
 /* =========================================================
-   ИСТОРИЯ ПОКУПОК
-   ========================================================= */
+   ИСТОРИЯ
+========================================================= */
 
 window.loadHistory =
 async function(){
@@ -2206,7 +2769,9 @@ async function(){
 
     const box =
         document
-        .getElementById("purchaseHistory");
+        .getElementById(
+            "purchaseHistory"
+        );
 
 
     box.innerHTML =
@@ -2225,15 +2790,18 @@ async function(){
         const q =
             query(
                 ordersRef,
+
                 where(
                     "uid",
                     "==",
                     currentUser.uid
                 ),
+
                 orderBy(
                     "createdAt",
                     "desc"
                 ),
+
                 limit(20)
             );
 
@@ -2248,6 +2816,7 @@ async function(){
                 '<div class="empty">Покупок пока нет.</div>';
 
             return;
+
         }
 
 
@@ -2266,7 +2835,9 @@ async function(){
                     data.createdAt?.toDate
                     ? data.createdAt
                         .toDate()
-                        .toLocaleString("ru-RU")
+                        .toLocaleString(
+                            "ru-RU"
+                        )
                     : "Дата неизвестна";
 
 
@@ -2299,14 +2870,22 @@ async function(){
         );
 
 
-        box.innerHTML = html;
+        box.innerHTML =
+            html;
 
 
     }catch(error){
 
+        console.error(error);
+
+
         box.innerHTML =
             `<div class="error">
                 Не удалось загрузить историю.
+                <br>
+                ${escapeHtml(
+                    getFirebaseError(error)
+                )}
             </div>`;
 
     }
@@ -2315,8 +2894,8 @@ async function(){
 
 
 /* =========================================================
-   АДМИН
-   ========================================================= */
+   АДМИН-ПАНЕЛЬ
+========================================================= */
 
 window.openAdmin =
 async function(){
@@ -2328,15 +2907,16 @@ async function(){
         );
 
         return;
+
     }
 
 
-    await loadProfile();
-
+    /*
+     * ГЛАВНАЯ ПРОВЕРКА АДМИНА
+     */
 
     if(
-        !currentProfile ||
-        currentProfile.isAdmin !== true
+        currentUser.uid !== ADMIN_UID
     ){
 
         alert(
@@ -2344,15 +2924,18 @@ async function(){
         );
 
         return;
+
     }
 
 
     document
-        .getElementById("adminOverlay")
+        .getElementById(
+            "adminOverlay"
+        )
         .style.display = "flex";
 
 
-    loadAdminUsers();
+    await loadAdminUsers();
 
 };
 
@@ -2361,11 +2944,30 @@ async function loadAdminUsers(){
 
     const box =
         document
-        .getElementById("adminContent");
+        .getElementById(
+            "adminContent"
+        );
 
 
     box.innerHTML =
         "Загрузка пользователей...";
+
+
+    /*
+     * ДОПОЛНИТЕЛЬНАЯ ПРОВЕРКА
+     */
+
+    if(
+        !currentUser ||
+        currentUser.uid !== ADMIN_UID
+    ){
+
+        box.innerHTML =
+            '<div class="error">Доступ запрещён.</div>';
+
+        return;
+
+    }
 
 
     try{
@@ -2385,6 +2987,7 @@ async function loadAdminUsers(){
                 "Пользователей пока нет.";
 
             return;
+
         }
 
 
@@ -2397,8 +3000,10 @@ async function loadAdminUsers(){
                 </h3>
 
                 <p style="margin-top:8px">
+
                     Выбери пользователя
                     и укажи сумму.
+
                 </p>
 
             </div>
@@ -2428,13 +3033,19 @@ async function loadAdminUsers(){
 
                             <br>
 
+                            UID:
+                            ${escapeHtml(
+                                docSnap.id
+                            )}
+
+                            <br>
+
                             Баланс:
                             ${Number(
                                 data.balance || 0
                             ).toFixed(2)} ₽
 
                         </div>
-
 
                         <button
                             class="small-btn"
@@ -2452,16 +3063,19 @@ async function loadAdminUsers(){
         );
 
 
-        box.innerHTML = html;
+        box.innerHTML =
+            html;
 
 
     }catch(error){
 
         box.innerHTML =
             `<div class="error">
+
                 ${escapeHtml(
                     getFirebaseError(error)
                 )}
+
             </div>`;
 
     }
@@ -2470,42 +3084,19 @@ async function loadAdminUsers(){
 
 
 /* =========================================================
-   ДОБАВИТЬ БАЛАНС
-   ========================================================= */
+   ДОБАВЛЕНИЕ БАЛАНСА
+========================================================= */
 
 window.addBalancePrompt =
 async function(uid){
 
-    if(!currentUser){
-
-        alert(
-            "Вы не авторизованы."
-        );
-
-        return;
-    }
-
-
     /*
-     * Повторно проверяем,
-     * что текущий пользователь админ.
+     * ТОЛЬКО ТВОЙ UID
      */
 
-    const adminRef =
-        doc(
-            db,
-            "users",
-            currentUser.uid
-        );
-
-
-    const adminSnap =
-        await getDoc(adminRef);
-
-
     if(
-        !adminSnap.exists() ||
-        adminSnap.data().isAdmin !== true
+        !currentUser ||
+        currentUser.uid !== ADMIN_UID
     ){
 
         alert(
@@ -2513,6 +3104,7 @@ async function(uid){
         );
 
         return;
+
     }
 
 
@@ -2540,6 +3132,7 @@ async function(uid){
         );
 
         return;
+
     }
 
 
@@ -2554,7 +3147,9 @@ async function(uid){
 
 
         const userSnap =
-            await getDoc(userRef);
+            await getDoc(
+                userRef
+            );
 
 
         if(!userSnap.exists()){
@@ -2564,6 +3159,7 @@ async function(uid){
             );
 
             return;
+
         }
 
 
@@ -2591,7 +3187,7 @@ async function(uid){
         );
 
 
-        loadAdminUsers();
+        await loadAdminUsers();
 
 
     }catch(error){
@@ -2608,27 +3204,37 @@ async function(uid){
 
 /* =========================================================
    КАТЕГОРИИ
-   ========================================================= */
+========================================================= */
 
 window.showCategory =
 function(category,button){
 
     document
-        .querySelectorAll(".category")
+        .querySelectorAll(
+            ".category"
+        )
         .forEach(
             x =>
-            x.classList.remove("active")
+            x.classList.remove(
+                "active"
+            )
         );
 
 
-    button.classList.add("active");
+    button.classList.add(
+        "active"
+    );
 
 
     document
-        .querySelectorAll(".product")
+        .querySelectorAll(
+            ".product"
+        )
         .forEach(
             product =>
-            product.classList.add("hidden")
+            product.classList.add(
+                "hidden"
+            )
         );
 
 
@@ -2638,15 +3244,17 @@ function(category,button){
         )
         .forEach(
             product =>
-            product.classList.remove("hidden")
+            product.classList.remove(
+                "hidden"
+            )
         );
 
 };
 
 
 /* =========================================================
-   TAWK SUPPORT
-   ========================================================= */
+   TAWK
+========================================================= */
 
 window.openSupport =
 function(){
@@ -2672,21 +3280,28 @@ function(){
 
 /* =========================================================
    MODAL
-   ========================================================= */
+========================================================= */
 
 window.closeModal =
 function(id){
 
-    document
-        .getElementById(id)
-        .style.display = "none";
+    const modal =
+        document.getElementById(id);
+
+
+    if(modal){
+
+        modal.style.display =
+            "none";
+
+    }
 
 };
 
 
 /* =========================================================
    RANDOM CODE
-   ========================================================= */
+========================================================= */
 
 function randomCode(length){
 
@@ -2694,12 +3309,12 @@ function randomCode(length){
         "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
 
 
-    let result = "";cx 
+    let result = "";
 
 
     for(
-        let i=0;
-        i<length;
+        let i = 0;
+        i < length;
         i++
     ){
 
@@ -2715,12 +3330,13 @@ function randomCode(length){
 
 
     return result;
+
 }
 
 
 /* =========================================================
    HTML SECURITY
-   ========================================================= */
+========================================================= */
 
 function escapeHtml(value){
 
@@ -2756,7 +3372,7 @@ function escapeHtml(value){
 
 /* =========================================================
    FIREBASE ERROR
-   ========================================================= */
+========================================================= */
 
 function getFirebaseError(error){
 
@@ -2795,11 +3411,58 @@ function getFirebaseError(error){
 
 
     return messages[code] ||
-           error.message ||
-           "Произошла ошибка.";
+        error.message ||
+        "Произошла ошибка.";
 
 }
 
+
+/* =========================================================
+   АНИМАЦИЯ КАРТОЧЕК ПО МЫШИ
+========================================================= */
+
+document
+    .querySelectorAll(".product")
+    .forEach(card=>{
+
+        card.addEventListener(
+            "mousemove",
+            event=>{
+
+                const rect =
+                    card.getBoundingClientRect();
+
+
+                const x =
+                    event.clientX -
+                    rect.left;
+
+
+                const y =
+                    event.clientY -
+                    rect.top;
+
+
+                card.style.setProperty(
+                    "--mouse-x",
+                    x + "px"
+                );
+
+
+                card.style.setProperty(
+                    "--mouse-y",
+                    y + "px"
+                );
+
+            }
+        );
+
+    });
+
+
+/* =========================================================
+   CART
+========================================================= */
 
 updateCartCount();
 
@@ -2808,29 +3471,42 @@ updateCartCount();
 
 <!-- =====================================================
      TAWK.TO
-     ===================================================== -->
+===================================================== -->
 
 <script type="text/javascript">
 
-var Tawk_API=Tawk_API||{},
-Tawk_LoadStart=new Date();
+var Tawk_API =
+    Tawk_API || {},
+
+Tawk_LoadStart =
+    new Date();
+
 
 (function(){
 
-var s1=document.createElement("script"),
-s0=document.getElementsByTagName("script")[0];
+var s1 =
+    document.createElement("script"),
 
-s1.async=true;
+s0 =
+    document.getElementsByTagName("script")[0];
 
-s1.src=
-'https://embed.tawk.to/6a9e514d563b0f3444fcdd58/1k1t6r66';
 
-s1.charset='UTF-8';
+s1.async = true;
+
+
+s1.src =
+    "https://embed.tawk.to/6a9e514d563b0f3444fcdd58/1k1t6r66";
+
+
+s1.charset =
+    "UTF-8";
+
 
 s1.setAttribute(
-    'crossorigin',
-    '*'
+    "crossorigin",
+    "*"
 );
+
 
 s0.parentNode.insertBefore(
     s1,
@@ -2838,240 +3514,9 @@ s0.parentNode.insertBefore(
 );
 
 })();
-    /* ================================
-   КРУТЫЕ АНИМАЦИИ
-================================ */
-
-/* Плавное появление карточек */
-.product{
-    position:relative;
-    overflow:hidden;
-    transform-style:preserve-3d;
-    will-change:transform;
-    animation:cardAppear .6s ease both;
-}
-
-@keyframes cardAppear{
-    from{
-        opacity:0;
-        transform:translateY(25px) scale(.96);
-    }
-
-    to{
-        opacity:1;
-        transform:translateY(0) scale(1);
-    }
-}
-
-/* Сияние внутри карточки */
-.product::before{
-    content:"";
-    position:absolute;
-    width:180px;
-    height:180px;
-    left:var(--mouse-x,50%);
-    top:var(--mouse-y,50%);
-    transform:translate(-50%,-50%);
-    background:radial-gradient(
-        circle,
-        rgba(0,217,255,.35),
-        transparent 65%
-    );
-    opacity:0;
-    pointer-events:none;
-    transition:opacity .2s;
-}
-
-.product:hover::before{
-    opacity:1;
-}
-
-/* Светящаяся рамка карточки */
-.product::after{
-    content:"";
-    position:absolute;
-    inset:0;
-    border-radius:20px;
-    padding:1px;
-    background:linear-gradient(
-        120deg,
-        transparent,
-        rgba(0,217,255,.9),
-        transparent
-    );
-    -webkit-mask:
-        linear-gradient(#fff 0 0) content-box,
-        linear-gradient(#fff 0 0);
-    -webkit-mask-composite:xor;
-    mask-composite:exclude;
-    opacity:0;
-    transition:.3s;
-    pointer-events:none;
-}
-
-.product:hover::after{
-    opacity:1;
-}
-
-/* Кнопки */
-.buy,
-.top-btn,
-.category,
-.cart,
-.modal-btn,
-.support-btn,
-.small-btn{
-    position:relative;
-    overflow:hidden;
-}
-
-/* Блик, проходящий по кнопке */
-.buy::before,
-.top-btn::before,
-.category::before,
-.cart::before,
-.modal-btn::before,
-.support-btn::before,
-.small-btn::before{
-    content:"";
-    position:absolute;
-    top:-100%;
-    left:-120%;
-    width:60%;
-    height:300%;
-    background:rgba(255,255,255,.25);
-    transform:rotate(25deg);
-    transition:.6s;
-}
-
-.buy:hover::before,
-.top-btn:hover::before,
-.category:hover::before,
-.cart:hover::before,
-.modal-btn:hover::before,
-.support-btn:hover::before,
-.small-btn:hover::before{
-    left:140%;
-}
-
-/* Сильное свечение кнопки */
-.buy:hover{
-    box-shadow:
-        0 0 10px #00d9ff,
-        0 0 25px #00d9ff,
-        0 0 45px rgba(0,217,255,.6);
-}
-
-/* Нажатие */
-button:active{
-    transform:scale(.94)!important;
-}
-
-/* Категории */
-.category{
-    transition:
-        transform .25s ease,
-        box-shadow .25s ease,
-        background .25s ease;
-}
-
-.category:hover{
-    transform:
-        translateY(-5px)
-        scale(1.05);
-}
-
-/* Корзина */
-.cart{
-    animation:cartPulse 2s infinite;
-}
-
-@keyframes cartPulse{
-    0%,100%{
-        box-shadow:
-            0 0 15px rgba(0,180,255,.5);
-    }
-
-    50%{
-        box-shadow:
-            0 0 35px rgba(0,217,255,.9),
-            0 0 60px rgba(0,120,255,.5);
-    }
-}
-
-/* Анимация логотипа */
-.logo{
-    animation:
-        neon 2s infinite alternate,
-        logoFloat 3s ease-in-out infinite;
-}
-
-@keyframes logoFloat{
-    0%,100%{
-        transform:translateY(0);
-    }
-
-    50%{
-        transform:translateY(-5px);
-    }
-}
-
-/* Появление модального окна */
-.overlay{
-    animation:overlayIn .2s ease;
-}
-
-.modal{
-    animation:modalIn .35s cubic-bezier(.2,.8,.2,1);
-}
-
-@keyframes overlayIn{
-    from{
-        opacity:0;
-    }
-
-    to{
-        opacity:1;
-    }
-}
-
-@keyframes modalIn{
-    from{
-        opacity:0;
-        transform:
-            translateY(30px)
-            scale(.9);
-    }
-
-    to{
-        opacity:1;
-        transform:
-            translateY(0)
-            scale(1);
-    }
-}
-
-/* Неоновая линия под заголовками */
-.product h3{
-    position:relative;
-}
-
-.product h3::after{
-    content:"";
-    display:block;
-    width:0;
-    height:2px;
-    margin-top:7px;
-    background:#00d9ff;
-    box-shadow:0 0 10px #00d9ff;
-    transition:.35s;
-}
-
-.product:hover h3::after{
-    width:70%;
-}
 
 </script>
+
 
 </body>
 </html>
