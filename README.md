@@ -49,7 +49,6 @@
       font-size: clamp(40px, 8vw, 75px);
       font-weight: 900;
       letter-spacing: 3px;
-
       color: white;
 
       text-shadow:
@@ -129,6 +128,69 @@
     }
 
     .category.active {
+      background:
+        linear-gradient(
+          90deg,
+          #006eff,
+          #00c8ff
+        );
+
+      box-shadow:
+        0 0 20px #00bfff,
+        0 0 40px rgba(0, 120, 255, 0.6);
+    }
+
+    /* ВЫБОР ИГРЫ */
+
+    .game-selector {
+      width: 92%;
+      max-width: 1100px;
+
+      margin: -10px auto 30px;
+
+      display: none;
+
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+
+      position: relative;
+      z-index: 1;
+    }
+
+    .game-selector.active {
+      display: flex;
+    }
+
+    .game-button {
+      padding: 14px 25px;
+
+      border: 1px solid #00bfff;
+      border-radius: 15px;
+
+      background: rgba(0, 30, 90, 0.85);
+      color: white;
+
+      font-size: 17px;
+      font-weight: bold;
+
+      cursor: pointer;
+
+      transition: 0.25s;
+
+      box-shadow:
+        0 0 12px rgba(0, 150, 255, 0.4);
+    }
+
+    .game-button:hover {
+      transform: translateY(-3px);
+
+      box-shadow:
+        0 0 20px #008cff,
+        0 0 35px rgba(0, 150, 255, 0.6);
+    }
+
+    .game-button.active {
       background:
         linear-gradient(
           90deg,
@@ -414,6 +476,10 @@
       .category {
         width: 100%;
       }
+
+      .game-button {
+        width: 100%;
+      }
     }
   </style>
 </head>
@@ -455,15 +521,46 @@
       👤 Аккаунты
     </button>
 
+    <button
+      class="category"
+      onclick="showCategory('items', this)">
+      🧸 Предметы
+    </button>
+
+  </div>
+
+
+  <!-- ВЫБОР ИГРЫ -->
+
+  <div
+    class="game-selector"
+    id="gameSelector">
+
+    <button
+      class="game-button active"
+      onclick="showGame('mm2', this)">
+      🔪 Murder Mystery 2
+    </button>
+
+    <button
+      class="game-button"
+      onclick="showGame('brainrot', this)">
+      🧠 Steal a Brainrot
+    </button>
+
   </div>
 
 
   <!-- ТОВАРЫ -->
 
-  <main class="products" id="products">
+  <main
+    class="products"
+    id="products">
 
 
+    <!-- ==================== -->
     <!-- РОБУКСЫ -->
+    <!-- ==================== -->
 
     <div class="product robux">
 
@@ -474,7 +571,7 @@
       </div>
 
       <div class="price">
-         150₽
+        150 ₽
       </div>
 
       <button
@@ -570,9 +667,11 @@
     </div>
 
 
+    <!-- ==================== -->
     <!-- УСЛУГИ -->
+    <!-- ==================== -->
 
-    <div class="product services" style="display:none">
+    <div class="product services">
 
       <h2>Лучшие читы!</h2>
 
@@ -593,7 +692,7 @@
     </div>
 
 
-    <div class="product services" style="display:none">
+    <div class="product services">
 
       <h2>Пиар</h2>
 
@@ -614,7 +713,7 @@
     </div>
 
 
-    <div class="product services" style="display:none">
+    <div class="product services">
 
       <h2>Сделаю с Uncheked на обычный роблокс</h2>
 
@@ -635,7 +734,7 @@
     </div>
 
 
-    <div class="product services" style="display:none">
+    <div class="product services">
 
       <h2>Помогу развиться в Steal a agg</h2>
 
@@ -656,7 +755,7 @@
     </div>
 
 
-    <div class="product services" style="display:none">
+    <div class="product services">
 
       <h2>Помогу создать сайт</h2>
 
@@ -677,9 +776,11 @@
     </div>
 
 
+    <!-- ==================== -->
     <!-- АККАУНТЫ -->
+    <!-- ==================== -->
 
-    <div class="product accounts" style="display:none">
+    <div class="product accounts">
 
       <h2>Донат 200 Robux</h2>
 
@@ -700,7 +801,7 @@
     </div>
 
 
-    <div class="product accounts" style="display:none">
+    <div class="product accounts">
 
       <h2>Донат 1000 Robux</h2>
 
@@ -721,7 +822,7 @@
     </div>
 
 
-    <div class="product accounts" style="display:none">
+    <div class="product accounts">
 
       <h2>Донат 2000 Robux</h2>
 
@@ -742,7 +843,7 @@
     </div>
 
 
-    <div class="product accounts" style="display:none">
+    <div class="product accounts">
 
       <h2>Рандом акк с донат вещами</h2>
 
@@ -763,7 +864,7 @@
     </div>
 
 
-    <div class="product accounts" style="display:none">
+    <div class="product accounts">
 
       <h2>донат 12к+ Robux</h2>
 
@@ -783,10 +884,146 @@
 
     </div>
 
+
+    <!-- ==================== -->
+    <!-- MURDER MYSTERY 2 -->
+    <!-- ==================== -->
+
+    <div class="product items mm2">
+
+      <h2>🔪 Chroma Godly</h2>
+
+      <div class="description">
+        Предмет для Murder Mystery 2
+      </div>
+
+      <div class="price">
+        500 ₽
+      </div>
+
+      <button
+        class="buy"
+        onclick="startPayment('https://mmmxfff2310-crypto.github.io/Rekvisits/')">
+        Оплатить
+      </button>
+
+    </div>
+
+
+    <div class="product items mm2">
+
+      <h2>⚔️ Godly Weapon</h2>
+
+      <div class="description">
+        Godly оружие для Murder Mystery 2
+      </div>
+
+      <div class="price">
+        300 ₽
+      </div>
+
+      <button
+        class="buy"
+        onclick="startPayment('https://mmmxfff2310-crypto.github.io/Rekvisits/')">
+        Оплатить
+      </button>
+
+    </div>
+
+
+    <div class="product items mm2">
+
+      <h2>🔪 Rare Knife</h2>
+
+      <div class="description">
+        Редкий нож для Murder Mystery 2
+      </div>
+
+      <div class="price">
+        150 ₽
+      </div>
+
+      <button
+        class="buy"
+        onclick="startPayment('https://mmmxfff2310-crypto.github.io/Rekvisits/')">
+        Оплатить
+      </button>
+
+    </div>
+
+
+    <!-- ==================== -->
+    <!-- STEAL A BRAINROT -->
+    <!-- ==================== -->
+
+    <div class="product items brainrot">
+
+      <h2>🧠 Secret Brainrot</h2>
+
+      <div class="description">
+        Секретный предмет для Steal a Brainrot
+      </div>
+
+      <div class="price">
+        500 ₽
+      </div>
+
+      <button
+        class="buy"
+        onclick="startPayment('https://mmmxfff2310-crypto.github.io/Rekvisits/')">
+        Оплатить
+      </button>
+
+    </div>
+
+
+    <div class="product items brainrot">
+
+      <h2>🧠 Mythic Brainrot</h2>
+
+      <div class="description">
+        Мифический предмет для Steal a Brainrot
+      </div>
+
+      <div class="price">
+        300 ₽
+      </div>
+
+      <button
+        class="buy"
+        onclick="startPayment('https://mmmxfff2310-crypto.github.io/Rekvisits/')">
+        Оплатить
+      </button>
+
+    </div>
+
+
+    <div class="product items brainrot">
+
+      <h2>🧠 Rare Brainrot</h2>
+
+      <div class="description">
+        Редкий предмет для Steal a Brainrot
+      </div>
+
+      <div class="price">
+        150 ₽
+      </div>
+
+      <button
+        class="buy"
+        onclick="startPayment('https://mmmxfff2310-crypto.github.io/Rekvisits/')">
+        Оплатить
+      </button>
+
+    </div>
+
   </main>
 
 
-  <!-- ЗАГРУЗКА -->
+  <!-- ==================== -->
+  <!-- ОКНО ОПЛАТЫ -->
+  <!-- ==================== -->
 
   <div
     class="payment"
@@ -830,36 +1067,126 @@
 
   <script>
 
+    /* ==================== */
     /* ПЕРЕКЛЮЧЕНИЕ КАТЕГОРИЙ */
+    /* ==================== */
 
     function showCategory(category, button) {
 
       const products =
         document.querySelectorAll(".product");
 
+      const gameSelector =
+        document.getElementById("gameSelector");
+
+
+      /* Сначала скрываем все товары */
+
       products.forEach(function(product) {
-
-        if (product.classList.contains(category)) {
-          product.style.display = "block";
-        } else {
-          product.style.display = "none";
-        }
-
+        product.style.display = "none";
       });
 
+
+      /* Если выбраны предметы */
+
+      if (category === "items") {
+
+        gameSelector.classList.add("active");
+
+        const firstGameButton =
+          document.querySelector(".game-button");
+
+        showGame("mm2", firstGameButton);
+
+      }
+
+      /* Если выбрана другая категория */
+
+      else {
+
+        gameSelector.classList.remove("active");
+
+        products.forEach(function(product) {
+
+          if (product.classList.contains(category)) {
+
+            product.style.display = "block";
+
+          }
+
+        });
+
+      }
+
+
+      /* Убираем active у категорий */
 
       const buttons =
         document.querySelectorAll(".category");
 
       buttons.forEach(function(btn) {
+
         btn.classList.remove("active");
+
       });
 
+
+      /* Делаем выбранную категорию active */
+
       button.classList.add("active");
+
     }
 
 
+    /* ==================== */
+    /* ВЫБОР ИГРЫ */
+    /* ==================== */
+
+    function showGame(game, button) {
+
+      const products =
+        document.querySelectorAll(".product");
+
+
+      products.forEach(function(product) {
+
+        if (
+          product.classList.contains("items") &&
+          product.classList.contains(game)
+        ) {
+
+          product.style.display = "block";
+
+        }
+
+        else {
+
+          product.style.display = "none";
+
+        }
+
+      });
+
+
+      /* Меняем активную кнопку игры */
+
+      const gameButtons =
+        document.querySelectorAll(".game-button");
+
+      gameButtons.forEach(function(btn) {
+
+        btn.classList.remove("active");
+
+      });
+
+      button.classList.add("active");
+
+    }
+
+
+    /* ==================== */
     /* ОПЛАТА */
+    /* ==================== */
 
     function startPayment(paymentLink) {
 
@@ -869,9 +1196,12 @@
       const counter =
         document.getElementById("counter");
 
+
       payment.classList.add("active");
 
+
       let seconds = 5;
+
 
       counter.textContent =
         "Осталось " + seconds + " секунд";
@@ -882,17 +1212,22 @@
 
           seconds--;
 
+
           if (seconds > 0) {
 
             counter.textContent =
               "Осталось " + seconds + " секунд";
 
-          } else {
+          }
+
+          else {
 
             clearInterval(timer);
 
+
             counter.textContent =
               "Переходим к оплате...";
+
 
             setTimeout(function() {
 
@@ -904,6 +1239,7 @@
           }
 
         }, 1000);
+
     }
 
   </script>
