@@ -1,0 +1,2625 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MaxFlomShop</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background:
+        radial-gradient(circle at top, #063b73 0%, #020817 45%, #01040a 100%);
+    color: white;
+    min-height: 100vh;
+}
+
+button,
+input,
+textarea,
+select {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+.header {
+    padding: 25px 15px;
+    text-align: center;
+    background: rgba(0, 20, 50, .75);
+    border-bottom: 1px solid #087cff;
+    box-shadow: 0 0 25px rgba(0, 119, 255, .35);
+}
+
+.logo {
+    font-size: 34px;
+    font-weight: 900;
+    color: #4db8ff;
+    text-shadow:
+        0 0 10px #008cff,
+        0 0 30px #006eff;
+}
+
+.subtitle {
+    color: #a8c9e8;
+    margin-top: 7px;
+}
+
+.container {
+    width: min(1150px, 94%);
+    margin: 20px auto 60px;
+}
+
+.topbar {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+    background: rgba(5, 20, 42, .9);
+    padding: 14px;
+    border: 1px solid #0a68c9;
+    border-radius: 16px;
+    box-shadow: 0 0 25px rgba(0, 120, 255, .18);
+}
+
+.userInfo {
+    margin-right: auto;
+    color: #bde2ff;
+}
+
+.balance {
+    color: #58d5ff;
+    font-weight: bold;
+}
+
+.btn {
+    border: 0;
+    padding: 10px 15px;
+    border-radius: 10px;
+    color: white;
+    background: linear-gradient(135deg, #0077ff, #0048a5);
+    box-shadow: 0 0 12px rgba(0, 130, 255, .35);
+    transition: .2s;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(0, 150, 255, .55);
+}
+
+.btn.secondary {
+    background: #102b49;
+}
+
+.btn.danger {
+    background: linear-gradient(135deg, #ff315c, #9d0026);
+}
+
+.btn.green {
+    background: linear-gradient(135deg, #00bd72, #007b4b);
+}
+
+.tabs {
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+}
+
+.tab {
+    flex: 1;
+    min-width: 130px;
+    padding: 14px;
+    border-radius: 12px;
+    background: #071a31;
+    border: 1px solid #0a5fae;
+    color: #a9d9ff;
+}
+
+.tab.active {
+    background: linear-gradient(135deg, #006fff, #003d8f);
+    color: white;
+    box-shadow: 0 0 18px rgba(0, 120, 255, .45);
+}
+
+.products {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+}
+
+.product {
+    background: linear-gradient(
+        145deg,
+        rgba(7, 36, 70, .96),
+        rgba(3, 13, 29, .96)
+    );
+    border: 1px solid #0868bd;
+    border-radius: 18px;
+    padding: 20px;
+    box-shadow: 0 0 20px rgba(0, 100, 255, .15);
+    transition: .25s;
+}
+
+.product:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 0 28px rgba(0, 130, 255, .3);
+}
+
+.product h3 {
+    color: #62c9ff;
+    margin-bottom: 10px;
+}
+
+.product p {
+    color: #abc8e2;
+    min-height: 45px;
+}
+
+.price {
+    font-size: 24px;
+    font-weight: 900;
+    margin: 15px 0;
+    color: #fff;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, .72);
+    backdrop-filter: blur(7px);
+    z-index: 1000;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.modal.show {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modalBox {
+    width: min(600px, 100%);
+    background: linear-gradient(145deg, #08294d, #020b17);
+    border: 1px solid #1687ff;
+    border-radius: 20px;
+    padding: 24px;
+    box-shadow: 0 0 40px rgba(0, 130, 255, .4);
+}
+
+.modalBox h2 {
+    margin-bottom: 18px;
+    color: #61caff;
+}
+
+.close {
+    float: right;
+    border: 0;
+    background: none;
+    color: #9bc9ed;
+    font-size: 25px;
+}
+
+.field {
+    margin: 12px 0;
+}
+
+.field label {
+    display: block;
+    margin-bottom: 6px;
+    color: #a9d5f5;
+}
+
+.field input,
+.field textarea,
+.field select {
+    width: 100%;
+    border: 1px solid #1769aa;
+    border-radius: 10px;
+    padding: 12px;
+    background: #031426;
+    color: white;
+    outline: none;
+}
+
+.field input:focus,
+.field textarea:focus {
+    border-color: #36aaff;
+    box-shadow: 0 0 10px rgba(0, 150, 255, .2);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.notice {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    max-width: 350px;
+    padding: 15px 18px;
+    border-radius: 12px;
+    background: #082b4e;
+    border: 1px solid #1687ff;
+    box-shadow: 0 0 25px rgba(0, 120, 255, .3);
+    z-index: 2000;
+    display: none;
+}
+
+.notice.show {
+    display: block;
+}
+
+.notice.error {
+    border-color: #ff3e68;
+}
+
+.notice.success {
+    border-color: #00d888;
+}
+
+.section {
+    display: none;
+}
+
+.section.active {
+    display: block;
+}
+
+.infoBox {
+    background: rgba(5, 27, 50, .8);
+    border: 1px solid #0b5c9f;
+    padding: 18px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+.orders {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.order {
+    background: #061a30;
+    border: 1px solid #0c548c;
+    padding: 15px;
+    border-radius: 13px;
+}
+
+.order strong {
+    color: #60caff;
+}
+
+.status {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 5px 9px;
+    border-radius: 8px;
+    background: #102f4d;
+}
+
+.adminPanel {
+    display: none;
+}
+
+.adminPanel.show {
+    display: block;
+}
+
+.adminCard {
+    background: #061a30;
+    border: 1px solid #0b5c9f;
+    border-radius: 14px;
+    padding: 15px;
+    margin: 10px 0;
+}
+
+.small {
+    color: #8eb0cc;
+    font-size: 13px;
+}
+
+.row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+hr {
+    border: 0;
+    border-top: 1px solid #0d426b;
+    margin: 18px 0;
+}
+
+.empty {
+    padding: 25px;
+    text-align: center;
+    color: #7ea3c1;
+}
+
+@media (max-width: 600px) {
+    .logo {
+        font-size: 27px;
+    }
+
+    .topbar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .userInfo {
+        margin-right: 0;
+        text-align: center;
+    }
+
+    .products {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+    <div class="logo">MAXFLOMSHOP</div>
+    <div class="subtitle">Robux • Услуги • Аккаунты</div>
+</header>
+
+<div class="container">
+
+    <div class="topbar">
+
+        <div class="userInfo">
+            <span id="userStatus">Вы не вошли</span>
+            <br>
+            <span class="balance">
+                Баланс: <span id="balance">0</span> ₽
+            </span>
+        </div>
+
+        <button class="btn" id="loginBtn" onclick="openModal('authModal')">
+            Войти
+        </button>
+
+        <button class="btn green" id="depositBtn" onclick="openDeposit()">
+            Пополнить
+        </button>
+
+        <button class="btn secondary" onclick="openHistory()">
+            Заказы
+        </button>
+
+        <button class="btn secondary" onclick="openSupport()">
+            Поддержка
+        </button>
+
+        <button class="btn secondary" id="adminBtn" style="display:none"
+                onclick="openAdmin()">
+            Админ
+        </button>
+
+        <button class="btn danger" id="logoutBtn" style="display:none"
+                onclick="logoutUser()">
+            Выйти
+        </button>
+
+    </div>
+
+    <div class="tabs">
+        <button class="tab active" onclick="showCategory('robux', this)">
+            Robux
+        </button>
+
+        <button class="tab" onclick="showCategory('services', this)">
+            Услуги
+        </button>
+
+        <button class="tab" onclick="showCategory('accounts', this)">
+            Аккаунты
+        </button>
+    </div>
+
+    <section id="robux" class="section active">
+        <div class="products" id="robuxProducts"></div>
+    </section>
+
+    <section id="services" class="section">
+        <div class="products" id="servicesProducts"></div>
+    </section>
+
+    <section id="accounts" class="section">
+        <div class="products" id="accountsProducts"></div>
+    </section>
+
+    <section id="historySection" class="section">
+        <div class="infoBox">
+            <h2>История заказов</h2>
+            <p class="small">
+                Здесь отображаются твои заказы.
+            </p>
+        </div>
+
+        <div class="orders" id="ordersList"></div>
+    </section>
+
+    <section id="supportSection" class="section">
+        <div class="infoBox">
+            <h2>Поддержка</h2>
+            <p class="small">
+                Напиши сообщение, и администратор сможет его увидеть.
+            </p>
+
+            <div class="field">
+                <textarea id="supportText"
+                    placeholder="Напиши свой вопрос..."></textarea>
+            </div>
+
+            <button class="btn" onclick="sendSupportMessage()">
+                Отправить
+            </button>
+        </div>
+
+        <div id="supportHistory"></div>
+    </section>
+
+    <section id="adminSection" class="section adminPanel">
+        <div class="infoBox">
+            <h2>Админ-панель</h2>
+            <p class="small">
+                Управление заказами, пополнениями и балансами.
+            </p>
+        </div>
+
+        <h3>Пополнения</h3>
+        <div id="adminDeposits"></div>
+
+        <hr>
+
+        <h3>Заказы</h3>
+        <div id="adminOrders"></div>
+
+        <hr>
+
+        <h3>Пользователь</h3>
+
+        <div class="field">
+            <label>UID пользователя</label>
+            <input id="adminUserUid"
+                   placeholder="UID пользователя">
+        </div>
+
+        <div class="field">
+            <label>Изменение баланса</label>
+            <input id="adminBalanceAmount"
+                   type="number"
+                   placeholder="Например: 100">
+        </div>
+
+        <button class="btn green" onclick="adminChangeBalance(1)">
+            + Добавить
+        </button>
+
+        <button class="btn danger" onclick="adminChangeBalance(-1)">
+            − Вычесть
+        </button>
+    </section>
+
+</div>
+
+<!-- AUTH -->
+
+<div class="modal" id="authModal">
+    <div class="modalBox">
+
+        <button class="close" onclick="closeModal('authModal')">×</button>
+
+        <h2 id="authTitle">Вход</h2>
+
+        <div class="field">
+            <label>Email</label>
+            <input id="authEmail" type="email"
+                   autocomplete="email">
+        </div>
+
+        <div class="field">
+            <label>Пароль</label>
+            <input id="authPassword" type="password"
+                   autocomplete="current-password">
+        </div>
+
+        <button class="btn" onclick="login()">
+            Войти
+        </button>
+
+        <button class="btn secondary" onclick="register()">
+            Регистрация
+        </button>
+
+        <button class="btn secondary" onclick="resetPassword()">
+            Забыли пароль?
+        </button>
+
+    </div>
+</div>
+
+<!-- BUY -->
+
+<div class="modal" id="buyModal">
+    <div class="modalBox">
+
+        <button class="close" onclick="closeModal('buyModal')">×</button>
+
+        <h2 id="buyTitle">Покупка</h2>
+
+        <p id="buyDescription"></p>
+
+        <div class="price">
+            <span id="buyPrice">0</span> ₽
+        </div>
+
+        <div id="robloxField" class="field">
+            <label>Ник Roblox</label>
+            <input id="robloxNickname"
+                   placeholder="Например: MaxFlom">
+        </div>
+
+        <div id="phoneField" class="field">
+            <label>Телефон для связи</label>
+            <input id="customerPhone"
+                   placeholder="Необязательно">
+        </div>
+
+        <button class="btn green" onclick="createOrder()">
+            Купить
+        </button>
+
+    </div>
+</div>
+
+<!-- DEPOSIT -->
+
+<div class="modal" id="depositModal">
+    <div class="modalBox">
+
+        <button class="close"
+                onclick="closeModal('depositModal')">×</button>
+
+        <h2>Пополнение баланса</h2>
+
+        <div class="infoBox">
+            <p>
+                Банк: <b>Т-Банк</b>
+            </p>
+
+            <p>
+                Номер для перевода:
+                <b id="paymentPhone">79996512682</b>
+            </p>
+
+            <p class="small">
+                После перевода создай заявку. Администратор проверит
+                перевод и вручную зачислит средства.
+            </p>
+        </div>
+
+        <div class="field">
+            <label>Сумма перевода</label>
+            <input id="depositAmount"
+                   type="number"
+                   min="1"
+                   step="1"
+                   placeholder="Например: 100">
+        </div>
+
+        <div class="field">
+            <label>Комментарий / номер операции</label>
+            <input id="depositComment"
+                   placeholder="Если есть">
+        </div>
+
+        <button class="btn green" onclick="createDepositRequest()">
+            Я перевёл деньги
+        </button>
+
+    </div>
+</div>
+
+<!-- NOTICE -->
+
+<div class="notice" id="notice"></div>
+
+<script type="module">
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+
+import {
+    getAuth,
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    signOut,
+    onAuthStateChanged,
+    sendPasswordResetEmail,
+    sendEmailVerification
+}
+from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+import {
+    getFirestore,
+    doc,
+    getDoc,
+    setDoc,
+    addDoc,
+    collection,
+    query,
+    where,
+    getDocs,
+    updateDoc,
+    runTransaction,
+    serverTimestamp
+}
+from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+
+/* =========================
+   FIREBASE
+========================= */
+
+const firebaseConfig = {
+    apiKey: "AIzaSyA7hFpXtYghLXqipjaaQRItzmfDo_FHeq0",
+    authDomain: "coffee-spark-ai-barista-344ce.firebaseapp.com",
+    projectId: "coffee-spark-ai-barista-344ce",
+    storageBucket: "coffee-spark-ai-barista-344ce.firebasestorage.app",
+    messagingSenderId: "1064082579547",
+    appId: "1:1064082579547:web:3d2d8bf5edb54b7f149f7e"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+
+/* =========================
+   SETTINGS
+========================= */
+
+const ADMIN_UID = "uGqo5MfkbPg3aeeYkcW8KkYMqhq1";
+
+const PAYMENT_PHONE = "79996512682";
+const PAYMENT_BANK = "Т-Банк";
+
+
+/* =========================
+   PRODUCTS
+========================= */
+
+const products = {
+
+    robux: [
+        {
+            id: "robux100",
+            title: "100 Robux",
+            description: "100 Robux",
+            price: 150
+        },
+        {
+            id: "robux200",
+            title: "200 Robux",
+            description: "200 Robux",
+            price: 250
+        },
+        {
+            id: "robux500",
+            title: "500 Robux",
+            description: "500 Robux",
+            price: 569
+        },
+        {
+            id: "robux1000",
+            title: "1000 Robux",
+            description: "1000 Robux",
+            price: 1210
+        },
+        {
+            id: "robux2000",
+            title: "2000 Robux",
+            description: "2000 Robux",
+            price: 2199
+        }
+    ],
+
+    services: [
+        {
+            id: "cheats",
+            title: "Лучшие читы!",
+            description: "Услуга",
+            price: 110
+        },
+        {
+            id: "promo",
+            title: "Пиар",
+            description: "Продвижение",
+            price: 100
+        },
+        {
+            id: "uncheked",
+            title: "Сделаю с Uncheked на обычный Roblox",
+            description: "Услуга",
+            price: 50
+        },
+        {
+            id: "steal",
+            title: "Помогу развиться в Steal a agg",
+            description: "Помощь в игре",
+            price: 20
+        },
+        {
+            id: "website",
+            title: "Помогу создать сайт",
+            description: "Создание сайта",
+            price: 1400
+        }
+    ],
+
+    accounts: [
+        {
+            id: "account200",
+            title: "Донат 200 Robux",
+            description: "Аккаунт",
+            price: 100
+        },
+        {
+            id: "account1000",
+            title: "Донат 1000 Robux",
+            description: "Аккаунт",
+            price: 699
+        }
+    ]
+
+};
+
+
+/* =========================
+   STATE
+========================= */
+
+let currentUser = null;
+let currentProduct = null;
+
+
+/* =========================
+   HELPERS
+========================= */
+
+window.openModal = function(id) {
+    document.getElementById(id).classList.add("show");
+};
+
+window.closeModal = function(id) {
+    document.getElementById(id).classList.remove("show");
+};
+
+function notify(text, type = "success") {
+
+    const el = document.getElementById("notice");
+
+    el.textContent = text;
+    el.className = "notice show " + type;
+
+    setTimeout(() => {
+        el.className = "notice";
+    }, 3500);
+}
+
+
+function escapeHtml(value) {
+
+    return String(value ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+}
+
+
+function firebaseError(error) {
+
+    const code = error?.code || "";
+
+    const map = {
+        "auth/invalid-email":
+            "Неверный email.",
+
+        "auth/user-not-found":
+            "Пользователь не найден.",
+
+        "auth/wrong-password":
+            "Неверный пароль.",
+
+        "auth/invalid-credential":
+            "Неверный email или пароль.",
+
+        "auth/email-already-in-use":
+            "Этот email уже используется.",
+
+        "auth/weak-password":
+            "Пароль слишком простой.",
+
+        "auth/too-many-requests":
+            "Слишком много попыток. Попробуй позже.",
+
+        "permission-denied":
+            "Недостаточно прав Firebase.",
+
+        "failed-precondition":
+            "Операция не может быть выполнена."
+    };
+
+    return map[code] || error?.message || "Произошла ошибка.";
+}
+
+
+/* =========================
+   PRODUCTS RENDER
+========================= */
+
+function renderProducts(category) {
+
+    const container =
+        document.getElementById(category + "Products");
+
+    container.innerHTML = "";
+
+    products[category].forEach(product => {
+
+        const card = document.createElement("div");
+
+        card.className = "product";
+
+        card.innerHTML = `
+            <h3>${escapeHtml(product.title)}</h3>
+
+            <p>
+                ${escapeHtml(product.description)}
+            </p>
+
+            <div class="price">
+                ${product.price} ₽
+            </div>
+
+            <button class="btn buyButton">
+                Купить
+            </button>
+        `;
+
+        card.querySelector(".buyButton")
+            .addEventListener("click", () => {
+                openBuy(product);
+            });
+
+        container.appendChild(card);
+    });
+}
+
+
+function renderAllProducts() {
+
+    renderProducts("robux");
+    renderProducts("services");
+    renderProducts("accounts");
+}
+
+
+/* =========================
+   CATEGORIES
+========================= */
+
+window.showCategory = function(category, button) {
+
+    document
+        .querySelectorAll(".section")
+        .forEach(section => {
+            if (
+                section.id === "robux" ||
+                section.id === "services" ||
+                section.id === "accounts"
+            ) {
+                section.classList.remove("active");
+            }
+        });
+
+    document
+        .getElementById(category)
+        .classList.add("active");
+
+    document
+        .querySelectorAll(".tab")
+        .forEach(tab => tab.classList.remove("active"));
+
+    button.classList.add("active");
+};
+
+
+/* =========================
+   AUTH
+========================= */
+
+window.login = async function() {
+
+    const email =
+        document.getElementById("authEmail").value.trim();
+
+    const password =
+        document.getElementById("authPassword").value;
+
+    if (!email || !password) {
+        notify("Заполни email и пароль.", "error");
+        return;
+    }
+
+    try {
+
+        await signInWithEmailAndPassword(
+            auth,
+            email,
+            password
+        );
+
+        closeModal("authModal");
+
+        notify("Ты успешно вошёл.");
+
+    } catch (error) {
+
+        notify(firebaseError(error), "error");
+    }
+};
+
+
+window.register = async function() {
+
+    const email =
+        document.getElementById("authEmail").value.trim();
+
+    const password =
+        document.getElementById("authPassword").value;
+
+    if (!email || !password) {
+        notify("Заполни email и пароль.", "error");
+        return;
+    }
+
+    if (password.length < 6) {
+        notify(
+            "Пароль должен содержать минимум 6 символов.",
+            "error"
+        );
+        return;
+    }
+
+    try {
+
+        const credential =
+            await createUserWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
+
+        const user = credential.user;
+
+        await setDoc(
+            doc(db, "users", user.uid),
+            {
+                uid: user.uid,
+                email: user.email,
+                balance: 0,
+                admin: false,
+                createdAt: serverTimestamp()
+            }
+        );
+
+        try {
+            await sendEmailVerification(user);
+        } catch {}
+
+        closeModal("authModal");
+
+        notify(
+            "Аккаунт создан. Проверь почту для подтверждения."
+        );
+
+    } catch (error) {
+
+        notify(firebaseError(error), "error");
+    }
+};
+
+
+window.resetPassword = async function() {
+
+    const email =
+        document.getElementById("authEmail").value.trim();
+
+    if (!email) {
+        notify(
+            "Сначала введи свой email.",
+            "error"
+        );
+        return;
+    }
+
+    try {
+
+        await sendPasswordResetEmail(
+            auth,
+            email
+        );
+
+        notify(
+            "Письмо для восстановления отправлено."
+        );
+
+    } catch (error) {
+
+        notify(firebaseError(error), "error");
+    }
+};
+
+
+window.logoutUser = async function() {
+
+    try {
+
+        await signOut(auth);
+
+        notify("Выход выполнен.");
+
+    } catch (error) {
+
+        notify(firebaseError(error), "error");
+    }
+};
+
+
+/* =========================
+   USER
+========================= */
+
+async function loadUserData() {
+
+    if (!currentUser) {
+        document.getElementById("balance").textContent = "0";
+        return;
+    }
+
+    const ref =
+        doc(db, "users", currentUser.uid);
+
+    const snap = await getDoc(ref);
+
+    if (!snap.exists()) {
+
+        await setDoc(ref, {
+            uid: currentUser.uid,
+            email: currentUser.email,
+            balance: 0,
+            admin: false,
+            createdAt: serverTimestamp()
+        });
+
+        document.getElementById("balance")
+            .textContent = "0";
+
+        return;
+    }
+
+    const data = snap.data();
+
+    document.getElementById("balance")
+        .textContent =
+        Number(data.balance || 0).toLocaleString("ru-RU");
+}
+
+
+/* =========================
+   AUTH STATE
+========================= */
+
+onAuthStateChanged(auth, async user => {
+
+    currentUser = user;
+
+    const userStatus =
+        document.getElementById("userStatus");
+
+    const loginBtn =
+        document.getElementById("loginBtn");
+
+    const logoutBtn =
+        document.getElementById("logoutBtn");
+
+    const adminBtn =
+        document.getElementById("adminBtn");
+
+    if (!user) {
+
+        userStatus.textContent =
+            "Вы не вошли";
+
+        loginBtn.style.display = "";
+        logoutBtn.style.display = "none";
+        adminBtn.style.display = "none";
+
+        document.getElementById("balance")
+            .textContent = "0";
+
+        return;
+    }
+
+    userStatus.innerHTML =
+        `Вы вошли как <b>${escapeHtml(user.email)}</b>`;
+
+    loginBtn.style.display = "none";
+    logoutBtn.style.display = "";
+
+    if (user.uid === ADMIN_UID) {
+        adminBtn.style.display = "";
+    } else {
+        adminBtn.style.display = "none";
+    }
+
+    await loadUserData();
+});
+
+
+/* =========================
+   BUY
+========================= */
+
+window.openBuy = function(product) {
+
+    if (!currentUser) {
+
+        notify(
+            "Сначала войди в аккаунт.",
+            "error"
+        );
+
+        openModal("authModal");
+
+        return;
+    }
+
+    currentProduct = product;
+
+    document.getElementById("buyTitle")
+        .textContent = product.title;
+
+    document.getElementById("buyDescription")
+        .textContent = product.description;
+
+    document.getElementById("buyPrice")
+        .textContent = product.price;
+
+    document.getElementById("robloxField")
+        .style.display =
+        product.id.startsWith("robux")
+            ? "block"
+            : "none";
+
+    document.getElementById("phoneField")
+        .style.display = "block";
+
+    document.getElementById("robloxNickname")
+        .value = "";
+
+    document.getElementById("customerPhone")
+        .value = "";
+
+    openModal("buyModal");
+};
+
+
+/* =========================
+   CREATE ORDER
+========================= */
+
+window.createOrder = async function() {
+
+    if (!currentUser) {
+        notify("Нужно войти.", "error");
+        return;
+    }
+
+    if (!currentProduct) {
+        notify("Товар не выбран.", "error");
+        return;
+    }
+
+    const nickname =
+        document.getElementById("robloxNickname")
+            .value.trim();
+
+    const phone =
+        document.getElementById("customerPhone")
+            .value.trim();
+
+    if (
+        currentProduct.id.startsWith("robux")
+        && !nickname
+    ) {
+        notify(
+            "Укажи ник Roblox.",
+            "error"
+        );
+        return;
+    }
+
+    const product = currentProduct;
+
+    try {
+
+        const userRef =
+            doc(db, "users", currentUser.uid);
+
+        const orderRef =
+            doc(collection(db, "orders"));
+
+        await runTransaction(db, async transaction => {
+
+            const userSnap =
+                await transaction.get(userRef);
+
+            if (!userSnap.exists()) {
+                throw new Error("USER_NOT_FOUND");
+            }
+
+            const userData = userSnap.data();
+
+            const balance =
+                Number(userData.balance || 0);
+
+            if (balance < product.price) {
+                throw new Error("NOT_ENOUGH_BALANCE");
+            }
+
+            const newBalance =
+                balance - product.price;
+
+            transaction.update(userRef, {
+                balance: newBalance
+            });
+
+            transaction.set(orderRef, {
+                id: orderRef.id,
+                userId: currentUser.uid,
+                email: currentUser.email,
+                productId: product.id,
+                productTitle: product.title,
+                price: product.price,
+                robloxNickname: nickname || "",
+                phone: phone || "",
+                status: "pending",
+                refunded: false,
+                createdAt: serverTimestamp()
+            });
+
+        });
+
+        closeModal("buyModal");
+
+        await loadUserData();
+
+        notify(
+            "Заказ создан! Деньги списаны."
+        );
+
+    } catch (error) {
+
+        if (error.message === "NOT_ENOUGH_BALANCE") {
+
+            notify(
+                "Недостаточно средств.",
+                "error"
+            );
+
+            return;
+        }
+
+        if (error.message === "USER_NOT_FOUND") {
+
+            notify(
+                "Профиль пользователя не найден.",
+                "error"
+            );
+
+            return;
+        }
+
+        notify(
+            firebaseError(error),
+            "error"
+        );
+    }
+};
+
+
+/* =========================
+   DEPOSIT
+========================= */
+
+window.openDeposit = function() {
+
+    if (!currentUser) {
+
+        notify(
+            "Сначала войди в аккаунт.",
+            "error"
+        );
+
+        openModal("authModal");
+
+        return;
+    }
+
+    document.getElementById("paymentPhone")
+        .textContent = PAYMENT_PHONE;
+
+    openModal("depositModal");
+};
+
+
+window.createDepositRequest = async function() {
+
+    if (!currentUser) {
+        notify("Нужно войти.", "error");
+        return;
+    }
+
+    const amount =
+        Number(
+            document.getElementById("depositAmount")
+                .value
+        );
+
+    const comment =
+        document.getElementById("depositComment")
+            .value.trim();
+
+    if (!Number.isFinite(amount) || amount <= 0) {
+
+        notify(
+            "Укажи правильную сумму.",
+            "error"
+        );
+
+        return;
+    }
+
+    if (amount > 1000000) {
+
+        notify(
+            "Слишком большая сумма.",
+            "error"
+        );
+
+        return;
+    }
+
+    try {
+
+        await addDoc(
+            collection(db, "depositRequests"),
+            {
+                userId: currentUser.uid,
+                email: currentUser.email,
+                amount: amount,
+                comment: comment,
+                bank: PAYMENT_BANK,
+                status: "pending",
+                createdAt: serverTimestamp()
+            }
+        );
+
+        closeModal("depositModal");
+
+        document.getElementById("depositAmount")
+            .value = "";
+
+        document.getElementById("depositComment")
+            .value = "";
+
+        notify(
+            "Заявка отправлена администратору."
+        );
+
+    } catch (error) {
+
+        notify(
+            firebaseError(error),
+            "error"
+        );
+    }
+};
+
+
+/* =========================
+   HISTORY
+========================= */
+
+window.openHistory = async function() {
+
+    if (!currentUser) {
+
+        notify(
+            "Сначала войди.",
+            "error"
+        );
+
+        openModal("authModal");
+
+        return;
+    }
+
+    document
+        .querySelectorAll(".section")
+        .forEach(s => s.classList.remove("active"));
+
+    document
+        .getElementById("historySection")
+        .classList.add("active");
+
+    await loadOrders();
+};
+
+
+async function loadOrders() {
+
+    const list =
+        document.getElementById("ordersList");
+
+    list.innerHTML =
+        `<div class="empty">Загрузка...</div>`;
+
+    try {
+
+        const q = query(
+            collection(db, "orders"),
+            where("userId", "==", currentUser.uid)
+        );
+
+        const snapshot =
+            await getDocs(q);
+
+        if (snapshot.empty) {
+
+            list.innerHTML =
+                `<div class="empty">
+                    У тебя пока нет заказов.
+                </div>`;
+
+            return;
+        }
+
+        const orders = [];
+
+        snapshot.forEach(item => {
+            orders.push({
+                id: item.id,
+                ...item.data()
+            });
+        });
+
+        orders.sort((a, b) => {
+
+            const aTime =
+                a.createdAt?.seconds || 0;
+
+            const bTime =
+                b.createdAt?.seconds || 0;
+
+            return bTime - aTime;
+        });
+
+        list.innerHTML = "";
+
+        orders.forEach(order => {
+
+            const div =
+                document.createElement("div");
+
+            div.className = "order";
+
+            div.innerHTML = `
+                <strong>
+                    ${escapeHtml(order.productTitle)}
+                </strong>
+
+                <br>
+
+                Цена:
+                ${Number(order.price || 0)} ₽
+
+                <br>
+
+                Код заказа:
+                <b>${escapeHtml(order.id)}</b>
+
+                <br>
+
+                Статус:
+                <span class="status">
+                    ${escapeHtml(order.status)}
+                </span>
+
+                ${
+                    order.robloxNickname
+                    ? `<br>Roblox:
+                       ${escapeHtml(order.robloxNickname)}`
+                    : ""
+                }
+            `;
+
+            list.appendChild(div);
+        });
+
+    } catch (error) {
+
+        list.innerHTML =
+            `<div class="empty">
+                ${escapeHtml(firebaseError(error))}
+            </div>`;
+    }
+}
+
+
+/* =========================
+   SUPPORT
+========================= */
+
+window.openSupport = async function() {
+
+    if (!currentUser) {
+
+        notify(
+            "Сначала войди.",
+            "error"
+        );
+
+        openModal("authModal");
+
+        return;
+    }
+
+    document
+        .querySelectorAll(".section")
+        .forEach(s => s.classList.remove("active"));
+
+    document
+        .getElementById("supportSection")
+        .classList.add("active");
+
+    await loadSupport();
+};
+
+
+window.sendSupportMessage = async function() {
+
+    if (!currentUser) {
+        notify("Нужно войти.", "error");
+        return;
+    }
+
+    const text =
+        document.getElementById("supportText")
+            .value.trim();
+
+    if (!text) {
+        notify(
+            "Напиши сообщение.",
+            "error"
+        );
+        return;
+    }
+
+    if (text.length > 3000) {
+        notify(
+            "Сообщение слишком длинное.",
+            "error"
+        );
+        return;
+    }
+
+    try {
+
+        await addDoc(
+            collection(db, "supportMessages"),
+            {
+                userId: currentUser.uid,
+                email: currentUser.email,
+                text: text,
+                fromAdmin: false,
+                createdAt: serverTimestamp()
+            }
+        );
+
+        document.getElementById("supportText")
+            .value = "";
+
+        notify(
+            "Сообщение отправлено."
+        );
+
+        await loadSupport();
+
+    } catch (error) {
+
+        notify(
+            firebaseError(error),
+            "error"
+        );
+    }
+};
+
+
+async function loadSupport() {
+
+    const box =
+        document.getElementById("supportHistory");
+
+    box.innerHTML =
+        `<div class="empty">Загрузка...</div>`;
+
+    try {
+
+        const q = query(
+            collection(db, "supportMessages"),
+            where("userId", "==", currentUser.uid)
+        );
+
+        const snapshot =
+            await getDocs(q);
+
+        if (snapshot.empty) {
+
+            box.innerHTML =
+                `<div class="empty">
+                    Сообщений пока нет.
+                </div>`;
+
+            return;
+        }
+
+        const messages = [];
+
+        snapshot.forEach(item => {
+
+            messages.push({
+                id: item.id,
+                ...item.data()
+            });
+
+        });
+
+        messages.sort((a, b) => {
+
+            const aTime =
+                a.createdAt?.seconds || 0;
+
+            const bTime =
+                b.createdAt?.seconds || 0;
+
+            return aTime - bTime;
+        });
+
+        box.innerHTML = "";
+
+        messages.forEach(message => {
+
+            const div =
+                document.createElement("div");
+
+            div.className = "adminCard";
+
+            div.innerHTML = `
+                <b>
+                    ${message.fromAdmin
+                        ? "Администратор"
+                        : "Вы"}
+                </b>
+
+                <p style="margin-top:8px">
+                    ${escapeHtml(message.text)}
+                </p>
+            `;
+
+            box.appendChild(div);
+        });
+
+    } catch (error) {
+
+        box.innerHTML =
+            `<div class="empty">
+                ${escapeHtml(firebaseError(error))}
+            </div>`;
+    }
+}
+
+
+/* =========================
+   ADMIN
+========================= */
+
+window.openAdmin = async function() {
+
+    if (!currentUser) {
+        notify("Нужно войти.", "error");
+        return;
+    }
+
+    if (currentUser.uid !== ADMIN_UID) {
+        notify(
+            "Доступ запрещён.",
+            "error"
+        );
+        return;
+    }
+
+    document
+        .querySelectorAll(".section")
+        .forEach(s => s.classList.remove("active"));
+
+    document
+        .getElementById("adminSection")
+        .classList.add("active");
+
+    await loadAdminData();
+};
+
+
+async function loadAdminData() {
+
+    await loadAdminDeposits();
+    await loadAdminOrders();
+}
+
+
+/* =========================
+   ADMIN DEPOSITS
+========================= */
+
+async function loadAdminDeposits() {
+
+    const box =
+        document.getElementById("adminDeposits");
+
+    box.innerHTML =
+        `<div class="empty">Загрузка...</div>`;
+
+    try {
+
+        const snapshot =
+            await getDocs(
+                collection(db, "depositRequests")
+            );
+
+        const requests = [];
+
+        snapshot.forEach(item => {
+
+            requests.push({
+                id: item.id,
+                ...item.data()
+            });
+
+        });
+
+        requests.sort((a, b) => {
+
+            const aTime =
+                a.createdAt?.seconds || 0;
+
+            const bTime =
+                b.createdAt?.seconds || 0;
+
+            return bTime - aTime;
+        });
+
+        if (!requests.length) {
+
+            box.innerHTML =
+                `<div class="empty">
+                    Заявок нет.
+                </div>`;
+
+            return;
+        }
+
+        box.innerHTML = "";
+
+        requests.forEach(request => {
+
+            const div =
+                document.createElement("div");
+
+            div.className = "adminCard";
+
+            div.innerHTML = `
+                <b>
+                    ${Number(request.amount || 0)} ₽
+                </b>
+
+                <br>
+
+                Email:
+                ${escapeHtml(request.email)}
+
+                <br>
+
+                UID:
+                <span class="small">
+                    ${escapeHtml(request.userId)}
+                </span>
+
+                <br>
+
+                Статус:
+                ${escapeHtml(request.status)}
+
+                <br>
+
+                Комментарий:
+                ${escapeHtml(request.comment || "—")}
+
+                ${
+                    request.status === "pending"
+                    ? `
+                    <div class="row" style="margin-top:10px">
+
+                        <button
+                            class="btn green approveDeposit">
+                            Одобрить
+                        </button>
+
+                        <button
+                            class="btn danger rejectDeposit">
+                            Отклонить
+                        </button>
+
+                    </div>
+                    `
+                    : ""
+                }
+            `;
+
+            if (request.status === "pending") {
+
+                div.querySelector(".approveDeposit")
+                    .addEventListener(
+                        "click",
+                        () => approveDeposit(request)
+                    );
+
+                div.querySelector(".rejectDeposit")
+                    .addEventListener(
+                        "click",
+                        () => rejectDeposit(request)
+                    );
+            }
+
+            box.appendChild(div);
+        });
+
+    } catch (error) {
+
+        box.innerHTML =
+            `<div class="empty">
+                ${escapeHtml(firebaseError(error))}
+            </div>`;
+    }
+}
+
+
+/* =========================
+   APPROVE DEPOSIT
+========================= */
+
+async function approveDeposit(request) {
+
+    if (currentUser?.uid !== ADMIN_UID) {
+        notify(
+            "Доступ запрещён.",
+            "error"
+        );
+        return;
+    }
+
+    try {
+
+        const depositRef =
+            doc(
+                db,
+                "depositRequests",
+                request.id
+            );
+
+        const userRef =
+            doc(
+                db,
+                "users",
+                request.userId
+            );
+
+        await runTransaction(db, async transaction => {
+
+            const depositSnap =
+                await transaction.get(depositRef);
+
+            if (!depositSnap.exists()) {
+                throw new Error("DEPOSIT_NOT_FOUND");
+            }
+
+            const deposit =
+                depositSnap.data();
+
+            if (deposit.status !== "pending") {
+                throw new Error("ALREADY_PROCESSED");
+            }
+
+            const userSnap =
+                await transaction.get(userRef);
+
+            if (!userSnap.exists()) {
+                throw new Error("USER_NOT_FOUND");
+            }
+
+            const user =
+                userSnap.data();
+
+            const oldBalance =
+                Number(user.balance || 0);
+
+            const amount =
+                Number(deposit.amount || 0);
+
+            transaction.update(
+                userRef,
+                {
+                    balance:
+                        oldBalance + amount
+                }
+            );
+
+            transaction.update(
+                depositRef,
+                {
+                    status: "approved",
+                    approvedAt: serverTimestamp(),
+                    approvedBy: currentUser.uid
+                }
+            );
+
+        });
+
+        notify(
+            "Пополнение одобрено."
+        );
+
+        await loadAdminData();
+
+    } catch (error) {
+
+        if (error.message === "ALREADY_PROCESSED") {
+
+            notify(
+                "Эта заявка уже обработана.",
+                "error"
+            );
+
+            return;
+        }
+
+        notify(
+            firebaseError(error),
+            "error"
+        );
+    }
+}
+
+
+/* =========================
+   REJECT DEPOSIT
+========================= */
+
+async function rejectDeposit(request) {
+
+    if (currentUser?.uid !== ADMIN_UID) {
+        notify(
+            "Доступ запрещён.",
+            "error"
+        );
+        return;
+    }
+
+    try {
+
+        const ref =
+            doc(
+                db,
+                "depositRequests",
+                request.id
+            );
+
+        await runTransaction(
+            db,
+            async transaction => {
+
+                const snap =
+                    await transaction.get(ref);
+
+                if (!snap.exists()) {
+                    throw new Error(
+                        "DEPOSIT_NOT_FOUND"
+                    );
+                }
+
+                const data = snap.data();
+
+                if (data.status !== "pending") {
+                    throw new Error(
+                        "ALREADY_PROCESSED"
+                    );
+                }
+
+                transaction.update(ref, {
+                    status: "rejected",
+                    rejectedAt: serverTimestamp(),
+                    rejectedBy: currentUser.uid
+                });
+
+            }
+        );
+
+        notify(
+            "Заявка отклонена."
+        );
+
+        await loadAdminData();
+
+    } catch (error) {
+
+        if (error.message === "ALREADY_PROCESSED") {
+
+            notify(
+                "Заявка уже обработана.",
+                "error"
+            );
+
+            return;
+        }
+
+        notify(
+            firebaseError(error),
+            "error"
+        );
+    }
+}
+
+
+/* =========================
+   ADMIN ORDERS
+========================= */
+
+async function loadAdminOrders() {
+
+    const box =
+        document.getElementById("adminOrders");
+
+    box.innerHTML =
+        `<div class="empty">Загрузка...</div>`;
+
+    try {
+
+        const snapshot =
+            await getDocs(
+                collection(db, "orders")
+            );
+
+        const orders = [];
+
+        snapshot.forEach(item => {
+
+            orders.push({
+                id: item.id,
+                ...item.data()
+            });
+
+        });
+
+        orders.sort((a, b) => {
+
+            const aTime =
+                a.createdAt?.seconds || 0;
+
+            const bTime =
+                b.createdAt?.seconds || 0;
+
+            return bTime - aTime;
+        });
+
+        if (!orders.length) {
+
+            box.innerHTML =
+                `<div class="empty">
+                    Заказов нет.
+                </div>`;
+
+            return;
+        }
+
+        box.innerHTML = "";
+
+        orders.forEach(order => {
+
+            const div =
+                document.createElement("div");
+
+            div.className = "adminCard";
+
+            div.innerHTML = `
+                <b>
+                    ${escapeHtml(order.productTitle)}
+                </b>
+
+                <br>
+
+                Цена:
+                ${Number(order.price || 0)} ₽
+
+                <br>
+
+                UID:
+                <span class="small">
+                    ${escapeHtml(order.userId)}
+                </span>
+
+                <br>
+
+                Код:
+                ${escapeHtml(order.id)}
+
+                <br>
+
+                Статус:
+                ${escapeHtml(order.status)}
+
+                ${
+                    order.robloxNickname
+                    ? `<br>
+                       Roblox:
+                       ${escapeHtml(order.robloxNickname)}`
+                    : ""
+                }
+
+                <div class="row" style="margin-top:10px">
+
+                    ${
+                        order.status === "pending"
+                        ? `
+                        <button class="btn green completeOrder">
+                            Выполнить
+                        </button>
+
+                        <button class="btn danger cancelOrder">
+                            Отменить
+                        </button>
+                        `
+                        : ""
+                    }
+
+                </div>
+            `;
+
+            const complete =
+                div.querySelector(".completeOrder");
+
+            const cancel =
+                div.querySelector(".cancelOrder");
+
+            if (complete) {
+
+                complete.addEventListener(
+                    "click",
+                    () => completeOrder(order)
+                );
+            }
+
+            if (cancel) {
+
+                cancel.addEventListener(
+                    "click",
+                    () => cancelOrder(order)
+                );
+            }
+
+            box.appendChild(div);
+        });
+
+    } catch (error) {
+
+        box.innerHTML =
+            `<div class="empty">
+                ${escapeHtml(firebaseError(error))}
+            </div>`;
+    }
+}
+
+
+/* =========================
+   COMPLETE ORDER
+========================= */
+
+async function completeOrder(order) {
+
+    if (currentUser?.uid !== ADMIN_UID) {
+        notify(
+            "Доступ запрещён.",
+            "error"
+        );
+        return;
+    }
+
+    try {
+
+        const ref =
+            doc(db, "orders", order.id);
+
+        await runTransaction(
+            db,
+            async transaction => {
+
+                const snap =
+                    await transaction.get(ref);
+
+                if (!snap.exists()) {
+                    throw new Error(
+                        "ORDER_NOT_FOUND"
+                    );
+                }
+
+                const data = snap.data();
+
+                if (data.status !== "pending") {
+                    throw new Error(
+                        "ORDER_NOT_PENDING"
+                    );
+                }
+
+                transaction.update(ref, {
+                    status: "completed",
+                    completedAt: serverTimestamp(),
+                    completedBy: currentUser.uid
+                });
+
+            }
+        );
+
+        notify(
+            "Заказ отмечен выполненным."
+        );
+
+        await loadAdminData();
+
+    } catch (error) {
+
+        if (error.message === "ORDER_NOT_PENDING") {
+
+            notify(
+                "Заказ уже обработан.",
+                "error"
+            );
+
+            return;
+        }
+
+        notify(
+            firebaseError(error),
+            "error"
+        );
+    }
+}
+
+
+/* =========================
+   CANCEL + REFUND
+========================= */
+
+async function cancelOrder(order) {
+
+    if (currentUser?.uid !== ADMIN_UID) {
+        notify(
+            "Доступ запрещён.",
+            "error"
+        );
+        return;
+    }
+
+    try {
+
+        const orderRef =
+            doc(
+                db,
+                "orders",
+                order.id
+            );
+
+        const userRef =
+            doc(
+                db,
+                "users",
+                order.userId
+            );
+
+        await runTransaction(
+            db,
+            async transaction => {
+
+                const orderSnap =
+                    await transaction.get(orderRef);
+
+                if (!orderSnap.exists()) {
+                    throw new Error(
+                        "ORDER_NOT_FOUND"
+                    );
+                }
+
+                const orderData =
+                    orderSnap.data();
+
+                if (orderData.status !== "pending") {
+                    throw new Error(
+                        "ORDER_NOT_PENDING"
+                    );
+                }
+
+                if (orderData.refunded === true) {
+                    throw new Error(
+                        "ALREADY_REFUNDED"
+                    );
+                }
+
+                const userSnap =
+                    await transaction.get(userRef);
+
+                if (!userSnap.exists()) {
+                    throw new Error(
+                        "USER_NOT_FOUND"
+                    );
+                }
+
+                const user =
+                    userSnap.data();
+
+                const oldBalance =
+                    Number(user.balance || 0);
+
+                const price =
+                    Number(orderData.price || 0);
+
+                transaction.update(
+                    userRef,
+                    {
+                        balance:
+                            oldBalance + price
+                    }
+                );
+
+                transaction.update(
+                    orderRef,
+                    {
+                        status: "cancelled",
+                        refunded: true,
+                        cancelledAt: serverTimestamp(),
+                        cancelledBy: currentUser.uid
+                    }
+                );
+
+            }
+        );
+
+        notify(
+            "Заказ отменён, деньги возвращены."
+        );
+
+        await loadAdminData();
+
+    } catch (error) {
+
+        if (error.message === "ORDER_NOT_PENDING") {
+
+            notify(
+                "Этот заказ уже обработан.",
+                "error"
+            );
+
+            return;
+        }
+
+        if (error.message === "ALREADY_REFUNDED") {
+
+            notify(
+                "Деньги уже возвращались.",
+                "error"
+            );
+
+            return;
+        }
+
+        notify(
+            firebaseError(error),
+            "error"
+        );
+    }
+}
+
+
+/* =========================
+   ADMIN BALANCE
+========================= */
+
+window.adminChangeBalance =
+async function(multiplier) {
+
+    if (currentUser?.uid !== ADMIN_UID) {
+
+        notify(
+            "Доступ запрещён.",
+            "error"
+        );
+
+        return;
+    }
+
+    const uid =
+        document.getElementById("adminUserUid")
+            .value.trim();
+
+    const amount =
+        Number(
+            document.getElementById(
+                "adminBalanceAmount"
+            ).value
+        );
+
+    if (!uid) {
+
+        notify(
+            "Укажи UID пользователя.",
+            "error"
+        );
+
+        return;
+    }
+
+    if (!Number.isFinite(amount) || amount <= 0) {
+
+        notify(
+            "Укажи правильную сумму.",
+            "error"
+        );
+
+        return;
+    }
+
+    if (amount > 1000000) {
+
+        notify(
+            "Слишком большая сумма.",
+            "error"
+        );
+
+        return;
+    }
+
+    try {
+
+        const userRef =
+            doc(db, "users", uid);
+
+        await runTransaction(
+            db,
+            async transaction => {
+
+                const snap =
+                    await transaction.get(userRef);
+
+                if (!snap.exists()) {
+                    throw new Error(
+                        "USER_NOT_FOUND"
+                    );
+                }
+
+                const user =
+                    snap.data();
+
+                const oldBalance =
+                    Number(user.balance || 0);
+
+                const newBalance =
+                    oldBalance + amount * multiplier;
+
+                if (newBalance < 0) {
+                    throw new Error(
+                        "NEGATIVE_BALANCE"
+                    );
+                }
+
+                transaction.update(
+                    userRef,
+                    {
+                        balance: newBalance
+                    }
+                );
+
+            }
+        );
+
+        notify(
+            "Баланс изменён."
+        );
+
+    } catch (error) {
+
+        if (error.message === "NEGATIVE_BALANCE") {
+
+            notify(
+                "Баланс не может быть отрицательным.",
+                "error"
+            );
+
+            return;
+        }
+
+        if (error.message === "USER_NOT_FOUND") {
+
+            notify(
+                "Пользователь не найден.",
+                "error"
+            );
+
+            return;
+        }
+
+        notify(
+            firebaseError(error),
+            "error"
+        );
+    }
+};
+
+
+/* =========================
+   START
+========================= */
+
+renderAllProducts();
+
+</script>
+
+</body>
+</html>
